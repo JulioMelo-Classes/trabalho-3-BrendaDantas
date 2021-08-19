@@ -2,9 +2,14 @@
 
 #include <iostream>
 #include <fstream>
+#include <string>
 
 #include <chrono> //por causa do sleep
 #include <thread> //por causa do sleep
+
+#ifdef _WIN32
+    #include <Windows.h>
+#endif
 
 using namespace std;
 
@@ -16,11 +21,11 @@ SnakeGame::SnakeGame(){
 
 void SnakeGame::initialize_game(){
     //carrega o nivel ou os níveis
-    ifstream levelFile("data/maze1.txt"); //só dá certo se o jogo for executado dentro da raíz do diretório (vc vai resolver esse problema pegando o arquivo da linha de comando)
+    ifstream levelFile("./data/maze1.txt"); //só dá certo se o jogo for executado dentro da raíz do diretório (vc vai resolver esse problema pegando o arquivo da linha de comando)
     int lineCount = 0;
     string line;
     if(levelFile.is_open()){
-        while(getline(levelFile, line)){ //pega cada linha do arquivo
+        while(std::getline(levelFile, line)){ //pega cada linha do arquivo
             if(lineCount > 0){ //ignora a primeira linha já que ela contem informações que não são uteis para esse exemplo
                 maze.push_back(line);
             }
@@ -38,7 +43,7 @@ void SnakeGame::process_actions(){
     //no caso deste trabalho temos 2 tipos de entrada, uma que vem da classe Player, como resultado do processamento da IA
     //outra vem do próprio usuário na forma de uma entrada do teclado.
     switch(state){
-        case WAITING_USER: //o jogo bloqueia aqui esperando o usuário digitar a escolha dele
+        case WAITING_USER:
             cin>>std::ws>>choice;
             break;
         default:
@@ -75,11 +80,15 @@ void SnakeGame::update(){
  * @param ms a quantidade de segundos que o programa deve esperar
  */
 void wait(int ms){
+#if defined _WIN32
+    Sleep(ms);
+#else
     this_thread::sleep_for(chrono::milliseconds(ms));
+#endif
 }
 
 /**
- * @brief função auxiliar para limpar o terminal
+ * @brief função auxiliar para linpar o terminal
  */
 void clearScreen(){
 //some C++ voodoo here ;D
@@ -101,7 +110,7 @@ void SnakeGame::render(){
                 cout<<line<<endl;
             }
             break;
-        case WAITING_USER:
+        case WAITING_USER: //este método bloqueia aqui esperando o usuário digitar a escolha dele
             cout<<"Você quer continuar com o jogo? (s/n)"<<endl;
             break;
         case GAME_OVER:
