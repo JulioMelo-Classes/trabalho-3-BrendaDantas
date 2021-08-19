@@ -5,9 +5,12 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
+#include <vector>
 #include <chrono> //por causa do sleep
 #include <thread> //por causa do sleep
+
+#include <stdlib.h>
+#include <ctype.h>
 
 #ifdef _WIN32
     #include <Windows.h>
@@ -20,21 +23,21 @@ SnakeGame::SnakeGame(){
     frameCount = 0;
     initialize_game();
 }
-
+vector<int> def;
 void SnakeGame::initialize_game(){
+    
     //carrega o nivel ou os níveis
     ifstream levelFile("./data/maze1.txt"); //só dá certo se o jogo for executado dentro da raíz do diretório (vc vai resolver esse problema pegando o arquivo da linha de comando)
     int lineCount = 0;
     string line;
     if(levelFile.is_open()){
         while(std::getline(levelFile, line)){ //pega cada linha do arquivo
-            //if(line != "15" || line != "10" || line != "4"){ //ignora a primeira linha já que ela contem informações que não são uteis para esse exemplo
-                linha_de_numeros.push_back(line);
-                //maze.push_back(line);
-            //}
+            maze.push_back(line);
             lineCount++;
         }
     }
+
+
     state = RUNNING;
 }
 
@@ -103,20 +106,28 @@ void clearScreen(){
     system("clear");
 #endif
 }
-
+int y = 0;
 void SnakeGame::render(){
     clearScreen();
-
-    /*for(auto it = linha_de_numeros.begin(); it != linha_de_numeros.end(); it++){
-        cout << "AQUI É O NOSSO COUT" << (*it) << endl;
-    }*/
-
     switch(state){
+        int x;
         case RUNNING:
-            //desenha todas as linhas do labirinto            
-            for(auto line : linha_de_numeros){
-                cout<<line<<endl;
+
+            for(auto i = maze.begin(); i != maze.end(); i++){
+                string s = *i;
+                if(isdigit(s[0])){
+                    x = stoi(s);
+                    cout << x << endl;
+                }else{
+                    cout << "Não é digito\n";
+                }
+                //y++;
             }
+
+            //desenha todas as linhas do labirinto            
+           /* for(auto line : maze){
+                cout<<line<<endl;
+            }*/
             break;
         case WAITING_USER: //este método bloqueia aqui esperando o usuário digitar a escolha dele
             cout<<"Você quer continuar com o jogo? (s/n)"<<endl;
