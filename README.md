@@ -1,2 +1,4 @@
-# trabalho-3-BrendaDantas
-trabalho-3-BrendaDantas created by GitHub Classroom
+# LP1 Projeto 3
+
+Projeto em andamento...
+
