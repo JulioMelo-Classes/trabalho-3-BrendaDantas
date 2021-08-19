@@ -1,4 +1,6 @@
 #include "SnakeGame.h"
+#include "Level.h"
+#include "Player.h"
 
 #include <iostream>
 #include <fstream>
@@ -26,9 +28,10 @@ void SnakeGame::initialize_game(){
     string line;
     if(levelFile.is_open()){
         while(std::getline(levelFile, line)){ //pega cada linha do arquivo
-            if(lineCount > 0){ //ignora a primeira linha já que ela contem informações que não são uteis para esse exemplo
-                maze.push_back(line);
-            }
+            //if(line != "15" || line != "10" || line != "4"){ //ignora a primeira linha já que ela contem informações que não são uteis para esse exemplo
+                linha_de_numeros.push_back(line);
+                //maze.push_back(line);
+            //}
             lineCount++;
         }
     }
@@ -103,10 +106,15 @@ void clearScreen(){
 
 void SnakeGame::render(){
     clearScreen();
+
+    /*for(auto it = linha_de_numeros.begin(); it != linha_de_numeros.end(); it++){
+        cout << "AQUI É O NOSSO COUT" << (*it) << endl;
+    }*/
+
     switch(state){
         case RUNNING:
-            //desenha todas as linhas do labirinto
-            for(auto line : maze){
+            //desenha todas as linhas do labirinto            
+            for(auto line : linha_de_numeros){
                 cout<<line<<endl;
             }
             break;
