@@ -2,7 +2,9 @@
 #define SnakeGame_h
 #include <iostream>
 #include <vector>
-
+#include <string>
+#include "Level.h"
+using namespace std;
 
 class SnakeGame{
     public:
