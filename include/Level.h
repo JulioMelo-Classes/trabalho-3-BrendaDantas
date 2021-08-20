@@ -20,6 +20,7 @@ class Level {
         void setQuantidade_comidas(int comidas);
         void preencher_numeros(int num);
         void mostrar_numeros();
+        void separar_numeros();
       
 
 };
