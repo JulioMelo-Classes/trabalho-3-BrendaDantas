@@ -9,6 +9,7 @@
 #include <chrono> //por causa do sleep
 #include <thread> //por causa do sleep
 
+#include <sstream>
 #include <stdlib.h>
 #include <ctype.h>
 
@@ -23,9 +24,8 @@ SnakeGame::SnakeGame(){
     frameCount = 0;
     initialize_game();
 }
-vector<int> def;
+
 void SnakeGame::initialize_game(){
-    
     //carrega o nivel ou os níveis
     ifstream levelFile("./data/maze1.txt"); //só dá certo se o jogo for executado dentro da raíz do diretório (vc vai resolver esse problema pegando o arquivo da linha de comando)
     int lineCount = 0;
@@ -36,7 +36,6 @@ void SnakeGame::initialize_game(){
             lineCount++;
         }
     }
-
 
     state = RUNNING;
 }
@@ -106,26 +105,72 @@ void clearScreen(){
     system("clear");
 #endif
 }
-int y = 0;
+
+int linha = 0, coluna = 0, comidas = 0;
+int aux = 0;
+
+
+stringstream xy;
 void SnakeGame::render(){
+    Level obj;
     clearScreen();
     switch(state){
-        int x;
+        int y, tam, tam2;
         case RUNNING:
-
-            for(auto i = maze.begin(); i != maze.end(); i++){
+        
+            for(auto i = maze.begin(); i != maze.end(); i++){//pega os números
                 string s = *i;
-                if(isdigit(s[0])){
-                    x = stoi(s);
-                    cout << x << endl;
-                }else{
-                    cout << "Não é digito\n";
-                }
-                //y++;
+                for(int ii = 0; ii < s.size(); ii++){
+                    if(isdigit(s[ii])){
+                        //cout << s << endl;
+                        xy << s << endl;//convert string para número
+                        break;
+                    }
+                } 
             }
+            while(xy >> y){
+                obj.preencher_numeros(y);
+            }
+            obj.mostrar_numeros();//mostra os elementos de vector
+
+            /*for(auto j = numeros.begin(); j != numeros.end(); j++){
+                linha = numeros.at(0);
+                coluna = numeros.at(1);
+                comidas = numeros.at(2);
+                j->setQuantidade_linhas(obj.linha);
+                j->setQuantidade_colunas(obj.coluna);
+                j->setQuantidade_comidas(obj.comidas);
+                cout << "linha:" << j->getQuantidade_linhas() << endl;
+                cout << "colunas: " << j->getQuantidade_colunas() << endl;
+                cout << "comidas: " << j->getQuantidade_comidas() << endl;
+            }*/
+
+
+            /*for(int j = 0; j < numeros.size(); j++){
+                if(j == 0){
+                    linha = numeros.at(0);
+                    coluna = numeros.at(1);
+                    comida = numeros.at(2);
+                    j->setQuantidade_linhas(linha);
+                    j->setQuantidade_colunas(coluna);
+                    j->setQuantidade_comidas(comida);
+                    cout << "linha:" << j->getQuantidade_linhas() << endl;
+                    cout << "colunas: " << j->getQuantidade_colunas() << endl;
+                    cout << "comidas: " << j->getQuantidade_comidas() << endl;
+                }
+                if(j > 0){
+                    linha = numeros.at(0)+3;
+                    coluna = numeros.at(1)+3;
+                    comida = numeros.at(2)+3;
+                    j->setQuantidade_linhas(linha);
+                    j->setQuantidade_colunas(coluna);
+                    j->setQuantidade_comidas(comida);
+                }
+                cout << j << endl;
+            }*/
 
             //desenha todas as linhas do labirinto            
-           /* for(auto line : maze){
+            /*for(auto line : maze){
                 cout<<line<<endl;
             }*/
             break;
@@ -147,6 +192,6 @@ void SnakeGame::loop(){
         process_actions();
         update();
         render();
-        wait(1000);// espera 1 segundo entre cada frame
+        wait(3000);// espera 1 segundo entre cada frame
     }
 }
