@@ -129,9 +129,11 @@ void SnakeGame::render(){
                 } 
             }
             while(xy >> y){
-                obj.preencher_numeros(y);
+                obj.preencher_numeros(y);//chama para preencher vector
             }
             obj.mostrar_numeros();//mostra os elementos de vector
+            obj.separar_numeros();
+
 
             /*for(auto j = numeros.begin(); j != numeros.end(); j++){
                 linha = numeros.at(0);

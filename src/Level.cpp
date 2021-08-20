@@ -37,3 +37,13 @@ void Level::mostrar_numeros(){
     }
 }
 
+void Level::separar_numeros(){
+    int linha = 0, coluna = 0, comida = 0;
+    int aux = 0;
+    for(auto i = numeros.begin(); i != numeros.end(); i++){
+        *i.quantidade_linhas =  numeros.begin() + 1;
+        cout << "linha: " << quantidade_linhas << endl;
+        aux = aux + 3;
+    }
+    
+}
