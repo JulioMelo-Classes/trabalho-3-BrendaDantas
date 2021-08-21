@@ -10,7 +10,7 @@ class Level {
         vector<int>quantidade_linhas_tot;
         vector<int>quantidade_colunas_tot;
         vector<int>quantidade_comidas_tot;
-        int quantidade_linhas, quantidade_colunas, quantidade_comidas;        
+        //int quantidade_linhas, quantidade_colunas, quantidade_comidas;        
         std::vector<std::string> mapas_do_arquivo;
         vector<int>numeros;//vector c/ numeros de entrada
 
@@ -24,6 +24,7 @@ class Level {
         void preencher_numeros(int num);
         void mostrar_numeros();
         void separar_numeros();
+        void validar_numeros();
       
 
 };
