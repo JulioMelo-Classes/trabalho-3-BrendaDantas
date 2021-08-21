@@ -24,8 +24,9 @@ SnakeGame::SnakeGame(){
     frameCount = 0;
     initialize_game();
 }
-
+int recebedora = 0;
 void SnakeGame::initialize_game(){
+    Level objeto;
     //carrega o nivel ou os níveis
     ifstream levelFile("./data/maze1.txt"); //só dá certo se o jogo for executado dentro da raíz do diretório (vc vai resolver esse problema pegando o arquivo da linha de comando)
     int lineCount = 0;
@@ -36,7 +37,6 @@ void SnakeGame::initialize_game(){
             lineCount++;
         }
     }
-
 
     state = RUNNING;
 }
@@ -65,9 +65,6 @@ void SnakeGame::update(){
             if(frameCount>0 && frameCount%10 == 0) //depois de 10 frames o jogo pergunta se o usuário quer continuar
                 state = WAITING_USER;
             break;
-        /*case validar_numeros():
-            if*/
-
         case WAITING_USER: //se o jogo estava esperando pelo usuário então ele testa qual a escolha que foi feita
             if(choice == "n"){
                 state = GAME_OVER;
@@ -110,7 +107,7 @@ void clearScreen(){
 #endif
 }
 
-int linha = 0, coluna = 0, comidas = 0;
+
 int aux = 0;
 stringstream xy;
 void SnakeGame::render(){
@@ -137,11 +134,31 @@ void SnakeGame::render(){
             obj.separar_numeros();
             obj.validar_numeros();
 
+            
+        recebedora = obj.validar_numeros();
+        cout << "recebedora: " << recebedora << endl;
+        if(recebedora == 1){
+            cout << "ERRO!! quantidade de linhas não pode ser inferior a 1 ou superior a 100\n" << endl;
+            state = GAME_OVER;
+            game_over();
+        } else if(recebedora == 2){
+            cout << "ERRO!! quantidade de colunas não pode ser inferior a 1 ou superior a 100\n" << endl;
+            state = GAME_OVER;
+            game_over();
+        } else if(recebedora == 3){
+            cout << "ERRO!! quantidade de comidas não pode ser inferior a 1\n" << endl;
+            state = GAME_OVER;
+            game_over();
+        }
+
+
             //desenha todas as linhas do labirinto            
             /*for(auto line : maze){
                 cout<<line<<endl;
             }*/
             break;
+        //case VALIDAR:
+
         case WAITING_USER: //este método bloqueia aqui esperando o usuário digitar a escolha dele
             cout<<"Você quer continuar com o jogo? (s/n)"<<endl;
             break;
@@ -156,10 +173,19 @@ void SnakeGame::game_over(){
 }
 
 void SnakeGame::loop(){
-    while(state != GAME_OVER){
+    if(recebedora == 0){
+        while(state != GAME_OVER){
         process_actions();
         update();
         render();
         wait(1000);// espera 1 segundo entre cada frame
+        }
+    }else{
+        cout << "erros encontrados\n";
+        game_over();
     }
+        
+    
+    
+   
 }

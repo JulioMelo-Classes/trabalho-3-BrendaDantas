@@ -79,26 +79,27 @@ void Level::separar_numeros(){//guardando os numeros nos vectors
  
 }
 
-void Level::validar_numeros(){
+int Level::validar_numeros(){
 
     for(auto itr1 = quantidade_linhas_tot.begin(); itr1 != quantidade_linhas_tot.end(); itr1++){
         if(*itr1 <= 0 || *itr1 > 100){
-            cout << "ERRO!! numero de linhas errado\n";
-            break;
+            //cout << "ERRO!! numero de linhas errado\n";
+            return 1;
         }
     }
     for(auto itr1 = quantidade_colunas_tot.begin(); itr1 != quantidade_colunas_tot.end(); itr1++){
         if(*itr1 <= 0 || *itr1 > 100){
-            cout << "ERRO!! numero de colunas errado\n";
-            break;
+            //cout << "ERRO!! numero de colunas errado\n";
+            return 2;
         }
     }
     for(auto itr1 = quantidade_comidas_tot.begin(); itr1 != quantidade_comidas_tot.end(); itr1++){
         if(*itr1 <= 0){
-            cout << "ERRO!! faltou comida\n";
-            break;
+            //cout << "ERRO!! faltou comida\n";
+            return 3;
         }
     }
-    
+
+    return 0;
 }
 
