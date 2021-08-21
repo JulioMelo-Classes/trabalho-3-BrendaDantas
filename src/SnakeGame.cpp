@@ -37,6 +37,7 @@ void SnakeGame::initialize_game(){
         }
     }
 
+
     state = RUNNING;
 }
 
@@ -64,6 +65,9 @@ void SnakeGame::update(){
             if(frameCount>0 && frameCount%10 == 0) //depois de 10 frames o jogo pergunta se o usuário quer continuar
                 state = WAITING_USER;
             break;
+        /*case validar_numeros():
+            if*/
+
         case WAITING_USER: //se o jogo estava esperando pelo usuário então ele testa qual a escolha que foi feita
             if(choice == "n"){
                 state = GAME_OVER;
@@ -108,17 +112,15 @@ void clearScreen(){
 
 int linha = 0, coluna = 0, comidas = 0;
 int aux = 0;
-
-
 stringstream xy;
 void SnakeGame::render(){
     Level obj;
     clearScreen();
     switch(state){
-        int y, tam, tam2;
+        int y;
         case RUNNING:
         
-            for(auto i = maze.begin(); i != maze.end(); i++){//pega os números
+           for(auto i = maze.begin(); i != maze.end(); i++){//pega os números
                 string s = *i;
                 for(int ii = 0; ii < s.size(); ii++){
                     if(isdigit(s[ii])){
@@ -133,43 +135,7 @@ void SnakeGame::render(){
             }
             obj.mostrar_numeros();//mostra os elementos de vector
             obj.separar_numeros();
-
-
-            /*for(auto j = numeros.begin(); j != numeros.end(); j++){
-                linha = numeros.at(0);
-                coluna = numeros.at(1);
-                comidas = numeros.at(2);
-                j->setQuantidade_linhas(obj.linha);
-                j->setQuantidade_colunas(obj.coluna);
-                j->setQuantidade_comidas(obj.comidas);
-                cout << "linha:" << j->getQuantidade_linhas() << endl;
-                cout << "colunas: " << j->getQuantidade_colunas() << endl;
-                cout << "comidas: " << j->getQuantidade_comidas() << endl;
-            }*/
-
-
-            /*for(int j = 0; j < numeros.size(); j++){
-                if(j == 0){
-                    linha = numeros.at(0);
-                    coluna = numeros.at(1);
-                    comida = numeros.at(2);
-                    j->setQuantidade_linhas(linha);
-                    j->setQuantidade_colunas(coluna);
-                    j->setQuantidade_comidas(comida);
-                    cout << "linha:" << j->getQuantidade_linhas() << endl;
-                    cout << "colunas: " << j->getQuantidade_colunas() << endl;
-                    cout << "comidas: " << j->getQuantidade_comidas() << endl;
-                }
-                if(j > 0){
-                    linha = numeros.at(0)+3;
-                    coluna = numeros.at(1)+3;
-                    comida = numeros.at(2)+3;
-                    j->setQuantidade_linhas(linha);
-                    j->setQuantidade_colunas(coluna);
-                    j->setQuantidade_comidas(comida);
-                }
-                cout << j << endl;
-            }*/
+            obj.validar_numeros();
 
             //desenha todas as linhas do labirinto            
             /*for(auto line : maze){
@@ -194,6 +160,6 @@ void SnakeGame::loop(){
         process_actions();
         update();
         render();
-        wait(3000);// espera 1 segundo entre cada frame
+        wait(1000);// espera 1 segundo entre cada frame
     }
 }

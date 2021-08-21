@@ -3,7 +3,7 @@
 #include <string>
 using namespace std;
 
-int Level::getQuantidade_linhas() {
+/*int Level::getQuantidade_linhas() {
     return quantidade_linhas;
 }
 
@@ -25,7 +25,7 @@ int Level::getQuantidade_comidas() {
 
 void Level::setQuantidade_comidas(int comidas) {
     quantidade_comidas = comidas;
-}
+}*/
 
 void Level::preencher_numeros(int num){//numeros de entrada guardados no vector
     numeros.push_back(num);
@@ -37,15 +37,15 @@ void Level::mostrar_numeros(){
     }
 }
 
-void Level::separar_numeros(){
+void Level::separar_numeros(){//guardando os numeros nos vectors
     int aux1 = 0, aux2 = 0;
     int contador = 1;
     int pos_coluna = 0, pos_comida = 0;
 
-    int numero_de_linhas = numeros.size();
+    int tamanho_de_linhas = numeros.size();
 
-    numero_de_linhas = numero_de_linhas/3;
-    cout << "line number: " << numero_de_linhas << endl;
+    int numero_de_linhas = tamanho_de_linhas/3;
+    //cout << "line number: " << numero_de_linhas << endl;
 
     for(int i = 0; i < numeros.size(); i++){
         if(aux1 == 0){
@@ -70,20 +70,35 @@ void Level::separar_numeros(){
         }
         aux1++;
     }
-    cout << "AUX1:" << aux1 << endl;
+    //cout << "AUX1:" << aux1 << endl;
     for(int i=0; i<numero_de_linhas;i++){
         cout << "Quantidade de linhas:" << quantidade_linhas_tot[i] << endl;
-    }
-    for(int i=0; i<numero_de_linhas;i++){
         cout << "Quantidade de colunas:" << quantidade_colunas_tot[i] << endl;
-    }
-    for(int i=0; i<numero_de_linhas;i++){
         cout << "Quantidade de comidas:" << quantidade_comidas_tot[i] << endl;
-    }
-    
-    /*cout << "Quantidade de linhas:" << quantidade_linhas << endl;
-    cout << "Quantidade de colunas:" << quantidade_colunas << endl;
-    cout << "Quantidade de comida:" << quantidade_comidas << endl;*/
+    }   
+ 
+}
 
+void Level::validar_numeros(){
+
+    for(auto itr1 = quantidade_linhas_tot.begin(); itr1 != quantidade_linhas_tot.end(); itr1++){
+        if(*itr1 <= 0 || *itr1 > 100){
+            cout << "ERRO!! numero de linhas errado\n";
+            break;
+        }
+    }
+    for(auto itr1 = quantidade_colunas_tot.begin(); itr1 != quantidade_colunas_tot.end(); itr1++){
+        if(*itr1 <= 0 || *itr1 > 100){
+            cout << "ERRO!! numero de colunas errado\n";
+            break;
+        }
+    }
+    for(auto itr1 = quantidade_comidas_tot.begin(); itr1 != quantidade_comidas_tot.end(); itr1++){
+        if(*itr1 <= 0){
+            cout << "ERRO!! faltou comida\n";
+            break;
+        }
+    }
     
 }
+
