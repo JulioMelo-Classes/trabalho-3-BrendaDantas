@@ -38,9 +38,9 @@ void Level::mostrar_numeros(){
 }
 
 void Level::separar_numeros(){
-    int aux = 0, aux1 = 0, aux2 = 0, armazenadora = 0;
+    int aux1 = 0, aux2 = 0;
     int contador = 1;
-    int pos_coluna = 0, pos_comida = 0, pos_linha =0;
+    int pos_coluna = 0, pos_comida = 0;
 
     int numero_de_linhas = numeros.size();
 
@@ -52,29 +52,25 @@ void Level::separar_numeros(){
             quantidade_linhas_tot.push_back(numeros[i]);
             quantidade_colunas_tot.push_back(numeros[i+1]);
             quantidade_comidas_tot.push_back(numeros[i+2]);
-            aux++;
 
         } else if(aux1 > 0) {
             cout << "entrou no else if\n";
             pos_coluna = i;
             pos_comida = i+1;
-            i = 3;
+            i = 3;//posição de linhas
             quantidade_linhas_tot.push_back(numeros[i+aux2]);
             quantidade_colunas_tot.push_back(numeros[pos_coluna+3]);
             quantidade_comidas_tot.push_back(numeros[pos_comida+3]);
             aux2 = 3;
+            contador++;
             if(contador == numero_de_linhas){
                 cout << "entrou no if\n";
                 break;
             }
-            contador++;
-            //break;
         }
-        //contador++;
         aux1++;
     }
     cout << "AUX1:" << aux1 << endl;
-    cout << "AUX:" << aux << endl;
     for(int i=0; i<numero_de_linhas;i++){
         cout << "Quantidade de linhas:" << quantidade_linhas_tot[i] << endl;
     }
