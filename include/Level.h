@@ -24,7 +24,7 @@ class Level {
         void preencher_numeros(int num);
         void mostrar_numeros();
         void separar_numeros();
-        void validar_numeros();
+        int validar_numeros();
       
 
 };
