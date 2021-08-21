@@ -7,6 +7,9 @@ using namespace std;
 
 class Level {
     private:
+        vector<int>quantidade_linhas_tot;
+        vector<int>quantidade_colunas_tot;
+        vector<int>quantidade_comidas_tot;
         int quantidade_linhas, quantidade_colunas, quantidade_comidas;        
         std::vector<std::string> mapas_do_arquivo;
         vector<int>numeros;//vector c/ numeros de entrada
