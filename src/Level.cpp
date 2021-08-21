@@ -1,6 +1,7 @@
 #include "Level.h"
 #include <iostream>
 #include <string>
+#include "SnakeGame.h"
 using namespace std;
 
 /*int Level::getQuantidade_linhas() {
@@ -36,7 +37,7 @@ void Level::mostrar_numeros(){
         cout << *i << endl;
     }
 }
-
+int numero_de_linhas = 0;
 void Level::separar_numeros(){//guardando os numeros nos vectors
     int aux1 = 0, aux2 = 0;
     int contador = 1;
@@ -44,7 +45,7 @@ void Level::separar_numeros(){//guardando os numeros nos vectors
 
     int tamanho_de_linhas = numeros.size();
 
-    int numero_de_linhas = tamanho_de_linhas/3;
+    numero_de_linhas = tamanho_de_linhas/3;
     //cout << "line number: " << numero_de_linhas << endl;
 
     for(int i = 0; i < numeros.size(); i++){
@@ -79,8 +80,17 @@ void Level::separar_numeros(){//guardando os numeros nos vectors
  
 }
 
-int Level::validar_numeros(){
+void Level::mostra_num_separados(){
+    cout << "entrei em num_separados\n";
+    for(int i=0; i<3;i++){
+        cout << "Quantidade de linhas:" << quantidade_linhas_tot[i] << endl;
+        cout << "Quantidade de colunas:" << quantidade_colunas_tot[i] << endl;
+        cout << "Quantidade de comidas:" << quantidade_comidas_tot[i] << endl;
+    }
+}
 
+int Level::validar_numeros(){
+    cout << "começou\n";
     for(auto itr1 = quantidade_linhas_tot.begin(); itr1 != quantidade_linhas_tot.end(); itr1++){
         if(*itr1 <= 0 || *itr1 > 100){
             //cout << "ERRO!! numero de linhas errado\n";
@@ -103,3 +113,29 @@ int Level::validar_numeros(){
     return 0;
 }
 
+void Level::preencher_mapa(string s){//preenche o mapa em vector da classe level
+    mapas_do_arquivo.push_back(s);
+}
+
+/*void Level::mostrar_mapas(){//mostra o mapa 
+    for(auto i = mapas_do_arquivo.begin(); i != mapas_do_arquivo.end(); i++){
+        cout << *i << endl;
+    }
+}*/
+
+void Level::interface_principal(){
+    int tot_alimento = 0;
+    for(int i = 0; i < quantidade_comidas_tot.size(); i++){
+        tot_alimento = quantidade_comidas_tot[i] + tot_alimento;
+        cout << quantidade_comidas_tot[i] << endl;
+    }
+
+    cout << "tot_alimento: " << tot_alimento << endl;
+
+    cout << "---> Welcome to the classic Snake Game <---\n";
+    cout << "           copyright DIMAp/UFRN 2017" << endl;
+    cout << "-------------------------------------------------------------" << endl;
+    cout << "Levels loaded: " << numero_de_linhas << " | " << " Snake lives: 5 " << " | " << 
+    " Apples to eat: \n";
+
+}

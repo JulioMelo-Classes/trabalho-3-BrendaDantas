@@ -19,12 +19,26 @@
 
 using namespace std;
 
+/**
+ * @brief função auxiliar para fazer o programa esperar por alguns milisegundos
+ * @param ms a quantidade de segundos que o programa deve esperar
+ */
+void wait(int ms){
+#if defined _WIN32
+    Sleep(ms);
+#else
+    this_thread::sleep_for(chrono::milliseconds(ms));
+#endif
+}
+
 SnakeGame::SnakeGame(){
     choice = "";
     frameCount = 0;
     initialize_game();
 }
-int recebedora = 0;
+
+stringstream xy;
+int recebedora = 0, y;
 void SnakeGame::initialize_game(){
     Level objeto;
     //carrega o nivel ou os níveis
@@ -38,7 +52,48 @@ void SnakeGame::initialize_game(){
         }
     }
 
-    state = RUNNING;
+    for(auto i = maze.begin(); i != maze.end(); i++){//pega os números
+        string s = *i;
+        for(int ii = 0; ii < s.size(); ii++){
+            if(isdigit(s[ii])){
+                //cout << s << endl;
+                xy << s << endl;//convert string para número
+                break;
+            }else{
+                objeto.preencher_mapa(s);
+                break;
+            }
+        } 
+    }
+    while(xy >> y){
+        objeto.preencher_numeros(y);//chama para preencher vector
+    }
+    objeto.mostrar_numeros();//mostra os elementos de vector
+    objeto.separar_numeros();
+    objeto.validar_numeros();
+    //objeto.mostrar_mapas();
+
+    recebedora = objeto.validar_numeros();
+    cout << "recebedora: " << recebedora << endl;
+    if(recebedora == 1){//resultado da validação de números de entrada
+        cout << "ERRO!! quantidade de linhas não pode ser inferior a 1 ou superior a 100\n" << endl;
+        //wait(500);
+        state = GAME_OVER;
+        game_over();
+    } else if(recebedora == 2){
+        cout << "ERRO!! quantidade de colunas não pode ser inferior a 1 ou superior a 100\n" << endl;
+        state = GAME_OVER;
+        game_over();
+    } else if(recebedora == 3){
+        cout << "ERRO!! quantidade de comidas não pode ser inferior a 1\n" << endl;
+        state = GAME_OVER;
+        game_over();
+    } else {
+        cout << "entrei aqui" << endl;
+        //objeto.mostra_num_separados();
+        state = RUNNING;
+    }
+    
 }
 
 
@@ -81,17 +136,7 @@ void SnakeGame::update(){
     }
 }
 
-/**
- * @brief função auxiliar para fazer o programa esperar por alguns milisegundos
- * @param ms a quantidade de segundos que o programa deve esperar
- */
-void wait(int ms){
-#if defined _WIN32
-    Sleep(ms);
-#else
-    this_thread::sleep_for(chrono::milliseconds(ms));
-#endif
-}
+
 
 /**
  * @brief função auxiliar para linpar o terminal
@@ -107,58 +152,19 @@ void clearScreen(){
 #endif
 }
 
-
-int aux = 0;
-stringstream xy;
 void SnakeGame::render(){
     Level obj;
     clearScreen();
     switch(state){
-        int y;
         case RUNNING:
-        
-           for(auto i = maze.begin(); i != maze.end(); i++){//pega os números
-                string s = *i;
-                for(int ii = 0; ii < s.size(); ii++){
-                    if(isdigit(s[ii])){
-                        //cout << s << endl;
-                        xy << s << endl;//convert string para número
-                        break;
-                    }
-                } 
-            }
-            while(xy >> y){
-                obj.preencher_numeros(y);//chama para preencher vector
-            }
-            obj.mostrar_numeros();//mostra os elementos de vector
-            obj.separar_numeros();
-            obj.validar_numeros();
-
-            
-        recebedora = obj.validar_numeros();
-        cout << "recebedora: " << recebedora << endl;
-        if(recebedora == 1){
-            cout << "ERRO!! quantidade de linhas não pode ser inferior a 1 ou superior a 100\n" << endl;
-            state = GAME_OVER;
-            game_over();
-        } else if(recebedora == 2){
-            cout << "ERRO!! quantidade de colunas não pode ser inferior a 1 ou superior a 100\n" << endl;
-            state = GAME_OVER;
-            game_over();
-        } else if(recebedora == 3){
-            cout << "ERRO!! quantidade de comidas não pode ser inferior a 1\n" << endl;
-            state = GAME_OVER;
-            game_over();
-        }
-
-
+            obj.interface_principal();
+            obj.mostra_num_separados();
+            //obj.mostra_num_separados();
             //desenha todas as linhas do labirinto            
             /*for(auto line : maze){
                 cout<<line<<endl;
             }*/
             break;
-        //case VALIDAR:
-
         case WAITING_USER: //este método bloqueia aqui esperando o usuário digitar a escolha dele
             cout<<"Você quer continuar com o jogo? (s/n)"<<endl;
             break;
@@ -173,19 +179,11 @@ void SnakeGame::game_over(){
 }
 
 void SnakeGame::loop(){
-    if(recebedora == 0){
-        while(state != GAME_OVER){
+    while(state != GAME_OVER){
         process_actions();
         update();
         render();
-        wait(1000);// espera 1 segundo entre cada frame
-        }
-    }else{
-        cout << "erros encontrados\n";
-        game_over();
+        wait(500);// espera 1 segundo entre cada frame
     }
-        
-    
-    
    
 }
