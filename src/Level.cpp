@@ -38,34 +38,56 @@ void Level::mostrar_numeros(){
 }
 
 void Level::separar_numeros(){
-    int aux = 0, aux1 = 0, aux2 = 3, armazenadora = 0;
-    int x = numeros[numeros.size() - 1];
-    cout << "last number: " << x << endl;
+    int aux = 0, aux1 = 0, aux2 = 0, armazenadora = 0;
+    int contador = 1;
+    int pos_coluna = 0, pos_comida = 0, pos_linha =0;
+
+    int numero_de_linhas = numeros.size();
+
+    numero_de_linhas = numero_de_linhas/3;
+    cout << "line number: " << numero_de_linhas << endl;
 
     for(int i = 0; i < numeros.size(); i++){
         if(aux1 == 0){
-            quantidade_linhas = numeros[i];
-            quantidade_colunas = numeros[i+1];
-            quantidade_comidas = numeros[i+2];
+            quantidade_linhas_tot.push_back(numeros[i]);
+            quantidade_colunas_tot.push_back(numeros[i+1]);
+            quantidade_comidas_tot.push_back(numeros[i+2]);
             aux++;
-            //break;
-        } else if(aux1 > 0){
-            quantidade_linhas = numeros[i+2];
-            quantidade_colunas = numeros[i+3];
-            quantidade_comidas = numeros[i+4];
-            aux2 = aux2 + 3;
-            if(x == quantidade_comidas){
+
+        } else if(aux1 > 0) {
+            cout << "entrou no else if\n";
+            pos_coluna = i;
+            pos_comida = i+1;
+            i = 3;
+            quantidade_linhas_tot.push_back(numeros[i+aux2]);
+            quantidade_colunas_tot.push_back(numeros[pos_coluna+3]);
+            quantidade_comidas_tot.push_back(numeros[pos_comida+3]);
+            aux2 = 3;
+            if(contador == numero_de_linhas){
+                cout << "entrou no if\n";
                 break;
             }
+            contador++;
             //break;
         }
+        //contador++;
         aux1++;
     }
     cout << "AUX1:" << aux1 << endl;
     cout << "AUX:" << aux << endl;
-    cout << "Quantidade de linhas:" << quantidade_linhas << endl;
+    for(int i=0; i<numero_de_linhas;i++){
+        cout << "Quantidade de linhas:" << quantidade_linhas_tot[i] << endl;
+    }
+    for(int i=0; i<numero_de_linhas;i++){
+        cout << "Quantidade de colunas:" << quantidade_colunas_tot[i] << endl;
+    }
+    for(int i=0; i<numero_de_linhas;i++){
+        cout << "Quantidade de comidas:" << quantidade_comidas_tot[i] << endl;
+    }
+    
+    /*cout << "Quantidade de linhas:" << quantidade_linhas << endl;
     cout << "Quantidade de colunas:" << quantidade_colunas << endl;
-    cout << "Quantidade de comida:" << quantidade_comidas << endl;
+    cout << "Quantidade de comida:" << quantidade_comidas << endl;*/
 
     
 }
