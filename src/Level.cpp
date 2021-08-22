@@ -110,8 +110,7 @@ void Level::mostrar_mapas(){//mostra o mapa
     cout << "Mapa um: " << mapa_um << endl;
     
     for(int i = 0; i < (mapa_um-1); i++){
-        cout << mapas_do_arquivo[i]<< endl;
-        
+        cout << mapas_do_arquivo[i]<< endl;    
     }
 }
 
@@ -130,20 +129,28 @@ void Level::encontrar_posicao_cobra(int num){
         qtdlinha = quantidade_linhas_tot[0];
         qtdcoluna = quantidade_colunas_tot[0];
         cout << "ENTREI NO IF DO MÉTODO" << endl;
+        for(int i = 0; i < qtdlinha; i++){
+            for(int j = 0; j < qtdcoluna; j++){
+                if(mapas_do_arquivo[i][j] == '*'){
+                    cout << "Achei um * em " << i << " e " << j << endl;
+                }
+            }
+        }
         
     } else {
         qtdlinha = quantidade_linhas_tot[num];
         qtdcoluna = quantidade_colunas_tot[num];
+        cout << "QTD LINHA: " << qtdlinha << endl;
+        cout << "QTD COLUNA: " << qtdcoluna << endl;
         cout << "ENTREI NO ELSE" << endl;
-    }    
-    
-    for(int i = 0; i < qtdlinha; i++){
-        for(int j = 0; j < qtdcoluna; j++){
-            if(mapas_do_arquivo[i][j] == '*'){
-                cout << "Achei um * em " << i << " e " << j << endl;
+        for(int i = 0; i < tam_linhas; i++){
+            for(int j = 0; j < tam_colunas; j++){
+                if(mapas_do_arquivo[i][j] == '*'){
+                    cout << "Achei um * em " << i << " e " << j << endl;
+                }
             }
         }
-    }
+    }    
 }
 
 
