@@ -112,13 +112,26 @@ void Level::mostrar_mapas(){//mostra o mapa
     }
 }
 
-void Level::encontrar_posicao_cobra(){
-    int qtdlinha = quantidade_linhas_tot[0];
-    int qtdcoluna = quantidade_colunas_tot[0];
+int qtdlinha = 0, qtdcoluna = 0;
+void Level::encontrar_posicao_cobra(int num){
+    cout << "ENTREI NO COMEÇO DO MÉTODO" << endl;
+    cout << "NUM: " << num << endl;
+    
+    if(num == 0){
+        qtdlinha = quantidade_linhas_tot[0];
+        qtdcoluna = quantidade_colunas_tot[0];
+        cout << "ENTREI NO IF DO MÉTODO" << endl;
+        
+    } else {
+        qtdlinha = quantidade_linhas_tot[num];
+        qtdcoluna = quantidade_colunas_tot[num];
+        cout << "ENTREI NO ELSE" << endl;
+    }    
+    
     for(int i = 0; i < qtdlinha; i++){
         for(int j = 0; j < qtdcoluna; j++){
             if(mapas_do_arquivo[i][j] == '*'){
-                cout << "Achei um * em " << i << "e" << j << endl;
+                cout << "Achei um * em " << i << " e " << j << endl;
             }
         }
     }

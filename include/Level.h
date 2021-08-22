@@ -23,7 +23,7 @@ class Level {
         void preencher_mapa(string s);
         void mostrar_mapas();
         void interface_principal();
-        void encontrar_posicao_cobra();
+        void encontrar_posicao_cobra(int num);
       
 
 };

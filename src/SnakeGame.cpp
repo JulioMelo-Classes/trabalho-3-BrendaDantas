@@ -38,7 +38,7 @@ SnakeGame::SnakeGame(){
 }
 
 stringstream xy;
-int recebedora = 0, y;
+int recebedora = 0, y, gatilho_de_niveis = 0;
 void SnakeGame::initialize_game(){
     Level objeto;
     //carrega o nivel ou os níveis
@@ -95,8 +95,9 @@ void SnakeGame::initialize_game(){
         wait(6000);
         //objeto.separar_numeros();
         //objeto.mostra_num_separados();
-        objeto.encontrar_posicao_cobra();
-        wait(7000);
+        objeto.encontrar_posicao_cobra(gatilho_de_niveis);
+        gatilho_de_niveis++;
+        wait(6000);
         state = RUNNING;
     }
     
@@ -120,6 +121,8 @@ void SnakeGame::process_actions(){
 }
 
 void SnakeGame::update(){
+    Level obj;
+    //int num = 1;
     //atualiza o estado do jogo de acordo com o resultado da chamada de "process_input"
     switch(state){
         case RUNNING:
@@ -132,8 +135,16 @@ void SnakeGame::update(){
                 game_over();
             }
             else{
-                //pode fazer alguma coisa antes de fazer isso aqui
+                //pode fazer alguma coisa antes de fazer isso aqui 
                 state = RUNNING;
+                obj.encontrar_posicao_cobra(gatilho_de_niveis);
+                gatilho_de_niveis++;
+                wait(6000);   
+                cout << "COMEÇAMOS NOVAMENTE" << endl;
+                wait(5000);              
+                
+                //obj.encontrar_posicao_cobra(num);
+                //num++;
             }
             break;
         default:
@@ -162,8 +173,7 @@ void SnakeGame::render(){
     Level obj;
     clearScreen();
     switch(state){
-        case RUNNING:
-
+        case RUNNING:;
             //desenha todas as linhas do labirinto            
             /*for(auto line : maze){
                 cout<<line<<endl;
