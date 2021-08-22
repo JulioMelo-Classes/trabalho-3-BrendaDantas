@@ -95,6 +95,8 @@ void SnakeGame::initialize_game(){
         wait(6000);
         //objeto.separar_numeros();
         //objeto.mostra_num_separados();
+        objeto.encontrar_posicao_cobra();
+        wait(7000);
         state = RUNNING;
     }
     
@@ -161,14 +163,7 @@ void SnakeGame::render(){
     clearScreen();
     switch(state){
         case RUNNING:
-            
-            /*obj.interface_principal();
-            wait(2000);*/
-            /*obj.mostrar_mapas();
-            wait(5000);*/
-            
-            //obj.mostra_num_separados();
-            //obj.mostra_num_separados();
+
             //desenha todas as linhas do labirinto            
             /*for(auto line : maze){
                 cout<<line<<endl;

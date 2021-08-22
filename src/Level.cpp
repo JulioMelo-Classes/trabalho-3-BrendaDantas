@@ -4,30 +4,6 @@
 #include "SnakeGame.h"
 using namespace std;
 
-/*int Level::getQuantidade_linhas() {
-    return quantidade_linhas;
-}
-
-void Level::setQuantidade_linhas(int linhas) {
-    quantidade_linhas = linhas;
-}
-
-int Level::getQuantidade_colunas() {
-    return quantidade_colunas;
-}
-
-void Level::setQuantidade_colunas(int colunas) {
-    quantidade_colunas = colunas;
-}
-
-int Level::getQuantidade_comidas() {
-    return quantidade_comidas;
-}
-
-void Level::setQuantidade_comidas(int comidas) {
-    quantidade_comidas = comidas;
-}*/
-
 void Level::preencher_numeros(int num){//numeros de entrada guardados no vector
     numeros.push_back(num);
 }
@@ -132,33 +108,33 @@ void Level::mostrar_mapas(){//mostra o mapa
     
     for(int i = 0; i < (mapa_um-1); i++){
         cout << mapas_do_arquivo[i]<< endl;
+        
     }
-   /* for(auto i = mapas_do_arquivo.begin(); i != mapas_do_arquivo.end(); i++){
-        cout << mapas_do_arquivo.at(0) << endl;
-    }*/
 }
 
-void Level::interface_principal(){
-    int tot_alimento = 0;
-    for(int i = 0; i < quantidade_comidas_tot.size(); i++){
-        tot_alimento = quantidade_comidas_tot[i] + tot_alimento;
-        cout << quantidade_comidas_tot[i] << endl;
+void Level::encontrar_posicao_cobra(){
+    int qtdlinha = quantidade_linhas_tot[0];
+    int qtdcoluna = quantidade_colunas_tot[0];
+    for(int i = 0; i < qtdlinha; i++){
+        for(int j = 0; j < qtdcoluna; j++){
+            if(mapas_do_arquivo[i][j] == '*'){
+                cout << "Achei um * em " << i << "e" << j << endl;
+            }
+        }
     }
-    //cout << "tot_alimento: " << tot_alimento << endl;
+}
 
+
+void Level::interface_principal(){
+    
     cout << "---> Welcome to the classic Snake Game <---\n";
     cout << "           copyright DIMAp/UFRN 2017" << endl;
     cout << "-------------------------------------------------------------" << endl;
     cout << "Levels loaded: " << numero_de_linhas << " | " << " Snake lives: 5 " << " | " << " Apples to eat: " << quant_comida << endl;
     cout << "-------------------------------------------------------------" << endl;
     cout << ">>> Press <ENTER> to start the game!" << endl;
-    cout << "\nLives: ♥♥♥♥♥ | Score: 0    | Food eaten: 0 of " << quant_comida << endl;
+    cout << "\nLifes: ♥♥♥♥♥ | Score: 0    | Food eaten: 0 of " << quant_comida << endl;
     cout << "______________________________________________________________________\n";
     
-    /*int x = mapas_do_arquivo.size();
-    cout << "tamanho do mapa: " << x << endl;*/
     mostrar_mapas();
-    /*for(auto i  = mapas_do_arquivo.begin(); i != mapas_do_arquivo.end(); i++){
-        cout << *i << endl;
-    }*/
 }
