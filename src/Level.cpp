@@ -73,7 +73,7 @@ void Level::separar_numeros(){//guardando os numeros nos vectors
 }*/
 
 int Level::validar_numeros(){
-    cout << "começou\n";
+    //cout << "começou\n";
     for(auto itr1 = quantidade_linhas_tot.begin(); itr1 != quantidade_linhas_tot.end(); itr1++){
         if(*itr1 <= 0 || *itr1 > 100){
             //cout << "ERRO!! numero de linhas errado\n";
@@ -105,6 +105,9 @@ void Level::mostrar_mapas(){//mostra o mapa
     int mapa_um = 0, tamanho_dos_mapas = 0;
     tamanho_dos_mapas = mapas_do_arquivo.size();
     mapa_um = tamanho_dos_mapas/numero_de_linhas;
+    cout << "Tamanho dos mapas: " << tamanho_dos_mapas << endl;
+    cout << "Numero de linhas: " << numero_de_linhas << endl;
+    cout << "Mapa um: " << mapa_um << endl;
     
     for(int i = 0; i < (mapa_um-1); i++){
         cout << mapas_do_arquivo[i]<< endl;
@@ -116,6 +119,12 @@ int qtdlinha = 0, qtdcoluna = 0;
 void Level::encontrar_posicao_cobra(int num){
     cout << "ENTREI NO COMEÇO DO MÉTODO" << endl;
     cout << "NUM: " << num << endl;
+
+    int tam_linhas = quantidade_linhas_tot.size();
+    int tam_colunas = quantidade_colunas_tot.size();
+    
+    cout << "TAM VECTOR LINHAS: " << tam_linhas << endl;
+    cout << "TAM VECTOR COLUNAS: " << tam_colunas << endl;
     
     if(num == 0){
         qtdlinha = quantidade_linhas_tot[0];

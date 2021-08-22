@@ -39,8 +39,9 @@ SnakeGame::SnakeGame(){
 
 stringstream xy;
 int recebedora = 0, y, gatilho_de_niveis = 0;
+Level objeto;
 void SnakeGame::initialize_game(){
-    Level objeto;
+    
     //carrega o nivel ou os níveis
     ifstream levelFile("./data/maze1.txt"); //só dá certo se o jogo for executado dentro da raíz do diretório (vc vai resolver esse problema pegando o arquivo da linha de comando)
     int lineCount = 0;
@@ -90,7 +91,7 @@ void SnakeGame::initialize_game(){
         state = GAME_OVER;
         game_over();
     } else {//aqui é quando não tem erro de validação
-        cout << "entrei aqui" << endl;
+        //cout << "entrei aqui" << endl;
         objeto.interface_principal();
         wait(6000);
         //objeto.separar_numeros();
@@ -121,7 +122,7 @@ void SnakeGame::process_actions(){
 }
 
 void SnakeGame::update(){
-    Level obj;
+    //Level obj;
     //int num = 1;
     //atualiza o estado do jogo de acordo com o resultado da chamada de "process_input"
     switch(state){
@@ -137,7 +138,8 @@ void SnakeGame::update(){
             else{
                 //pode fazer alguma coisa antes de fazer isso aqui 
                 state = RUNNING;
-                obj.encontrar_posicao_cobra(gatilho_de_niveis);
+                objeto.interface_principal();
+                objeto.encontrar_posicao_cobra(gatilho_de_niveis);
                 gatilho_de_niveis++;
                 wait(6000);   
                 cout << "COMEÇAMOS NOVAMENTE" << endl;
@@ -152,8 +154,6 @@ void SnakeGame::update(){
             break;
     }
 }
-
-
 
 /**
  * @brief função auxiliar para linpar o terminal
@@ -170,10 +170,10 @@ void clearScreen(){
 }
 
 void SnakeGame::render(){
-    Level obj;
     clearScreen();
     switch(state){
-        case RUNNING:;
+        case RUNNING:   
+
             //desenha todas as linhas do labirinto            
             /*for(auto line : maze){
                 cout<<line<<endl;
