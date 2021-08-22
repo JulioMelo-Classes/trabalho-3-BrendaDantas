@@ -24,10 +24,10 @@ class Level {
         void preencher_numeros(int num);
         void mostrar_numeros();
         void separar_numeros();
-        void mostra_num_separados();
+        //void mostra_num_separados();
         int validar_numeros();
         void preencher_mapa(string s);
-        //void mostrar_mapas();
+        void mostrar_mapas();
         void interface_principal();
       
 
