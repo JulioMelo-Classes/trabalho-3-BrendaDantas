@@ -69,15 +69,16 @@ void SnakeGame::initialize_game(){
         objeto.preencher_numeros(y);//chama para preencher vector
     }
     objeto.mostrar_numeros();//mostra os elementos de vector
-    objeto.separar_numeros();
-    objeto.validar_numeros();
-    //objeto.mostrar_mapas();
+    objeto.separar_numeros();//separo os numeros em linha, coluna e comida
+    wait(900);
+    /*objeto.mostrar_mapas();//mostra mapa guardado no vector
+    wait(5000);*/
 
-    recebedora = objeto.validar_numeros();
+    recebedora = objeto.validar_numeros();//faço a validação e retorna um inteiro
     cout << "recebedora: " << recebedora << endl;
+    wait(100);
     if(recebedora == 1){//resultado da validação de números de entrada
         cout << "ERRO!! quantidade de linhas não pode ser inferior a 1 ou superior a 100\n" << endl;
-        //wait(500);
         state = GAME_OVER;
         game_over();
     } else if(recebedora == 2){
@@ -88,8 +89,11 @@ void SnakeGame::initialize_game(){
         cout << "ERRO!! quantidade de comidas não pode ser inferior a 1\n" << endl;
         state = GAME_OVER;
         game_over();
-    } else {
+    } else {//aqui é quando não tem erro de validação
         cout << "entrei aqui" << endl;
+        objeto.interface_principal();
+        wait(6000);
+        //objeto.separar_numeros();
         //objeto.mostra_num_separados();
         state = RUNNING;
     }
@@ -157,8 +161,13 @@ void SnakeGame::render(){
     clearScreen();
     switch(state){
         case RUNNING:
-            obj.interface_principal();
-            obj.mostra_num_separados();
+            
+            /*obj.interface_principal();
+            wait(2000);*/
+            /*obj.mostrar_mapas();
+            wait(5000);*/
+            
+            //obj.mostra_num_separados();
             //obj.mostra_num_separados();
             //desenha todas as linhas do labirinto            
             /*for(auto line : maze){
