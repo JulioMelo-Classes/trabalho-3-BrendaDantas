@@ -13,7 +13,9 @@ class Level {
         //int quantidade_linhas, quantidade_colunas, quantidade_comidas;        
         std::vector<std::string> mapas_do_arquivo;
         vector<string> mapa_auxiliar;
-        vector<int>numeros;//vector c/ numeros de entrada
+        vector<int> numeros;//vector c/ numeros de entrada
+        vector<int> posicao_cobra;
+
 
     public:
         void preencher_numeros(int num);
@@ -24,7 +26,7 @@ class Level {
         void mostrar_mapa_um();
         void interface_principal();
         void encontrar_posicao_cobra(int num);
-      
+        void distribuindo_comida(int gatilho_comida);
 
 };
 
