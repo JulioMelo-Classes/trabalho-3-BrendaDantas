@@ -38,9 +38,10 @@ SnakeGame::SnakeGame(){
 }
 
 stringstream xy;
-int recebedora = 0, y;
+int recebedora = 0, y, gatilho_de_niveis = 0;
+Level objeto;
 void SnakeGame::initialize_game(){
-    Level objeto;
+    
     //carrega o nivel ou os níveis
     ifstream levelFile("./data/maze1.txt"); //só dá certo se o jogo for executado dentro da raíz do diretório (vc vai resolver esse problema pegando o arquivo da linha de comando)
     int lineCount = 0;
@@ -65,11 +66,14 @@ void SnakeGame::initialize_game(){
             }
         } 
     }
+
     while(xy >> y){
         objeto.preencher_numeros(y);//chama para preencher vector
     }
     objeto.mostrar_numeros();//mostra os elementos de vector
     objeto.separar_numeros();//separo os numeros em linha, coluna e comida
+    int maz = maze.size();
+    cout << "maze tamamho: " << maz << endl;
     wait(900);
     /*objeto.mostrar_mapas();//mostra mapa guardado no vector
     wait(5000);*/
@@ -90,11 +94,11 @@ void SnakeGame::initialize_game(){
         state = GAME_OVER;
         game_over();
     } else {//aqui é quando não tem erro de validação
-        cout << "entrei aqui" << endl;
         objeto.interface_principal();
-        wait(6000);
-        //objeto.separar_numeros();
-        //objeto.mostra_num_separados();
+        wait(4000);
+        objeto.encontrar_posicao_cobra(gatilho_de_niveis);
+        gatilho_de_niveis++;
+        wait(5000);
         state = RUNNING;
     }
     
@@ -118,6 +122,8 @@ void SnakeGame::process_actions(){
 }
 
 void SnakeGame::update(){
+    //Level obj;
+    //int num = 1;
     //atualiza o estado do jogo de acordo com o resultado da chamada de "process_input"
     switch(state){
         case RUNNING:
@@ -130,8 +136,17 @@ void SnakeGame::update(){
                 game_over();
             }
             else{
-                //pode fazer alguma coisa antes de fazer isso aqui
+                //pode fazer alguma coisa antes de fazer isso aqui 
                 state = RUNNING;
+                objeto.interface_principal();
+                objeto.encontrar_posicao_cobra(gatilho_de_niveis);
+                gatilho_de_niveis++;
+                wait(6000);   
+                cout << "COMEÇAMOS NOVAMENTE" << endl;
+                wait(4000);              
+                
+                //obj.encontrar_posicao_cobra(num);
+                //num++;
             }
             break;
         default:
@@ -139,8 +154,6 @@ void SnakeGame::update(){
             break;
     }
 }
-
-
 
 /**
  * @brief função auxiliar para linpar o terminal
@@ -157,15 +170,9 @@ void clearScreen(){
 }
 
 void SnakeGame::render(){
-    Level obj;
     clearScreen();
     switch(state){
-        case RUNNING:
-            
-           
-
-           
-
+        case RUNNING:   
 
             //desenha todas as linhas do labirinto            
             /*for(auto line : maze){
