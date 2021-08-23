@@ -201,7 +201,7 @@ void Level::interface_principal(){
 }
 
 
-void Level::distribuindo_comida(int gatilho_comida){
+void Level::distribuindo_comida(int gatilho_comida){//faz e distribui no mapa a comida
     cout << "Mostrando comida: \n";
     int qtd_comida = 0, contador = 0, i = 0, j = 0;
     srand(time(NULL));
@@ -249,3 +249,4 @@ void Level::distribuindo_comida(int gatilho_comida){
     }
     
 }
+
