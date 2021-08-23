@@ -150,12 +150,27 @@ void Level::encontrar_posicao_cobra(int num){
 
         for(int i = pos_final_linha; i <= encerramento_linha; i++){
             cout << "linhas i: " << i << endl;
-            for(int j = 0; j < encerramento_coluna; j++){
+            mapa_auxiliar.push_back(mapas_do_arquivo[i]);//pegando mapa novamente
+            /*for(int j = 0; j < encerramento_coluna; j++){
+                
+
                 if(mapas_do_arquivo[i][j] == '*'){
+                    cout << "Achei mais um * em " << i << " e " << j << endl;
+                }
+            }*/
+        }
+        for(auto i = mapa_auxiliar.begin(); i != mapa_auxiliar.end(); i++){
+            cout << *i << endl;
+        }
+
+        for(int i = 0; i <qtdlinha; i++){
+            for(int j = 0; j < qtdcoluna; j++){
+                if(mapa_auxiliar[i][j] == '*'){
                     cout << "Achei mais um * em " << i << " e " << j << endl;
                 }
             }
         }
+        mapa_auxiliar.clear();
         pos_final_coluna = encerramento_coluna;
         pos_final_linha = encerramento_linha;
         cout << "linha encerrou na posição: " << pos_final_linha << endl;
