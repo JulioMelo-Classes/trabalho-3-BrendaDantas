@@ -99,7 +99,7 @@ void Level::mostrar_mapa_um(){//mostra o mapa
     cout << "Numero de linhas: " << numero_de_linhas << endl;
     cout << "Mapa um: " << mapa_um << endl;
     
-    for(int i = 0; i < (mapa_um-1); i++){
+    for(int i = 0; i < mapa_um; i++){
         cout << mapas_do_arquivo[i]<< endl;    
     }
 }
@@ -123,54 +123,56 @@ void Level::encontrar_posicao_cobra(int num){
         qtdcoluna = quantidade_colunas_tot[0];
         cout << "NIVEL ATUAL: " << num << endl;
         cout << "ENTREI NO IF DO MÉTODO" << endl;
-        for(int i =0; i < qtdlinha; i++){
-            for(int j = 0; j < qtdcoluna; j++){
-                if(mapas_do_arquivo[i][j] == '*'){
-                    cout << "Achei um * em " << i << " e " << j << endl;
-                }
-            }
-        }
-        pos_final_linha = qtdlinha;
-        pos_final_coluna = qtdcoluna;
-        cout << "posição final da linha é: " << pos_final_linha << endl;
-        cout << "posição final da coluna é: " << pos_final_coluna << endl;
-        
-    } else {
-
-        qtdlinha = quantidade_linhas_tot[num];
-        qtdcoluna = quantidade_colunas_tot[num];
-        cout << "entrei no else com a posição linha: " << pos_final_linha << endl;
-        cout << "entrei no else com a posição coluna: " << pos_final_coluna << endl;
-        cout << "NIVEL ATUAL: " << num << endl;
-
-        encerramento_linha = (pos_final_linha+qtdlinha)-1;
-        encerramento_coluna = (pos_final_coluna+qtdcoluna)-1;
-        cout << "encerramento da coluna: " << encerramento_coluna << endl;
-        cout << "encerramento da linha : " << encerramento_linha << endl;
-
-        for(int i = pos_final_linha; i <= encerramento_linha; i++){
+        for(int i = 0; i < qtdlinha; i++){
             cout << "linhas i: " << i << endl;
             mapa_auxiliar.push_back(mapas_do_arquivo[i]);//pegando mapa novamente
-            /*for(int j = 0; j < encerramento_coluna; j++){
-                
-
-                if(mapas_do_arquivo[i][j] == '*'){
-                    cout << "Achei mais um * em " << i << " e " << j << endl;
-                }
-            }*/
         }
-        for(auto i = mapa_auxiliar.begin(); i != mapa_auxiliar.end(); i++){
+        cout << "MAPA DO NIVEL 1\n";
+        for(auto i = mapa_auxiliar.begin(); i != mapa_auxiliar.end(); i++){//mostra o mapa de cada nivel
             cout << *i << endl;
         }
 
-        for(int i = 0; i <qtdlinha; i++){
+        for(int i = 0; i <qtdlinha; i++){//pega a posição da cobra
             for(int j = 0; j < qtdcoluna; j++){
                 if(mapa_auxiliar[i][j] == '*'){
                     cout << "Achei mais um * em " << i << " e " << j << endl;
                 }
             }
         }
-        mapa_auxiliar.clear();
+       
+        pos_final_linha = qtdlinha;
+        pos_final_coluna = qtdcoluna;
+        cout << "posição final da linha é: " << pos_final_linha << endl;
+        cout << "posição final da coluna é: " << pos_final_coluna << endl;
+        
+    } else {
+        mapa_auxiliar.clear();//limpa o vector para o proximo nivel (RETIRAR MAIS TARDE)
+        qtdlinha = quantidade_linhas_tot[num];
+        qtdcoluna = quantidade_colunas_tot[num];
+        cout << "entrei no else com a posição linha: " << pos_final_linha << endl;
+        cout << "entrei no else com a posição coluna: " << pos_final_coluna << endl;
+        cout << "NIVEL ATUAL: " << num << endl;
+
+        encerramento_linha = (pos_final_linha+qtdlinha);
+        encerramento_coluna = (pos_final_coluna+qtdcoluna)-1;
+        cout << "encerramento da coluna: " << encerramento_coluna << endl;
+        cout << "encerramento da linha : " << encerramento_linha << endl;
+
+        for(int i = pos_final_linha; i <= encerramento_linha; i++){
+            mapa_auxiliar.push_back(mapas_do_arquivo[i]);//pegando mapa novamente
+        }
+        for(auto i = mapa_auxiliar.begin(); i != mapa_auxiliar.end(); i++){//mostra o mapa de cada nivel
+            cout << *i << endl;
+        }
+
+        for(int i = 0; i <qtdlinha; i++){//pega a posição da cobra
+            for(int j = 0; j < qtdcoluna; j++){
+                if(mapa_auxiliar[i][j] == '*'){
+                    cout << "Achei mais um * em " << i << " e " << j << endl;
+                }
+            }
+        }
+        
         pos_final_coluna = encerramento_coluna;
         pos_final_linha = encerramento_linha;
         cout << "linha encerrou na posição: " << pos_final_linha << endl;
