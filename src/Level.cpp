@@ -1,4 +1,5 @@
 #include "Level.h"
+#include "Player.h"
 #include <iostream>
 #include <string>
 #include <time.h>
@@ -107,7 +108,9 @@ void Level::mostrar_mapa_um(){//mostra o mapa
 int qtdlinha = 0, qtdcoluna = 0;
 int pos_final_linha = 0, pos_final_coluna = 0;
 int encerramento_linha = 0, encerramento_coluna = 0;
+
 void Level::encontrar_posicao_cobra(int num){
+    
     cout << "ENTREI NO COMEÇO DO MÉTODO" << endl;
     
     int tam_linhas = quantidade_linhas_tot.size();
@@ -146,7 +149,6 @@ void Level::encontrar_posicao_cobra(int num){
         pos_final_coluna = qtdcoluna;
         cout << "posição final da linha é: " << pos_final_linha << endl;
         cout << "posição final da coluna é: " << pos_final_coluna << endl;
-        
     } else {
         posicao_cobra.clear();
         mapa_auxiliar.clear();//limpa o vector para o proximo nivel (RETIRAR MAIS TARDE)
@@ -217,6 +219,8 @@ void Level::distribuindo_comida(int gatilho_comida){//faz e distribui no mapa a 
 		    j = rand() % quantidade_colunas_tot[0];
 
 		    if(mapa_auxiliar[i][j] == ' '){	
+                posicao_da_comida.push_back(i);//guardando posição da comida
+                posicao_da_comida.push_back(j);
                 cout << "linha = " << i << " e coluna = " << j << endl;
                 mapa_auxiliar[i][j] = 'A';
                 contador++;
@@ -237,6 +241,8 @@ void Level::distribuindo_comida(int gatilho_comida){//faz e distribui no mapa a 
 		    j = rand() % quantidade_colunas_tot[gatilho_comida];
 
 		    if(mapa_auxiliar[i][j] == ' '){	
+                posicao_da_comida.push_back(i);//guardando posição da comida
+                posicao_da_comida.push_back(j);
                 cout << "linha = " << i << " e coluna = " << j << endl;
                 mapa_auxiliar[i][j] = 'A';
                 contador++;
@@ -250,3 +256,11 @@ void Level::distribuindo_comida(int gatilho_comida){//faz e distribui no mapa a 
     
 }
 
+void Level::monitoramento(int num){//chama find_solution para monitorar possiveis posiloes da cobra
+    Player jogo;
+    if(num == 0){
+        jogo.find_solution(qtdlinha, qtdcoluna, posicao_cobra, mapa_auxiliar);
+    } else if(num > 0){
+        jogo.find_solution(qtdlinha, qtdcoluna, posicao_cobra, mapa_auxiliar);
+    }
+}
