@@ -38,7 +38,7 @@ SnakeGame::SnakeGame(){
 }
 
 stringstream xy;
-int recebedora = 0, y, gatilho_de_niveis = 0;
+int recebedora = 0, y, gatilho_de_niveis = 0, gatilho_de_comida = 0;
 Level objeto;
 void SnakeGame::initialize_game(){
     
@@ -72,6 +72,7 @@ void SnakeGame::initialize_game(){
     }
     objeto.mostrar_numeros();//mostra os elementos de vector
     objeto.separar_numeros();//separo os numeros em linha, coluna e comida
+    wait(5000);
     int maz = maze.size();
     cout << "maze tamamho: " << maz << endl;
     wait(900);
@@ -98,7 +99,9 @@ void SnakeGame::initialize_game(){
         wait(4000);
         objeto.encontrar_posicao_cobra(gatilho_de_niveis);
         gatilho_de_niveis++;
-        wait(5000);
+        objeto.distribuindo_comida(gatilho_de_comida);
+        gatilho_de_comida++;
+        wait(6000);
         state = RUNNING;
     }
     
@@ -142,6 +145,8 @@ void SnakeGame::update(){
                 objeto.encontrar_posicao_cobra(gatilho_de_niveis);
                 gatilho_de_niveis++;
                 wait(6000);   
+                objeto.distribuindo_comida(gatilho_de_comida);
+                gatilho_de_comida++;
                 cout << "COMEÇAMOS NOVAMENTE" << endl;
                 wait(4000);              
                 
