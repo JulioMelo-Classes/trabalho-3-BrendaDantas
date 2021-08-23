@@ -7,15 +7,14 @@ using namespace std;
 
 class Level {
     private:
-        vector<int>quantidade_linhas_tot;
-        vector<int>quantidade_colunas_tot;
-        vector<int>quantidade_comidas_tot;
-        //int quantidade_linhas, quantidade_colunas, quantidade_comidas;        
-        std::vector<std::string> mapas_do_arquivo;
-        vector<string> mapa_auxiliar;
+        vector<int>quantidade_linhas_tot;//vector c/ as linhas
+        vector<int>quantidade_colunas_tot;//vector c/ as colunas
+        vector<int>quantidade_comidas_tot;//vector c/ as comidas
+        std::vector<std::string> mapas_do_arquivo;//vector c/ todos os mapas
+        vector<string> mapa_auxiliar;//vector q guarda os mapas por nível
         vector<int> numeros;//vector c/ numeros de entrada
-        vector<int> posicao_cobra;
-
+        vector<int> posicao_cobra;//vector c/ posição da cobra
+        vector<int> posicao_da_comida;//vector q guarda a posição da comida sorteda
 
     public:
         void preencher_numeros(int num);
@@ -27,6 +26,7 @@ class Level {
         void interface_principal();
         void encontrar_posicao_cobra(int num);
         void distribuindo_comida(int gatilho_comida);
+        void monitoramento(int num);
 
 };
 
