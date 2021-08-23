@@ -12,7 +12,7 @@ class Level {
         vector<int>quantidade_comidas_tot;
         //int quantidade_linhas, quantidade_colunas, quantidade_comidas;        
         std::vector<std::string> mapas_do_arquivo;
-        vector<string>mapa_auxiliar;
+        vector<string> mapa_auxiliar;
         vector<int>numeros;//vector c/ numeros de entrada
 
     public:
