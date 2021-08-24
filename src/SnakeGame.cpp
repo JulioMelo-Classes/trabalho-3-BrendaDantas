@@ -98,6 +98,7 @@ void SnakeGame::initialize_game(){
         objeto.interface_principal();
         wait(2000);
         objeto.encontrar_posicao_cobra(gatilho_de_niveis);
+        objeto.mostrar_cobra_mapa(gatilho_de_niveis);
         gatilho_de_niveis++;
         objeto.distribuindo_comida(gatilho_de_comida);
         gatilho_de_comida++;
@@ -144,6 +145,8 @@ void SnakeGame::update(){
                 state = RUNNING;
                 objeto.interface_principal();
                 objeto.encontrar_posicao_cobra(gatilho_de_niveis);
+                wait(6000);   
+                objeto.mostrar_cobra_mapa(gatilho_de_niveis);
                 gatilho_de_niveis++;
                 wait(6000);   
                 objeto.distribuindo_comida(gatilho_de_comida);

@@ -92,7 +92,7 @@ void Level::preencher_mapa(string s){//preenche o mapa em vector da classe level
     mapas_do_arquivo.push_back(s);
 }
 
-void Level::mostrar_mapa_um(){//mostra o mapa 
+void Level::mostrar_mapa_um(){//mostra o primeiro mapa 
     int mapa_um = 0, tamanho_dos_mapas = 0;
     tamanho_dos_mapas = mapas_do_arquivo.size();
     mapa_um = tamanho_dos_mapas/numero_de_linhas;
@@ -166,9 +166,9 @@ void Level::encontrar_posicao_cobra(int num){
         for(int i = pos_final_linha; i <= encerramento_linha; i++){
             mapa_auxiliar.push_back(mapas_do_arquivo[i]);//pegando mapa novamente
         }
-        for(auto i = mapa_auxiliar.begin(); i != mapa_auxiliar.end(); i++){//mostra o mapa de cada nivel
+        /*for(auto i = mapa_auxiliar.begin(); i != mapa_auxiliar.end(); i++){//mostra o mapa de cada nivel
             cout << *i << endl;
-        }
+        }*/
 
         for(int i = 0; i <qtdlinha; i++){//pega a posição da cobra
             for(int j = 0; j < qtdcoluna; j++){
@@ -219,39 +219,39 @@ void Level::distribuindo_comida(int gatilho_comida){//faz e distribui no mapa a 
 		    j = rand() % quantidade_colunas_tot[0];
 
 		    if(mapa_auxiliar[i][j] == ' '){	
-                posicao_da_comida.push_back(i);//guardando posição da comida - linha
-                posicao_da_comida.push_back(j);                         //   - coluna
+                posicao_da_comida_linha.push_back(i);//guardando posição da comida - linha
+                posicao_da_comida_coluna.push_back(j);                         //   - coluna
                 //cout << "linha = " << i << " e coluna = " << j << endl;
-                mapa_auxiliar[i][j] = 'A';
+                //mapa_auxiliar[i][j] = 'A';
                 contador++;
 		    }
         }
-       cout << "mapa com comida\n";
+       /*cout << "mapa com comida\n";
         for(auto i = mapa_auxiliar.begin(); i != mapa_auxiliar.end(); i++){
             cout << *i << endl;
-        }
+        }*/
 	
     }else if(gatilho_comida > 0){//nível 2 em diante
         qtd_comida = quantidade_comidas_tot[gatilho_comida];
-        cout << "Cheguei no nivel: " << gatilho_comida+1 << endl;
-        cout << "--->COMIDA TOTAL:: " << qtd_comida << endl;
+      /*  cout << "Cheguei no nivel: " << gatilho_comida+1 << endl;
+        cout << "--->COMIDA TOTAL:: " << qtd_comida << endl;*/
 
         while( contador < qtd_comida) {
 		    i = rand() % quantidade_colunas_tot[gatilho_comida];
 		    j = rand() % quantidade_colunas_tot[gatilho_comida];
 
 		    if(mapa_auxiliar[i][j] == ' '){	
-                posicao_da_comida.push_back(i);//guardando posição da comida
-                posicao_da_comida.push_back(j);
+                posicao_da_comida_linha.push_back(i);//guardando posição da comida
+                posicao_da_comida_coluna.push_back(j);
                 cout << "linha = " << i << " e coluna = " << j << endl;
-                mapa_auxiliar[i][j] = 'A';
+                //mapa_auxiliar[i][j] = 'A';
                 contador++;
 		    }
         }
-        cout << "\n";
+       /* cout << "\n";
         for(auto i = mapa_auxiliar.begin(); i != mapa_auxiliar.end(); i++){
             cout << *i << endl;
-        }
+        }*/
     }
     
 }
@@ -263,4 +263,33 @@ void Level::monitoramento(int num){//chama find_solution para monitorar possivei
     } else if(num > 0){
         jogo.find_solution(qtdlinha, qtdcoluna, posicao_cobra, mapa_auxiliar, qtd_comida);
     }
+}
+
+void Level::mostrar_cobra_mapa(int num){//mostra inicialmente a cobra no mapa
+    if(num == 0){
+        for(int i = 0; i < qtdlinha; i++){
+            for(int j = 0; j < qtdcoluna; j++){
+                if(mapa_auxiliar[i][j] == '*'){
+                    mapa_auxiliar[i][j] = 'v';
+                }
+            }
+        }
+    }else if(num > 0){
+        for(int i = 0; i < qtdlinha; i++){
+            for(int j = 0; j < qtdcoluna; j++){
+                if(mapa_auxiliar[i][j] == '*'){
+                    mapa_auxiliar[i][j] = 'v';
+                }
+            }
+        }
+    }
+
+    cout << "-------------------------------------------------------------" << endl;
+    cout << "=================== VIZUALIZANDO COBRA ======================\n";
+    cout << "Level: " << num+1 << " |    Lifes: ♥♥♥♥♥" << endl; 
+    for(auto i = mapa_auxiliar.begin(); i != mapa_auxiliar.end(); i++){
+        cout << *i << endl;
+    }
+    cout << "-------------------------------------------------------------" << endl;
+
 }
