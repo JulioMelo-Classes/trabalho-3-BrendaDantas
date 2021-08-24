@@ -103,8 +103,8 @@ void SnakeGame::initialize_game(){
         objeto.distribuindo_comida(gatilho_de_comida);
         gatilho_de_comida++;
         wait(4000);
-        objeto.monitoramento(gatilho_de_niveis);
-        wait(6000);
+        //objeto.monitoramento(gatilho_de_niveis);
+        //wait(6000);
         state = RUNNING;
     }
     
@@ -151,7 +151,7 @@ void SnakeGame::update(){
                 wait(6000);   
                 objeto.distribuindo_comida(gatilho_de_comida);
                 gatilho_de_comida++;
-                objeto.monitoramento(gatilho_de_niveis);
+                //objeto.monitoramento(gatilho_de_niveis);
                 wait(6000);          
                 
                 //obj.encontrar_posicao_cobra(num);

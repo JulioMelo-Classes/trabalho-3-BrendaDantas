@@ -209,14 +209,14 @@ void Level::distribuindo_comida(int gatilho_comida){//faz e distribui no mapa a 
     
 }
 
-void Level::monitoramento(int num){//chama find_solution para monitorar possiveis posiloes da cobra
+/*void Level::monitoramento(int num){//chama find_solution para monitorar possiveis posiloes da cobra
     Player jogo;
     if(num == 0){
         jogo.find_solution(qtdlinha, qtdcoluna, posicao_cobra, mapa_auxiliar, qtd_comida);
     } else if(num > 0){
         jogo.find_solution(qtdlinha, qtdcoluna, posicao_cobra, mapa_auxiliar, qtd_comida);
     }
-}
+}*/
 
 void Level::mostrar_cobra_mapa(int nivel){//mostra inicialmente a cobra no mapa
     if(nivel == 0){

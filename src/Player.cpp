@@ -5,14 +5,46 @@
 using namespace std;
 
 
-bool Player::find_solution(int linha, int coluna, vector<int>& posicao_cobra, vector<string>& mapinha, int qtd_comida){    
+/*bool Player::find_solution(int linha, int coluna, vector<int>& posicao_cobra, vector<string>& mapinha, int qtd_comida){    
     int posicao_linha_c = 0, posicao_coluna_c = 0;
     posicao_linha_c = posicao_cobra[0];
     posicao_coluna_c = posicao_cobra[1];
 
-    //cout << "CONFIRMANDO POSIÇÕES DE LINHA E COLUNA: " << posicao_linha_c << " | " << posicao_coluna_c << endl;
+            /*if(mapinha[i--][j] == ' '){
+                posicao_valida_lin.push_back(i--);
+                posicao_valida_col.push_back(j);
+                i--;
+            } else if(mapinha[i--][j] == '#' || mapinha[i--][j] == '.'){
+                posicao_nao_valida_lin.push_back(i--);
+                posicao_nao_valida_col.push_back(j);
+                if(mapinha[i][j--] == ' '){
+                    posicao_valida_lin.push_back(i);
+                    posicao_valida_col.push_back(j--);
+                    j--;
+                } else if(mapinha[i][j--] == '#' || mapinha[i][j--] == '.'){
+                    posicao_nao_valida_lin.push_back(i);
+                    posicao_nao_valida_col.push_back(j--);
+                } else if(mapinha[i][j++] == ' '){
+                    posicao_valida_lin.push_back(i);
+                    posicao_valida_col.push_back(j++);
+                    j++;
+                }  else if(mapinha[i][j++] == '#' || mapinha[i][j++] == '.'){
+                    posicao_nao_valida_lin.push_back(i);
+                    posicao_nao_valida_col.push_back(j++);
+                } else if(mapinha[i++][j] == ' '){
+                    posicao_valida_lin.push_back(i++);
+                    posicao_valida_col.push_back(j);
+                    i++;
+                }
+            } else if(mapinha[i++][j] == '#' || mapinha[i++][j] == '.'){
+                    posicao_nao_valida_lin.push_back(i++);
+                    posicao_nao_valida_col.push_back(j);
+                    
+            }*/
+       // }    
+  //  }
 
-    for(int i = posicao_linha_c; i < linha; i++ ){
+   /* for(int i = posicao_linha_c; i < linha; i++ ){
         for(int j = posicao_coluna_c; j < coluna; j++){
             if(mapinha[i-1][j] == 'A'){//encontra comida
                 //cout << "encontrei comida, na linha: "<< i-1 << " coluna:" << j << endl;
@@ -104,9 +136,27 @@ bool Player::find_solution(int linha, int coluna, vector<int>& posicao_cobra, ve
              //   cout << "tam corpo\n";
             }
         }
-    }
+    }*/
     
 
-    return true;
-}
+  //  return true;
+//}
 
+void Player::next_move(int linha, int coluna, vector<int>& posicao_cobra, vector<string>& mapinha){
+    int posicao_linha_c = 0, posicao_coluna_c = 0;
+    posicao_linha_c = posicao_cobra[0];
+    posicao_coluna_c = posicao_cobra[1];
+
+    for(int i = posicao_linha_c; i < linha;){
+        for(int j = posicao_coluna_c; j < coluna;){
+            if(mapinha[i--][j] == ' '){//olhou a direção a norte
+
+                if(mapinha[i][j++] == ' '){
+
+                } else if(mapinha[i][j--])
+            } else if(mapinha[i++][j] == ' '){//olhou a direção a sul
+
+            } 
+        }
+    }
+}
