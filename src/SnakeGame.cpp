@@ -72,16 +72,16 @@ void SnakeGame::initialize_game(){
     }
     objeto.mostrar_numeros();//mostra os elementos de vector
     objeto.separar_numeros();//separo os numeros em linha, coluna e comida
-    wait(5000);
+    //wait(5000);
     int maz = maze.size();
-    cout << "maze tamamho: " << maz << endl;
-    wait(900);
+    //cout << "maze tamamho: " << maz << endl;
+    //wait(900);
     /*objeto.mostrar_mapas();//mostra mapa guardado no vector
     wait(5000);*/
 
     recebedora = objeto.validar_numeros();//faço a validação e retorna um inteiro
-    cout << "recebedora: " << recebedora << endl;
-    wait(100);
+    //cout << "recebedora: " << recebedora << endl;
+    //wait(100);
     if(recebedora == 1){//resultado da validação de números de entrada
         cout << "ERRO!! quantidade de linhas não pode ser inferior a 1 ou superior a 100\n" << endl;
         state = GAME_OVER;
@@ -96,12 +96,12 @@ void SnakeGame::initialize_game(){
         game_over();
     } else {//aqui é quando não tem erro de validação
         objeto.interface_principal();
-        wait(4000);
+        wait(2000);
         objeto.encontrar_posicao_cobra(gatilho_de_niveis);
         gatilho_de_niveis++;
-        wait(4000);
         objeto.distribuindo_comida(gatilho_de_comida);
         gatilho_de_comida++;
+        wait(4000);
         objeto.monitoramento(gatilho_de_niveis);
         wait(6000);
         state = RUNNING;
@@ -149,9 +149,7 @@ void SnakeGame::update(){
                 objeto.distribuindo_comida(gatilho_de_comida);
                 gatilho_de_comida++;
                 objeto.monitoramento(gatilho_de_niveis);
-                wait(6000);
-                cout << "COMEÇAMOS NOVAMENTE" << endl;
-                wait(1000);              
+                wait(6000);          
                 
                 //obj.encontrar_posicao_cobra(num);
                 //num++;
