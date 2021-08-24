@@ -14,7 +14,8 @@ class Level {
         vector<string> mapa_auxiliar;//vector q guarda os mapas por nível
         vector<int> numeros;//vector c/ numeros de entrada
         vector<int> posicao_cobra;//vector c/ posição da cobra
-        vector<int> posicao_da_comida;//vector q guarda a posição da comida sorteda
+        vector<int> posicao_da_comida_linha;//vector q guarda a posição da comida sorteda
+        vector<int> posicao_da_comida_coluna;
 
     public:
         void preencher_numeros(int num);
@@ -27,6 +28,7 @@ class Level {
         void encontrar_posicao_cobra(int num);
         void distribuindo_comida(int gatilho_comida);
         void monitoramento(int num);
+        void mostrar_cobra_mapa(int num);
 
 };
 
