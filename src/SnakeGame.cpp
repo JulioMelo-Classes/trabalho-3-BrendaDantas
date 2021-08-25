@@ -41,7 +41,6 @@ stringstream xy;
 int recebedora = 0, y, gatilho_de_niveis = 0, gatilho_de_comida = 0;
 Level objeto;
 void SnakeGame::initialize_game(){
-    
     //carrega o nivel ou os níveis
     ifstream levelFile("./data/maze1.txt"); //só dá certo se o jogo for executado dentro da raíz do diretório (vc vai resolver esse problema pegando o arquivo da linha de comando)
     int lineCount = 0;
@@ -52,53 +51,34 @@ void SnakeGame::initialize_game(){
             lineCount++;
         }
     }
-
     for(auto i = maze.begin(); i != maze.end(); i++){//pega os números
         string s = *i;
         for(int ii = 0; ii < s.size(); ii++){
             if(isdigit(s[ii])){
-                //cout << s << endl;
                 xy << s << endl;//convert string para número
                 break;
             }else{
-                objeto.preencher_mapa(s);
+                objeto.preencher_mapa(s);//preenche um vector de string com os mapas
                 break;
             }
         } 
     }
-
     while(xy >> y){
         objeto.preencher_numeros(y);//chama para preencher vector
     }
-    objeto.mostrar_numeros();//mostra os elementos de vector
-    objeto.separar_numeros();//separo os numeros em linha, coluna e comida
-   
-    recebedora = objeto.validar_numeros();//faço a validação e retorna um inteiro
-
-    if(recebedora == 1){//resultado da validação de números de entrada
-        cout << "ERRO!! quantidade de linhas não pode ser inferior a 1 ou superior a 100\n" << endl;
-        state = GAME_OVER;
-        game_over();
-    } else if(recebedora == 2){
-        cout << "ERRO!! quantidade de colunas não pode ser inferior a 1 ou superior a 100\n" << endl;
-        state = GAME_OVER;
-        game_over();
-    } else if(recebedora == 3){
-        cout << "ERRO!! quantidade de comidas não pode ser inferior a 1\n" << endl;
-        state = GAME_OVER;
-        game_over();
-    } else {//aqui é quando não tem erro de validação
-        objeto.interface_principal();
-        wait(2000);
-        objeto.encontrar_posicao_cobra(gatilho_de_niveis);
-        objeto.mostrar_cobra_mapa(gatilho_de_niveis);
-        //gatilho_de_niveis++;
-        objeto.distribuindo_comida(gatilho_de_comida);
-        gatilho_de_comida++;
-       
-       /* objeto.monitoramento(gatilho_de_niveis);
-        gatilho_de_niveis++;*/
-        wait(6000);
+    objeto.separar_numeros();//separando comidas em seus devidos lugares
+    objeto.somando_comidas();//somando o total de alimentos
+    
+    recebedora = objeto.validar_numeros();//verifica os números
+    if(recebedora>0){
+        if(recebedora == 1){//verifica linhas
+            state = GAME_OVER;
+        }else if(recebedora == 2){//verifica colunas
+            state = GAME_OVER;
+        }else{//verifica comida
+            state = GAME_OVER;
+        }
+    }else{
         state = RUNNING;
     }
     
@@ -135,21 +115,7 @@ void SnakeGame::update(){
             else{
                 //pode fazer alguma coisa antes de fazer isso aqui 
                 state = RUNNING;
-                objeto.interface_principal();
-                objeto.encontrar_posicao_cobra(gatilho_de_niveis);
-                wait(6000);   
-                objeto.mostrar_cobra_mapa(gatilho_de_niveis);
-                gatilho_de_niveis++;
-                wait(6000);   
-                objeto.distribuindo_comida(gatilho_de_comida);
-                gatilho_de_comida++;
-                //objeto.monitoramento(gatilho_de_niveis);
-                wait(6000);          
                 
-
-                
-                //obj.encontrar_posicao_cobra(num);
-                //num++;
             }
             break;
         default:
@@ -176,11 +142,6 @@ void SnakeGame::render(){
     clearScreen();
     switch(state){
         case RUNNING:  
-
-            cout << "GATILHO " <<  gatilho_de_niveis << endl;
-            objeto.monitoramento(gatilho_de_niveis);
-            gatilho_de_niveis++;
-            wait(6000); 
            
             //desenha todas as linhas do labirinto            
             /*for(auto line : maze){
@@ -205,7 +166,7 @@ void SnakeGame::loop(){
         process_actions();
         update();
         render();
-        wait(500);// espera 1 segundo entre cada frame
+        wait(2000);// espera 1 segundo entre cada frame
     }
    
 }
