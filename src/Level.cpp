@@ -17,13 +17,10 @@ void Level::mostrar_numeros(){
 }
 int numero_de_linhas = 0, quant_comida =0;;
 void Level::separar_numeros(){//guardando numeros no vector e somando comidas
-    int aux1 = 0, aux2 = 0;
-    int contador = 1;
-    int pos_coluna = 0, pos_comida = 0;
+    int aux1 = 0, aux2 = 0, contador = 1, pos_coluna = 0, pos_comida = 0;
+    int tamanho_de_linhas = numeros.size();//descobre a quantidade total de números existentes
 
-    int tamanho_de_linhas = numeros.size();
-
-    numero_de_linhas = tamanho_de_linhas/3;
+    numero_de_linhas = tamanho_de_linhas/3;//descobre quantas linhas de números tem
 
     for(int i = 0; i < numeros.size(); i++){
         if(aux1 == 0){
@@ -47,13 +44,13 @@ void Level::separar_numeros(){//guardando numeros no vector e somando comidas
         aux1++;
     }
    
-    int tt = quantidade_comidas_tot.size();
+    int tt = quantidade_comidas_tot.size();//descobre a quantidade de comidas que existem
     for(int i =0; i < tt; i++){//somando comidas
         quant_comida = quant_comida + quantidade_comidas_tot[i];
     }
 }
 
-int Level::validar_numeros(){
+int Level::validar_numeros(){//valida números de entrada
     for(auto itr1 = quantidade_linhas_tot.begin(); itr1 != quantidade_linhas_tot.end(); itr1++){
         if(*itr1 <= 0 || *itr1 > 100){
             return 1;
@@ -86,9 +83,7 @@ void Level::mostrar_mapa_um(){//mostra o primeiro mapa na interface
     }
 }
 
-int qtdlinha = 0, qtdcoluna = 0;
-int pos_final_linha = 0, pos_final_coluna = 0;
-int encerramento_linha = 0, encerramento_coluna = 0;
+int qtdlinha = 0, qtdcoluna = 0, pos_final_linha = 0, pos_final_coluna = 0, encerramento_linha = 0, encerramento_coluna = 0;
 
 void Level::encontrar_posicao_cobra(int num){
    
@@ -99,25 +94,19 @@ void Level::encontrar_posicao_cobra(int num){
         for(int i = 0; i < qtdlinha; i++){
             mapa_auxiliar.push_back(mapas_do_arquivo[i]);//pegando mapa novamente
         }
-       // cout << "MAPA DO NIVEL 1\n";
-        /*for(auto i = mapa_auxiliar.begin(); i != mapa_auxiliar.end(); i++){//mostra o mapa de cada nivel
-            cout << *i << endl;
-        }*/
 
         for(int i = 0; i <qtdlinha; i++){//pega a posição da cobra
             for(int j = 0; j < qtdcoluna; j++){
                 if(mapa_auxiliar[i][j] == '*'){
                     posicao_cobra.push_back(i);//aqui é a linha
                     posicao_cobra.push_back(j);//aqui é a coluna
-                  //  cout << "Achei mais um * em " << i << " e " << j << endl;
                 }
             }
         }
-       
         pos_final_linha = qtdlinha;
         pos_final_coluna = qtdcoluna;
     } else {
-        posicao_cobra.clear();
+        posicao_cobra.clear();//limpa a posição antiga sempre que chega em uma nova para não acumular
         mapa_auxiliar.clear();//limpa o vector para o proximo nivel (RETIRAR MAIS TARDE)
         qtdlinha = quantidade_linhas_tot[num];
         qtdcoluna = quantidade_colunas_tot[num];
@@ -128,9 +117,6 @@ void Level::encontrar_posicao_cobra(int num){
         for(int i = pos_final_linha; i <= encerramento_linha; i++){
             mapa_auxiliar.push_back(mapas_do_arquivo[i]);//pegando mapa novamente
         }
-        /*for(auto i = mapa_auxiliar.begin(); i != mapa_auxiliar.end(); i++){//mostra o mapa de cada nivel
-            cout << *i << endl;
-        }*/
 
         for(int i = 0; i <qtdlinha; i++){//pega a posição da cobra
             for(int j = 0; j < qtdcoluna; j++){
@@ -145,7 +131,6 @@ void Level::encontrar_posicao_cobra(int num){
         pos_final_linha = encerramento_linha;
     }    
 }
-
 
 void Level::interface_principal(){
     

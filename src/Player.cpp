@@ -145,34 +145,40 @@ using namespace std;
 void Player::next_move(int linha, int coluna, vector<int>& posicao_cobra, vector<string>& mapinha){
     int posicao_linha_c = 0, posicao_coluna_c = 0, x, y;
     posicao_linha_c = posicao_cobra[0];
-    posicao_coluna_c = posicao_cobra[1];
-    //string head;
-    vector<string> mapa;
-    /*for(auto i = mapinha.begin(); i != mapinha.end(); i++){
-        mapa.push_back(mapinha);
-    }*/
-    for(int i = posicao_linha_c; i < linha;){
-        for(int j = posicao_coluna_c; j < coluna;){
+    posicao_coluna_c = posicao_cobra[1];  
+  
+    for(int i = posicao_linha_c; i < linha;){//começa a partir da pos da cobra
+        for(int j = posicao_coluna_c; j < coluna;){//começa a partir da pos da cobra
             if(mapinha[i--][j] == ' '){//olhou a direção a norte
-                //x = i--;
-                //y = j;
                 cout << i-- << endl;
                 cout << j << endl;
                 move_snake('^', i--, j, linha, coluna, mapinha, posicao_linha_c, posicao_coluna_c);
-                break;
+                //break;
+                
+            } else if(mapinha[i--][j] == '#' || mapinha[i--][j] == '.'){//olhou para o norte 
 
-                /*if(mapinha[i][j++] == ' '){
-                    x = i--;
-                    y = j;
-                    move_snake('>', x, y, linha, coluna, mapinha, posicao_linha_c, posicao_coluna_c);
-                    break;
+                if(mapinha[i][j++] == ' '){//olhou para a direita na msm linha que esta
 
-                }*/ /*else if(mapinha[i][j--]){
-                    cout << "ok";
-                }*/
-            } /*else if(mapinha[i++][j] == ' '){//olhou a direção a sul
-                    cout << "ok";
-            } */
+                    move_snake('>', i, j++, linha, coluna, mapinha, posicao_linha_c, posicao_coluna_c);
+
+                } else if(mapinha[i][j++] == '#' || mapinha[i][j++] == '.'){//olhou para a direita na msm linha que esta
+
+                    if(mapinha[i][j--] == ' '){
+                        move_snake('<', i, j--, linha, coluna, mapinha, posicao_linha_c, posicao_coluna_c);
+                    } 
+
+                }
+            } else if(mapinha[i++][j] == ' '){
+
+                move_snake('v', i++, j, linha, coluna, mapinha, posicao_linha_c, posicao_coluna_c);
+            } else if(mapinha[i++][j] == '#' || mapinha[i++][j] == '.'){
+
+                if(mapinha[i][j++] == '#' || mapinha[i][j++] == '.'){
+
+                } else if (mapinha[i][j++] == ' '){
+                    move_snake('>', i++, j, linha, coluna, mapinha, posicao_linha_c, posicao_coluna_c);
+                }
+            }
         }
     }
 }

@@ -121,8 +121,6 @@ void SnakeGame::process_actions(){
 }
 
 void SnakeGame::update(){
-    //Level obj;
-    //int num = 1;
     //atualiza o estado do jogo de acordo com o resultado da chamada de "process_input"
     switch(state){
         case RUNNING:
