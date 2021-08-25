@@ -27,7 +27,7 @@ class Level {
         void interface_principal();
         void encontrar_posicao_cobra(int num);
         void distribuindo_comida(int gatilho_comida);
-        //void monitoramento(int num);
+        void monitoramento(int num);
         void mostrar_cobra_mapa(int num);
 
 };
