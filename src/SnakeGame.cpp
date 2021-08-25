@@ -14,7 +14,7 @@
 #include <ctype.h>
 
 #ifdef _WIN32
-    #include <Windows.h>
+#include <Windows.h>
 #endif
 
 using namespace std;
@@ -104,6 +104,9 @@ void SnakeGame::update(){
     //atualiza o estado do jogo de acordo com o resultado da chamada de "process_input"
     switch(state){
         case RUNNING:
+            //se começou agora(atributo de snake_game-estado), então chama método para por comida no mapa e a cobra
+            //depois de comer todas as comidas, retornar uma variavel para ir para o proximo nivel
+
             if(frameCount>0 && frameCount%10 == 0) //depois de 10 frames o jogo pergunta se o usuário quer continuar
                 state = WAITING_USER;
             break;
@@ -115,7 +118,6 @@ void SnakeGame::update(){
             else{
                 //pode fazer alguma coisa antes de fazer isso aqui 
                 state = RUNNING;
-                
             }
             break;
         default:
@@ -143,6 +145,11 @@ void SnakeGame::render(){
     switch(state){
         case RUNNING:  
            
+            //condição para mostrar a interface principal
+
+            //metodo que desenha a cobra no mapa
+
+
             //desenha todas as linhas do labirinto            
             /*for(auto line : maze){
                 cout<<line<<endl;
