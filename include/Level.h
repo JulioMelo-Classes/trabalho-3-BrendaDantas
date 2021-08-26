@@ -8,10 +8,12 @@ using namespace std;
 // Vai cuidar dos níveis do jogo:
 // Criar interface principal -- método que mostra uma interface no início do jogo - ok(interface_principal)
 // Mostrar o primeiro mapa na interface principal - ok(mostrar_mapa_um)
-// Validar informações -- método que valida as informações acerca de cada mapa - ok(validar_numeros)
+// Validar informações -- método que valida as informações acerca de cada mapa - ok(separar_numeros e preencher_ numeros e validar_numeros)
 // "criar" o mapa -- método que guarda todos os mapas de todos os níveis - ok(preencher_mapa)
 // Verificar qual o nível atual -- método que recebe o mapa(nível) atual - ok(separar_mapa)
-// Colocar comida -- método que gera comidas no mapa atual
+// Colocar comida -- método que gera comidas no mapa atual - (somando_comidas)
+// Localização da cobra -- atributo que contém a posição da cobra
+// Localização de comida -- atributo com a posição da comida
 
 class Level {
     private:
@@ -27,17 +29,17 @@ class Level {
 
 
     public:
-        void preencher_mapa(string& mapa); // preencher um vetor com todos os mapas
+        void preencher_mapa(string& mapa); // preencher um vetor com todos os mapas OK
         //void posicao_da_cobra(int nivel); // descobrir qual a posição da cobra
-        void separar_mapa(); // separar os mapas por níveis
-        void preencher_numeros(int numeros);
-        void separar_numeros();
-        void somando_comidas();
-        int validar_numeros();
+        void separar_mapa(); // separar os mapas por níveis OK
+        void preencher_numeros(int numeros); //OK 
+        void separar_numeros(); //OK
+        void somando_comidas(); //OK
+        int validar_numeros(); //OK
         //void gerar_comida(int nivel);
         //void exibir_informacoes(int nivel);
-        void mostrar_mapa_um();
-        void interface_principal();
+        void mostrar_mapa_um(); //OK
+        void interface_principal(); //OK
 
 };
 
