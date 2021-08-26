@@ -5,6 +5,14 @@
 #include <string>
 using namespace std;
 
+// Vai cuidar dos níveis do jogo:
+// Criar interface principal -- método que mostra uma interface no início do jogo - ok(interface_principal)
+// Mostrar o primeiro mapa na interface principal - ok(mostrar_mapa_um)
+// Validar informações -- método que valida as informações acerca de cada mapa - ok(validar_numeros)
+// "criar" o mapa -- método que guarda todos os mapas de todos os níveis - ok(preencher_mapa)
+// Verificar qual o nível atual -- método que recebe o mapa(nível) atual - ok(separar_mapa)
+// Colocar comida -- método que gera comidas no mapa atual
+
 class Level {
     private:
         //vector<string> 
@@ -19,9 +27,9 @@ class Level {
 
 
     public:
-        void preencher_mapa(string& mapa);
-        //void posicao_da_cobra(int nivel);
-        void separar_mapa();
+        void preencher_mapa(string& mapa); // preencher um vetor com todos os mapas
+        //void posicao_da_cobra(int nivel); // descobrir qual a posição da cobra
+        void separar_mapa(); // separar os mapas por níveis
         void preencher_numeros(int numeros);
         void separar_numeros();
         void somando_comidas();

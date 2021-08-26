@@ -6,6 +6,8 @@
 #include "SnakeGame.h"
 using namespace std;
 
+
+
 void Level::preencher_mapa(string& mapa){//preencher vector c/ todos os mapas
     todos_os_mapas.push_back(mapa);
 }
@@ -36,7 +38,6 @@ void Level::preencher_numeros(int numero){//preenche vector com todos os numeros
             for(int j = 0; j < qtdcoluna; j++){
                 if(mapa_auxiliar[i][j] == '*'){
                     posicao_cobra.push_back(i);//aqui é a linha
-
 
 }*/
 
