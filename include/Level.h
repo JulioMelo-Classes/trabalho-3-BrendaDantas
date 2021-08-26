@@ -27,6 +27,10 @@ class Level {
         int validar_numeros();
         void gerar_comida(int nivel);
         void exibir_informacoes(int nivel);
+        void mostrar_mapa_um();
+        void interface_principal();
+
 };
+
 
 #endif
