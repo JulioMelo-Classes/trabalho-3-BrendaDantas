@@ -158,6 +158,10 @@ void SnakeGame::render(){
     clearScreen();
     switch(state){
         case RUNNING:  
+
+            if(nivel == 1){
+                objeto.interface_principal();
+            }
            
             //condição para mostrar a interface principal
 
@@ -186,7 +190,7 @@ void SnakeGame::loop(){
     while(state != GAME_OVER){
         process_actions();
         update();
-        //render();
+        render();
         wait(500);// espera 1 segundo entre cada frame
     }
    

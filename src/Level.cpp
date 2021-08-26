@@ -28,6 +28,7 @@ void Level::separar_mapa(){
         mapa_atual.push_back(mapa);
     }
     //cout << todos_os_mapas.size() << endl;
+
 }
 
 int numero_de_linhas = 0;
@@ -127,4 +128,29 @@ void Level::exibir_informacoes(int nivel){
         cout << mapa_atual.at(nivel).at(i) << endl;
     }
     
+}
+
+void Level::mostrar_mapa_um(){
+    int mapa_um = 0, tamanho_dos_mapas = 0;
+    tamanho_dos_mapas = todos_os_mapas.size();
+    mapa_um = tamanho_dos_mapas/numero_de_linhas;
+    
+    for(int i = 0; i < mapa_um; i++){
+        cout << todos_os_mapas[i]<< endl;    
+    }
+}
+
+void Level::interface_principal(){
+
+    cout << "---> Welcome to the classic Snake Game <---\n";
+    cout << "           copyright DIMAp/UFRN 2017" << endl;
+    cout << "-------------------------------------------------------------" << endl;
+    cout << "Levels loaded: " << numero_de_linhas << " | " << " Snake lives: 5 " << " | " << " Apples to eat: " << comidas_somadas << endl;
+    cout << "-------------------------------------------------------------" << endl;
+    cout << ">>> Press <ENTER> to start the game!" << endl;
+    cout << "\nLifes: ♥♥♥♥♥ | Score: 0    | Food eaten: 0 of " << comidas_somadas << endl;
+    cout << "______________________________________________________________________\n";
+    mostrar_mapa_um();
+    cout << "______________________________________________________________________\n";
+
 }
