@@ -14,8 +14,34 @@ void Level::preencher_numeros(int numero){//preenche vector com todos os numeros
     todos_os_numeros.push_back(numero);
 }
 
+/*void Level::posicao_da_cobra(int nivel){
+    int linhas_primeiro_mapa = 0, qtd_linhas_colunas = 0;
+    linhas_primeiro_mapa = so_linhas.at(0);
+
+    if(nivel == 1){
+        qtd_linhas_colunas = posicoes.at(0).second;
+
+    }
+
+
+    if(num == 0){//pega posição primeiro nivel
+        qtdlinha = quantidade_linhas_tot[0];
+        qtdcoluna = quantidade_colunas_tot[0];
+
+        for(int i = 0; i < qtdlinha; i++){
+            mapa_auxiliar.push_back(mapas_do_arquivo[i]);//pegando mapa novamente
+        }
+
+        for(int i = 0; i <qtdlinha; i++){//pega a posição da cobra
+            for(int j = 0; j < qtdcoluna; j++){
+                if(mapa_auxiliar[i][j] == '*'){
+                    posicao_cobra.push_back(i);//aqui é a linha
+
+
+}*/
+
 void Level::separar_mapa(){
-    
+     
     for(int j = 0; j < so_linhas.size(); j++){
         vector<string> mapa;
         for(int i = 0; i < so_linhas.at(j); i++){
@@ -27,7 +53,6 @@ void Level::separar_mapa(){
         }
         mapa_atual.push_back(mapa);
     }
-    //cout << todos_os_mapas.size() << endl;
 
 }
 
@@ -93,17 +118,17 @@ int Level::validar_numeros(){//verifica a veracidade dos números
     return 0;
 }
 
-void Level::gerar_comida(int nivel){
+/*void Level::gerar_comida(int nivel){
 
     int contador = 0, i = 0, j = 0;
     srand(time(NULL));
     
-    if(nivel == 0){
+    if(nivel == 1){
         
     }
-}
+}*/
 
-void Level::exibir_informacoes(int nivel){
+/*void Level::exibir_informacoes(int nivel){
 
     separar_mapa();
 
@@ -124,20 +149,26 @@ void Level::exibir_informacoes(int nivel){
         cout << todos_os_mapas.at(i) << endl;
     } tá ok*/
 
-    for(int i = 0; i < mapa_atual.at(nivel).size(); i++){
+    /*for(int i = 0; i < mapa_atual.at(nivel).size(); i++){
         cout << mapa_atual.at(nivel).at(i) << endl;
     }
     
-}
+}*/
 
 void Level::mostrar_mapa_um(){
-    int mapa_um = 0, tamanho_dos_mapas = 0;
-    tamanho_dos_mapas = todos_os_mapas.size();
-    mapa_um = tamanho_dos_mapas/numero_de_linhas;
+
+    separar_mapa();
     
-    for(int i = 0; i < mapa_um; i++){
-        cout << todos_os_mapas[i]<< endl;    
+    int linhas_mapa_um = 0;
+    linhas_mapa_um = so_linhas.at(0);
+    
+    for(int i = 0; i < linhas_mapa_um; i++){
+        cout << mapa_atual.at(0).at(i) << endl;    
     }
+
+    /*for(int i = 0; i < linhas_mapa_um; i++){
+        cout << todos_os_mapas[i]<< endl;    
+    }*/
 }
 
 void Level::interface_principal(){

@@ -84,11 +84,12 @@ void SnakeGame::initialize_game(){
         state = RUNNING;
     }
 
-    for(auto line : maze){
+    /*for(auto line : maze){
         cout<<line<<endl;
-    }
+        wait(600);
+    }*/
 
-    objeto.exibir_informacoes(1);
+    //objeto.exibir_informacoes(1);
     
 }
 
@@ -115,7 +116,7 @@ void SnakeGame::update(){
             //se começou agora(atributo de snake_game-estado), então chama método para por comida no mapa e a cobra
             //depois de comer todas as comidas, retornar uma variavel para ir para o proximo nivel
 
-            objeto.gerar_comida(nivel);
+            
             //if(nivel >= 1){
 
             //}
@@ -162,6 +163,7 @@ void SnakeGame::render(){
             if(nivel == 1){
                 objeto.interface_principal();
             }
+            
            
             //condição para mostrar a interface principal
 
@@ -191,7 +193,7 @@ void SnakeGame::loop(){
         process_actions();
         update();
         render();
-        wait(500);// espera 1 segundo entre cada frame
+        wait(7000);// espera 1 segundo entre cada frame
     }
    
 }

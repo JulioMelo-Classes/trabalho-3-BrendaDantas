@@ -20,13 +20,14 @@ class Level {
 
     public:
         void preencher_mapa(string& mapa);
+        //void posicao_da_cobra(int nivel);
         void separar_mapa();
         void preencher_numeros(int numeros);
         void separar_numeros();
         void somando_comidas();
         int validar_numeros();
-        void gerar_comida(int nivel);
-        void exibir_informacoes(int nivel);
+        //void gerar_comida(int nivel);
+        //void exibir_informacoes(int nivel);
         void mostrar_mapa_um();
         void interface_principal();
 
