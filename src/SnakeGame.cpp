@@ -80,7 +80,7 @@ void SnakeGame::initialize_game(){
             state = GAME_OVER;
         }
     }else{
-        nivel = 1;
+        nivel = 0;
         state = RUNNING;
     }
 
@@ -89,8 +89,8 @@ void SnakeGame::initialize_game(){
         wait(600);
     }*/
 
-    //objeto.exibir_informacoes(1);
-    
+    objeto.separar_mapa();
+    objeto.exibir_informacoes(0);    
 }
 
 
@@ -160,8 +160,9 @@ void SnakeGame::render(){
     switch(state){
         case RUNNING:  
 
-            if(nivel == 1){
+            if(nivel == 0){
                 objeto.interface_principal();
+                
             }
             
            

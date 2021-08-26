@@ -16,17 +16,7 @@ void Level::preencher_numeros(int numero){//preenche vector com todos os numeros
     todos_os_numeros.push_back(numero);
 }
 
-/*void Level::posicao_da_cobra(int nivel){
-    int linhas_primeiro_mapa = 0, qtd_linhas_colunas = 0;
-    linhas_primeiro_mapa = so_linhas.at(0);
-
-    if(nivel == 1){
-        qtd_linhas_colunas = posicoes.at(0).second;
-
-    }
-
-
-    if(num == 0){//pega posição primeiro nivel
+    /*if(num == 0){//pega posição primeiro nivel
         qtdlinha = quantidade_linhas_tot[0];
         qtdcoluna = quantidade_colunas_tot[0];
 
@@ -38,8 +28,7 @@ void Level::preencher_numeros(int numero){//preenche vector com todos os numeros
             for(int j = 0; j < qtdcoluna; j++){
                 if(mapa_auxiliar[i][j] == '*'){
                     posicao_cobra.push_back(i);//aqui é a linha
-
-}*/
+                }*/
 
 void Level::separar_mapa(){
      
@@ -129,11 +118,11 @@ int Level::validar_numeros(){//verifica a veracidade dos números
     }
 }*/
 
-/*void Level::exibir_informacoes(int nivel){
+void Level::exibir_informacoes(int nivel){
 
-    separar_mapa();
+    player.posicao_da_cobra(mapa_atual, nivel);
 
-    cout << endl;
+    /*cout << endl;
     for (int i = 0; i < so_linhas.size(); i++){
         cout << "Linhas: " << so_linhas.at(i) << " ";
     }
@@ -145,26 +134,25 @@ int Level::validar_numeros(){//verifica a veracidade dos números
     for (int i = 0; i < so_comidas.size(); i++){
         cout << "Comidas: " << so_comidas.at(i) << " ";
     }
-    cout << endl;
+    cout << endl;*/
     /*for (int i = 0; i < todos_os_mapas.size(); i++){
         cout << todos_os_mapas.at(i) << endl;
     } tá ok*/
 
     /*for(int i = 0; i < mapa_atual.at(nivel).size(); i++){
         cout << mapa_atual.at(nivel).at(i) << endl;
-    }
+    }*/
     
-}*/
+}
 
 void Level::mostrar_mapa_um(){
-
-    separar_mapa();
     
     int linhas_mapa_um = 0;
     linhas_mapa_um = so_linhas.at(0);
+
     
     for(int i = 0; i < linhas_mapa_um; i++){
-        cout << mapa_atual.at(0).at(i) << endl;    
+        cout << mapa_atual.at(0).at(i) << endl;
     }
 
     /*for(int i = 0; i < linhas_mapa_um; i++){

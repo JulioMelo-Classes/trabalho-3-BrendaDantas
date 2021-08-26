@@ -1,5 +1,6 @@
 #ifndef Level_h
 #define Level_h
+#include "Player.h"
 
 #include <vector>
 #include <string>
@@ -17,27 +18,24 @@ using namespace std;
 
 class Level {
     private:
-        //vector<string> 
+        Player player;
         vector<string> todos_os_mapas;//recebe todos os mapas
         vector<int> todos_os_numeros;//recebe todos os numeros
-        vector<vector<string>> mapa_atual;
+        vector<vector<string>> mapa_atual;        
         vector<int> so_linhas;//recebe apenas linhas
         vector<int> so_colunas;//recebe apenas colunas
         vector<int> so_comidas;//recebe apenas comidas
-        int comidas_somadas;//guarda a soma total de comidas que a cobra tem de comer
-        vector<pair<int,int>> posicoes;
-
+        int comidas_somadas;//guarda a soma total de comidas que a cobra tem de comer      
 
     public:
-        void preencher_mapa(string& mapa); // preencher um vetor com todos os mapas OK
-        //void posicao_da_cobra(int nivel); // descobrir qual a posição da cobra
+        void preencher_mapa(string& mapa); // preencher um vetor com todos os mapas OK        
         void separar_mapa(); // separar os mapas por níveis OK
         void preencher_numeros(int numeros); //OK 
         void separar_numeros(); //OK
         void somando_comidas(); //OK
         int validar_numeros(); //OK
         //void gerar_comida(int nivel);
-        //void exibir_informacoes(int nivel);
+        void exibir_informacoes(int nivel);
         void mostrar_mapa_um(); //OK
         void interface_principal(); //OK
 
