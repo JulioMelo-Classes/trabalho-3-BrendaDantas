@@ -6,12 +6,28 @@
 #include "SnakeGame.h"
 using namespace std;
 
-void Level::preencher_mapa(string mapa){//preencher vector c/ todos os mapas
+void Level::preencher_mapa(string& mapa){//preencher vector c/ todos os mapas
     todos_os_mapas.push_back(mapa);
 }
 
 void Level::preencher_numeros(int numero){//preenche vector com todos os numeros
     todos_os_numeros.push_back(numero);
+}
+
+void Level::separar_mapa(){
+    
+    for(int j = 0; j < so_linhas.size(); j++){
+        vector<string> mapa;
+        for(int i = 0; i < so_linhas.at(j); i++){
+            mapa.push_back(todos_os_mapas.at(i));
+
+        }
+        for (int i = 0; i < so_linhas.at(j); i++){
+            todos_os_mapas.erase(todos_os_mapas.begin());
+        }
+        mapa_atual.push_back(mapa);
+    }
+    //cout << todos_os_mapas.size() << endl;
 }
 
 int numero_de_linhas = 0;
@@ -76,3 +92,39 @@ int Level::validar_numeros(){//verifica a veracidade dos números
     return 0;
 }
 
+void Level::gerar_comida(int nivel){
+
+    int contador = 0, i = 0, j = 0;
+    srand(time(NULL));
+    
+    if(nivel == 0){
+        
+    }
+}
+
+void Level::exibir_informacoes(int nivel){
+
+    separar_mapa();
+
+    cout << endl;
+    for (int i = 0; i < so_linhas.size(); i++){
+        cout << "Linhas: " << so_linhas.at(i) << " ";
+    }
+    cout << endl;
+    for (int i = 0; i < so_colunas.size(); i++){
+        cout << "Colunas: " << so_colunas.at(i) << " ";
+    }
+    cout << endl;
+    for (int i = 0; i < so_comidas.size(); i++){
+        cout << "Comidas: " << so_comidas.at(i) << " ";
+    }
+    cout << endl;
+    /*for (int i = 0; i < todos_os_mapas.size(); i++){
+        cout << todos_os_mapas.at(i) << endl;
+    } tá ok*/
+
+    for(int i = 0; i < mapa_atual.at(nivel).size(); i++){
+        cout << mapa_atual.at(nivel).at(i) << endl;
+    }
+    
+}

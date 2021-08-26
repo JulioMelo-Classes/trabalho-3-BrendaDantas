@@ -39,6 +39,7 @@ SnakeGame::SnakeGame(){
 
 stringstream xy;
 int recebedora = 0, y, gatilho_de_niveis = 0, gatilho_de_comida = 0;
+int nivel = 0;
 Level objeto;
 void SnakeGame::initialize_game(){
     //carrega o nivel ou os níveis
@@ -79,8 +80,15 @@ void SnakeGame::initialize_game(){
             state = GAME_OVER;
         }
     }else{
+        nivel = 1;
         state = RUNNING;
     }
+
+    for(auto line : maze){
+        cout<<line<<endl;
+    }
+
+    objeto.exibir_informacoes(1);
     
 }
 
@@ -107,6 +115,11 @@ void SnakeGame::update(){
             //se começou agora(atributo de snake_game-estado), então chama método para por comida no mapa e a cobra
             //depois de comer todas as comidas, retornar uma variavel para ir para o proximo nivel
 
+            objeto.gerar_comida(nivel);
+            //if(nivel >= 1){
+
+            //}
+
             if(frameCount>0 && frameCount%10 == 0) //depois de 10 frames o jogo pergunta se o usuário quer continuar
                 state = WAITING_USER;
             break;
@@ -117,6 +130,7 @@ void SnakeGame::update(){
             }
             else{
                 //pode fazer alguma coisa antes de fazer isso aqui 
+                nivel++;
                 state = RUNNING;
             }
             break;
@@ -172,8 +186,8 @@ void SnakeGame::loop(){
     while(state != GAME_OVER){
         process_actions();
         update();
-        render();
-        wait(2000);// espera 1 segundo entre cada frame
+        //render();
+        wait(500);// espera 1 segundo entre cada frame
     }
    
 }
