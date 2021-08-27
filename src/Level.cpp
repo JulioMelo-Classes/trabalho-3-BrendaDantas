@@ -177,6 +177,15 @@ void Level::interface_principal(){
 
 }
 
+void Level::demais_interfaces(int nivel){
+    int linhas_mapa_atual = 0;
+    linhas_mapa_atual = so_linhas.at(nivel);
+
+    for(int i = 0; i < linhas_mapa_atual; i++){
+        cout << mapa_atual.at(nivel).at(i) << endl;
+    }
+}
+
 void Level::mostrar_andamento(int nivel){
     player.movimentando_cobra(mapa_atual, nivel);
 }

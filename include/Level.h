@@ -38,6 +38,7 @@ class Level {
         void exibir_informacoes(int nivel);
         void mostrar_mapa_um(); //OK
         void interface_principal(); //OK
+        void demais_interfaces(int nivel);
         void mostrar_andamento(int nivel);
 
 };
