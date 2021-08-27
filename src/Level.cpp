@@ -121,6 +121,8 @@ int Level::validar_numeros(){//verifica a veracidade dos números
 void Level::exibir_informacoes(int nivel){
 
     player.posicao_da_cobra(mapa_atual, nivel);
+    player.movimentando_cobra(mapa_atual, nivel);
+    player.mostrar_posicoes(mapa_atual, nivel);
 
     /*cout << endl;
     for (int i = 0; i < so_linhas.size(); i++){
