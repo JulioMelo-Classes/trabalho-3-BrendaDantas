@@ -168,7 +168,7 @@ void Level::interface_principal(){
     cout << "Levels loaded: " << numero_de_linhas << " | " << " Snake lives: 5 " << " | " << " Apples to eat: " << comidas_somadas << endl;
     cout << "-------------------------------------------------------------" << endl;
     cout << ">>> Press <ENTER> to start the game!" << endl;
-    cout << "\nLifes: ♥♥♥♥♥ | Score: 0    | Food eaten: 0 of " << comidas_somadas << endl;
+    cout << "\nLives: ♥♥♥♥♥ | Score: 0    | Food eaten: 0 of " << comidas_somadas << endl;
     cout << "______________________________________________________________________\n";
     mostrar_mapa_um();
     cout << "______________________________________________________________________\n";

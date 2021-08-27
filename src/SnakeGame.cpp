@@ -156,15 +156,14 @@ void clearScreen(){
 }
 
 void SnakeGame::render(){
-    clearScreen();
+    //clearScreen();
     switch(state){
         case RUNNING:  
 
             if(nivel == 0){
                 objeto.interface_principal();
                 
-            }
-            
+            }            
            
             //condição para mostrar a interface principal
 
