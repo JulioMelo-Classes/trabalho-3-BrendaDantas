@@ -162,7 +162,7 @@ void SnakeGame::render(){
 
             if(nivel == 0){
                 objeto.interface_principal();
-                
+                objeto.mostrar_andamento(0);
             }            
            
             //condição para mostrar a interface principal

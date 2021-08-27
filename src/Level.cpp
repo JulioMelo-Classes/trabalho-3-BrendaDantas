@@ -176,3 +176,7 @@ void Level::interface_principal(){
     cout << "______________________________________________________________________\n";
 
 }
+
+void Level::mostrar_andamento(int nivel){
+    player.movimentando_cobra(mapa_atual, nivel);
+}

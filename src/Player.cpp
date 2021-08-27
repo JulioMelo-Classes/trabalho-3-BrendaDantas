@@ -18,20 +18,17 @@ void Player::posicao_da_cobra(vector<vector<string>>& mapa_atual, int nivel){
 
 void Player::movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel) {
     
+    para_cima.push_back(make_pair(posicao_cobra.at(nivel).first-1, posicao_cobra.at(nivel).second));
+    para_baixo.push_back(make_pair(posicao_cobra.at(nivel).first+1, posicao_cobra.at(nivel).second));
+    para_esquerda.push_back(make_pair(posicao_cobra.at(nivel).first, posicao_cobra.at(nivel).second-1));
+    para_direita.push_back(make_pair(posicao_cobra.at(nivel).first, posicao_cobra.at(nivel).second+1));
+
     for(int i = 0; i < mapa_atual.at(nivel).size(); i++){
         for(int j = 0; j < mapa_atual.at(nivel).at(i).size(); j++){
-            para_cima.push_back(make_pair(posicao_cobra.at(nivel).first-1, posicao_cobra.at(nivel).second));
-            para_baixo.push_back(make_pair(posicao_cobra.at(nivel).first+1, posicao_cobra.at(nivel).second));
-            para_esquerda.push_back(make_pair(posicao_cobra.at(nivel).first, posicao_cobra.at(nivel).second-1));
-            para_direita.push_back(make_pair(posicao_cobra.at(nivel).first, posicao_cobra.at(nivel).second+1));
 
-            if(para_cima.at(nivel).first != '#' && para_cima.at(nivel).first != '.' && para_cima.at(nivel).second != '#' && para_cima.at(nivel).second != '.'){
-                //para_cima.at(nivel).first = posicao_cobra.at(nivel).first;
-                //para_cima.at(nivel).second = posicao_cobra.at(nivel).second;
-                //posicao_cobra.at(nivel).first = para_cima.at(nivel).first;                
-                //posicao_cobra.at(nivel).second = para_cima.at(nivel).second;
-                para_cima.at(nivel).first = '*';
-                para_cima.at(nivel).second = '*';
+            if(para_cima.at(nivel).first != '#' || para_cima.at(nivel).first != '.' && para_cima.at(nivel).second != '#' || para_cima.at(nivel).second != '.'){
+                para_cima.at(nivel).first = posicao_cobra.at(nivel).first;
+                para_cima.at(nivel).second = posicao_cobra.at(nivel).second;
             } else{
                 cout << "ERRO"; 
             }
