@@ -152,7 +152,6 @@ void Level::mostrar_mapa_um(){
     int linhas_mapa_um = 0;
     linhas_mapa_um = so_linhas.at(0);
 
-    
     for(int i = 0; i < linhas_mapa_um; i++){
         cout << mapa_atual.at(0).at(i) << endl;
     }
@@ -180,9 +179,9 @@ void Level::interface_principal(){
 void Level::demais_interfaces(int nivel){
     int linhas_mapa_atual = 0;
     linhas_mapa_atual = so_linhas.at(nivel);
-
+    cout << "Nível: " << nivel+1 << endl;
     for(int i = 0; i < linhas_mapa_atual; i++){
-        cout << mapa_atual.at(1).at(i) << endl;
+        cout << mapa_atual.at(nivel).at(i) << endl;
     }
 }
 

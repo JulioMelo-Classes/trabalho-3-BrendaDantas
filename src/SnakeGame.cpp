@@ -39,7 +39,7 @@ SnakeGame::SnakeGame(){
 
 stringstream xy;
 int recebedora = 0, y, gatilho_de_niveis = 0, gatilho_de_comida = 0;
-int nivel = 0;
+int nivel = -1;
 Level objeto;
 void SnakeGame::initialize_game(){
     //carrega o nivel ou os níveis
@@ -80,7 +80,8 @@ void SnakeGame::initialize_game(){
             state = GAME_OVER;
         }
     }else{
-        nivel = 0;
+        nivel = -1;
+        
         state = RUNNING;
     }
 
@@ -131,7 +132,7 @@ void SnakeGame::update(){
             }
             else{
                 //pode fazer alguma coisa antes de fazer isso aqui 
-                nivel++;
+                //nivel++;
                 state = RUNNING;
             }
             break;
@@ -160,13 +161,14 @@ void SnakeGame::render(){
     switch(state){
         case RUNNING:  
 
-            if(nivel == 0){
-                objeto.interface_principal();
+            
+            if(nivel == -1){             
+                objeto.interface_principal();  
                 objeto.mostrar_andamento(0);
-                //nivel++;
+                nivel++;
             } else{
                 objeto.demais_interfaces(nivel);
-                //nivel++;
+                nivel++;
             }            
            
             //condição para mostrar a interface principal
@@ -197,7 +199,7 @@ void SnakeGame::loop(){
         process_actions();
         update();
         render();
-        wait(6000);// espera 1 segundo entre cada frame
+        wait(5000);// espera 1 segundo entre cada frame
     }
    
 }

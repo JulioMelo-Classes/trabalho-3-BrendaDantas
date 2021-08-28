@@ -8,9 +8,9 @@ void Player::posicao_da_cobra(vector<vector<string>>& mapa_atual, int nivel){
 
     for(int i = 0; i < mapa_atual.at(nivel).size(); i++){
         for(int j = 0; j < mapa_atual.at(nivel).at(i).size(); j++){
-            if(mapa_atual.at(nivel).at(i).at(j) == '*'){
-                mapa_atual.at(nivel).at(i).at(j) = 'V';
+            if(mapa_atual.at(nivel).at(i).at(j) == '*'){                
                 //posicao_cobra.(make_pair(i, j));
+                mapa_atual.at(nivel).at(i).at(j) = 'V';
                 posicao_cobra.first = i;
                 posicao_cobra.second = j;
             }
@@ -35,9 +35,10 @@ void Player::movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel) {
     
 
     if(mapa_atual.at(nivel)[para_cima.first][para_cima.second] != '#' && mapa_atual.at(nivel)[para_cima.first][para_cima.second] != '.'){
-        mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = mapa_atual.at(nivel)[para_cima.first][para_cima.second];
+        //mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = mapa_atual.at(nivel)[para_cima.first][para_cima.second];
         mapa_atual.at(nivel)[para_cima.first][para_cima.second] = 'V';
-        mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';
+        //mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';
+        //mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';
 
         //posicao_cobra.first = para_cima.first;
         //posicao_cobra.second = para_cima.second; 
