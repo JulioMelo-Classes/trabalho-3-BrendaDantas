@@ -163,10 +163,10 @@ void SnakeGame::render(){
             if(nivel == 0){
                 objeto.interface_principal();
                 objeto.mostrar_andamento(0);
-                nivel++;
+                //nivel++;
             } else{
                 objeto.demais_interfaces(nivel);
-                nivel++;
+                //nivel++;
             }            
            
             //condição para mostrar a interface principal
@@ -197,7 +197,7 @@ void SnakeGame::loop(){
         process_actions();
         update();
         render();
-        wait(700);// espera 1 segundo entre cada frame
+        wait(6000);// espera 1 segundo entre cada frame
     }
    
 }

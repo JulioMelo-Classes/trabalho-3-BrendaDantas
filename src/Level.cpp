@@ -182,10 +182,11 @@ void Level::demais_interfaces(int nivel){
     linhas_mapa_atual = so_linhas.at(nivel);
 
     for(int i = 0; i < linhas_mapa_atual; i++){
-        cout << mapa_atual.at(nivel).at(i) << endl;
+        cout << mapa_atual.at(1).at(i) << endl;
     }
 }
 
 void Level::mostrar_andamento(int nivel){
+    player.mostrar_posicoes(mapa_atual, nivel);
     player.movimentando_cobra(mapa_atual, nivel);
 }

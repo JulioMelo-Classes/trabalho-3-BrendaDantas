@@ -16,11 +16,11 @@ using namespace std;
 class Player{
 
     private:
-        vector<pair<int, int>> posicao_cobra;
+        pair<int, int> posicao_cobra;
         pair<int, int> para_cima;
-        vector<pair<int, int>> para_baixo;
-        vector<pair<int, int>> para_esquerda;
-        vector<pair<int, int>> para_direita;
+        pair<int, int> para_baixo;
+        pair<int, int> para_esquerda;
+        pair<int, int> para_direita;
 
     public: 
         void posicao_da_cobra(vector<vector<string>>& mapa_atual, int nivel); // descobrir qual a posição da cobra
