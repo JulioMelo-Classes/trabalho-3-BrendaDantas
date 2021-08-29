@@ -16,20 +16,6 @@ void Level::preencher_numeros(int numero){//preenche vector com todos os numeros
     todos_os_numeros.push_back(numero);
 }
 
-    /*if(num == 0){//pega posição primeiro nivel
-        qtdlinha = quantidade_linhas_tot[0];
-        qtdcoluna = quantidade_colunas_tot[0];
-
-        for(int i = 0; i < qtdlinha; i++){
-            mapa_auxiliar.push_back(mapas_do_arquivo[i]);//pegando mapa novamente
-        }
-
-        for(int i = 0; i <qtdlinha; i++){//pega a posição da cobra
-            for(int j = 0; j < qtdcoluna; j++){
-                if(mapa_auxiliar[i][j] == '*'){
-                    posicao_cobra.push_back(i);//aqui é a linha
-                }*/
-
 void Level::separar_mapa(){
      
     for(int j = 0; j < so_linhas.size(); j++){
@@ -43,6 +29,8 @@ void Level::separar_mapa(){
         }
         mapa_atual.push_back(mapa);
     }
+
+    numero_de_niveis = mapa_atual.size();
 
 }
 
@@ -77,12 +65,10 @@ void Level::separar_numeros(){//separando numeros e guardando em cada lugar corr
 
 }
 
-void Level::somando_comidas(){//soma as comidas
-    
+void Level::somando_comidas(){//soma as comidas    
     for(int i = 0; i < so_comidas.size(); i++){
         comidas_somadas = comidas_somadas + so_comidas[i];
     }
-    //cout << "QUANTIDADE SOMADA DE COMIDAS: "  << comidas_somadas << endl;
 }
 
 int Level::validar_numeros(){//verifica a veracidade dos números
@@ -123,27 +109,6 @@ void Level::exibir_informacoes(int nivel){
     player.posicao_da_cobra(mapa_atual, nivel);
     player.movimentando_cobra(mapa_atual, nivel);
     player.mostrar_posicoes(mapa_atual, nivel);
-
-    /*cout << endl;
-    for (int i = 0; i < so_linhas.size(); i++){
-        cout << "Linhas: " << so_linhas.at(i) << " ";
-    }
-    cout << endl;
-    for (int i = 0; i < so_colunas.size(); i++){
-        cout << "Colunas: " << so_colunas.at(i) << " ";
-    }
-    cout << endl;
-    for (int i = 0; i < so_comidas.size(); i++){
-        cout << "Comidas: " << so_comidas.at(i) << " ";
-    }
-    cout << endl;*/
-    /*for (int i = 0; i < todos_os_mapas.size(); i++){
-        cout << todos_os_mapas.at(i) << endl;
-    } tá ok*/
-
-    /*for(int i = 0; i < mapa_atual.at(nivel).size(); i++){
-        cout << mapa_atual.at(nivel).at(i) << endl;
-    }*/
     
 }
 
@@ -155,10 +120,6 @@ void Level::mostrar_mapa_um(){
     for(int i = 0; i < linhas_mapa_um; i++){
         cout << mapa_atual.at(0).at(i) << endl;
     }
-
-    /*for(int i = 0; i < linhas_mapa_um; i++){
-        cout << todos_os_mapas[i]<< endl;    
-    }*/
 }
 
 void Level::interface_principal(){
@@ -176,7 +137,7 @@ void Level::interface_principal(){
 
 }
 
-void Level::demais_interfaces(int nivel){
+void Level::desenhar_mapa(int nivel){
     int linhas_mapa_atual = 0;
     linhas_mapa_atual = so_linhas.at(nivel);
     cout << "Nível: " << nivel+1 << endl;
@@ -185,7 +146,11 @@ void Level::demais_interfaces(int nivel){
     }
 }
 
-void Level::mostrar_andamento(int nivel){
+void Level::modificar_andamento(int nivel){
     player.mostrar_posicoes(mapa_atual, nivel);
     player.movimentando_cobra(mapa_atual, nivel);
+}
+
+int Level::get_quantidade_de_niveis(){
+    return numero_de_niveis;
 }

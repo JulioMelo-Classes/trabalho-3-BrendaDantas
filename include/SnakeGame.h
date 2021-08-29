@@ -12,14 +12,17 @@ class SnakeGame{
         * @brief descreve os possíveis estados do jogo, fique à vontade para adicionar outros se necessário
         **/
         enum GameStates{
+            START, //<! quando for o inicio de cada nivel
             RUNNING, //<! quando o jogo está executando o estado é RUNNING
             GAME_OVER, //<! quando o jogo deve terminar o estado é GAME_OVER
-            WAITING_USER //<! quando o jogo deve esperar por uma entrada do usuário o estado é WAITING_USER
+            WAITING_USER, //<! quando o jogo deve esperar por uma entrada do usuário o estado é WAITING_USER
+            WAITING_PLAYER //<! quando o jogo deve esperar por alguma ação da IA
         };
 
     private:
         //<! atributos adicione outros se quiser
-        std::vector<std::string> linha_de_numeros;
+        int nivel;
+        Level objeto_level;
         std::vector<std::string> maze; //<! vector contendo o labirinto atual, pode ser interpretado como uma matriz
         int frameCount; //<! contador de frames, usado apenas como exemplo
         std::string choice; //<! usado na função process_actions para guardar a escolha do usuário

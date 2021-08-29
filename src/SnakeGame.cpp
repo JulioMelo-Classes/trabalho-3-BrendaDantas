@@ -37,14 +37,11 @@ SnakeGame::SnakeGame(){
     initialize_game();
 }
 
-stringstream xy;
-int recebedora = 0, y, gatilho_de_niveis = 0, gatilho_de_comida = 0;
-int nivel = -1;
-Level objeto;
 void SnakeGame::initialize_game(){
+    stringstream xy;
     //carrega o nivel ou os níveis
     ifstream levelFile("./data/maze1.txt"); //só dá certo se o jogo for executado dentro da raíz do diretório (vc vai resolver esse problema pegando o arquivo da linha de comando)
-    int lineCount = 0;
+    int y, lineCount = 0, recebedora = 0;
     string line;
     if(levelFile.is_open()){
         while(std::getline(levelFile, line)){ //pega cada linha do arquivo
@@ -59,18 +56,18 @@ void SnakeGame::initialize_game(){
                 xy << s << endl;//convert string para número
                 break;
             }else{
-                objeto.preencher_mapa(s);//preenche um vector de string com os mapas
+                objeto_level.preencher_mapa(s);//preenche um vector de string com os mapas
                 break;
             }
         } 
     }
     while(xy >> y){
-        objeto.preencher_numeros(y);//chama para preencher vector
+        objeto_level.preencher_numeros(y);//chama para preencher vector
     }
-    objeto.separar_numeros();//separando comidas em seus devidos lugares
-    objeto.somando_comidas();//somando o total de alimentos
+    objeto_level.separar_numeros();//separando comidas em seus devidos lugares
+    objeto_level.somando_comidas();//somando o total de alimentos
     
-    recebedora = objeto.validar_numeros();//verifica os números
+    recebedora = objeto_level.validar_numeros();//verifica os números
     if(recebedora>0){
         if(recebedora == 1){//verifica linhas
             state = GAME_OVER;
@@ -80,18 +77,12 @@ void SnakeGame::initialize_game(){
             state = GAME_OVER;
         }
     }else{
-        nivel = -1;
-        
-        state = RUNNING;
+        nivel = 0;        
+        state = START;
     }
 
-    /*for(auto line : maze){
-        cout<<line<<endl;
-        wait(600);
-    }*/
-
-    objeto.separar_mapa();
-    objeto.exibir_informacoes(0);    
+    objeto_level.separar_mapa();
+    objeto_level.exibir_informacoes(0);    
 }
 
 
@@ -101,6 +92,10 @@ void SnakeGame::process_actions(){
     //no caso deste trabalho temos 2 tipos de entrada, uma que vem da classe Player, como resultado do processamento da IA
     //outra vem do próprio usuário na forma de uma entrada do teclado.
     switch(state){
+        case WAITING_PLAYER:                          
+            objeto_level.modificar_andamento(0);
+            state = RUNNING;
+            break;
         case WAITING_USER:
             cin>>std::ws>>choice;
             break;
@@ -113,17 +108,14 @@ void SnakeGame::process_actions(){
 void SnakeGame::update(){
     //atualiza o estado do jogo de acordo com o resultado da chamada de "process_input"
     switch(state){
-        case RUNNING:
-            //se começou agora(atributo de snake_game-estado), então chama método para por comida no mapa e a cobra
-            //depois de comer todas as comidas, retornar uma variavel para ir para o proximo nivel
-
-            
-            //if(nivel >= 1){
-
-            //}
-
-            if(frameCount>0 && frameCount%10 == 0) //depois de 10 frames o jogo pergunta se o usuário quer continuar
+        case RUNNING:            
+            if(nivel <= objeto_level.get_quantidade_de_niveis()-1){    
+                //depois de comer todas as comidas, retornar uma variavel para ir para o proximo nivel                    
+                    //nivel++;
+            } else if(nivel > objeto_level.get_quantidade_de_niveis()-1){
                 state = WAITING_USER;
+            }     
+
             break;
         case WAITING_USER: //se o jogo estava esperando pelo usuário então ele testa qual a escolha que foi feita
             if(choice == "n"){
@@ -159,27 +151,15 @@ void clearScreen(){
 void SnakeGame::render(){
     clearScreen();
     switch(state){
-        case RUNNING:  
-
-            
-            if(nivel == -1){             
-                objeto.interface_principal();  
-                objeto.mostrar_andamento(0);
-                nivel++;
-            } else{
-                objeto.demais_interfaces(nivel);
-                nivel++;
-            }            
-           
-            //condição para mostrar a interface principal
-
-            //metodo que desenha a cobra no mapa
-
-
-            //desenha todas as linhas do labirinto            
-            /*for(auto line : maze){
-                cout<<line<<endl;
-            }*/
+        case START:      
+        //condição para mostrar a interface principal
+            objeto_level.interface_principal(); 
+            state = RUNNING;
+            break;
+        case RUNNING:            
+        //metodo que desenha a cobra no mapa
+            objeto_level.desenhar_mapa(nivel);
+            state = WAITING_PLAYER;
             break;
         case WAITING_USER: //este método bloqueia aqui esperando o usuário digitar a escolha dele
             cout<<"Você quer continuar com o jogo? (s/n)"<<endl;
@@ -188,7 +168,6 @@ void SnakeGame::render(){
             cout<<"O jogo terminou!"<<endl;
             break;
     }
-    frameCount++;
 }
 
 void SnakeGame::game_over(){
@@ -199,7 +178,7 @@ void SnakeGame::loop(){
         process_actions();
         update();
         render();
-        wait(5000);// espera 1 segundo entre cada frame
+        wait(500);// espera 1 segundo entre cada frame
     }
    
 }

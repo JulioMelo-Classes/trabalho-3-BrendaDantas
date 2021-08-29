@@ -19,11 +19,6 @@ void Player::posicao_da_cobra(vector<vector<string>>& mapa_atual, int nivel){
 }
 
 void Player::movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel) {
-    
-    // para_cima.(make_pair(posicao_cobra.at(nivel).first-1, posicao_cobra.at(nivel).second));
-    // para_baixo.push_back(make_pair(posicao_cobra.at(nivel).first+1, posicao_cobra.at(nivel).second));
-    // para_esquerda.push_back(make_pair(posicao_cobra.at(nivel).first, posicao_cobra.at(nivel).second-1));
-    // para_direita.push_back(make_pair(posicao_cobra.at(nivel).first, posicao_cobra.at(nivel).second+1));
     para_cima.first = posicao_cobra.first-1;
     para_cima.second = posicao_cobra.second;
     para_baixo.first = posicao_cobra.first+1;
@@ -35,14 +30,30 @@ void Player::movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel) {
     
 
     if(mapa_atual.at(nivel)[para_cima.first][para_cima.second] != '#' && mapa_atual.at(nivel)[para_cima.first][para_cima.second] != '.'){
-        //mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = mapa_atual.at(nivel)[para_cima.first][para_cima.second];
-        mapa_atual.at(nivel)[para_cima.first][para_cima.second] = 'V';
-        //mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';
-        //mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';
+        mapa_atual.at(nivel)[para_cima.first][para_cima.second] = 'v';
+        mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';
+        posicao_cobra.first = para_cima.first;
+        posicao_cobra.second = para_cima.second;
 
-        //posicao_cobra.first = para_cima.first;
-        //posicao_cobra.second = para_cima.second; 
+    }
+    else if(mapa_atual.at(nivel)[para_baixo.first][para_cima.second] != '#' && mapa_atual.at(nivel)[para_baixo.first][para_baixo.second] != '.'){
+        mapa_atual.at(nivel)[para_baixo.first][para_baixo.second] = '^';
+        mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';
+        posicao_cobra.first = para_baixo.first;
+        posicao_cobra.second = para_baixo.second;
     } 
+    else if(mapa_atual.at(nivel)[para_esquerda.first][para_esquerda.second] != '#' && mapa_atual.at(nivel)[para_esquerda.first][para_esquerda.second] != '.'){
+        mapa_atual.at(nivel)[para_esquerda.first][para_esquerda.second] = '>';
+        mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';
+        posicao_cobra.first = para_esquerda.first;
+        posicao_cobra.second = para_esquerda.second;
+    } 
+    else if(mapa_atual.at(nivel)[para_direita.first][para_direita.second] != '#' && mapa_atual.at(nivel)[para_direita.first][para_direita.second] != '.'){
+        mapa_atual.at(nivel)[para_direita.first][para_direita.second] = '<';
+        mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';    
+        posicao_cobra.first = para_direita.first;
+        posicao_cobra.second = para_direita.second;    
+    }
 }
 
 void Player::mostrar_posicoes(vector<vector<string>>& mapa_atual, int nivel){

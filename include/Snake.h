@@ -10,6 +10,7 @@ using namespace std;
 class Snake{
 
     private:
+        int comidas_ingeridas;
     public:
 
 };
