@@ -56,11 +56,11 @@ void Player::movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel) {
     }
 }
 
-void Player::mostrar_posicoes(vector<vector<string>>& mapa_atual, int nivel){
+/*void Player::mostrar_posicoes(vector<vector<string>>& mapa_atual, int nivel){
     cout << "POSIÇÕES" << endl;
     cout << para_cima.first << " e " << para_cima.second << endl;
     cout << para_baixo.first << " e " << para_baixo.second << endl;
     cout << para_esquerda.first << " e " << para_esquerda.second << endl;
     cout << para_direita.first << " e " << para_direita.second << endl;
 
-}
+}*/
