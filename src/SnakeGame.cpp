@@ -155,6 +155,7 @@ void SnakeGame::render(){
         //condição para mostrar a interface principal
             objeto_level.somando_comidas();
             objeto_level.interface_principal(); 
+            objeto_level.interface_nivel();
             
             cout << "COM COMIDA: " << endl;
             objeto_level.gerar_comida(nivel);

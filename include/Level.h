@@ -28,6 +28,8 @@ class Level {
         int comidas_somadas;//guarda a soma total de comidas que a cobra tem de comer     
         pair<int, int> posicao_da_comida; 
         int numero_de_niveis; 
+        int score = 0;
+        int comidas_ingeridas = 0;
 
     public:
         void preencher_mapa(string& mapa); // preencher um vetor com todos os mapas OK        
@@ -40,6 +42,7 @@ class Level {
         void exibir_informacoes(int nivel);
         void mostrar_mapa_um(); //OK
         void interface_principal(); //OK
+        void interface_nivel();
         void desenhar_mapa(int nivel);
         void modificar_andamento(int nivel);
         int get_quantidade_de_niveis();
