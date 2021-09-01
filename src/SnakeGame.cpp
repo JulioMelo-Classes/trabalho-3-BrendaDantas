@@ -77,12 +77,15 @@ void SnakeGame::initialize_game(){
             state = GAME_OVER;
         }
     }else{
-        nivel = 0;        
+        nivel = 0;       
+        objeto_level.separar_mapa();
+        objeto_level.exibir_informacoes(0);
+        objeto_level.gerar_comida(nivel); 
         state = START;
+        
     }
 
-    objeto_level.separar_mapa();
-    objeto_level.exibir_informacoes(0);    
+        
 }
 
 
@@ -109,6 +112,7 @@ void SnakeGame::update(){
     //atualiza o estado do jogo de acordo com o resultado da chamada de "process_input"
     switch(state){
         case RUNNING:            
+             
             if(nivel <= objeto_level.get_quantidade_de_niveis()-1){    
                 //depois de comer todas as comidas, retornar uma variavel para ir para o proximo nivel                    
                     //nivel++;
@@ -157,12 +161,10 @@ void SnakeGame::render(){
             objeto_level.interface_principal(); 
             objeto_level.interface_nivel();
             
-            cout << "COM COMIDA: " << endl;
-            objeto_level.gerar_comida(nivel);
-            wait(3000);
             state = RUNNING;
             break;
-        case RUNNING:            
+        case RUNNING: 
+                
         //metodo que desenha a cobra no mapa
             objeto_level.desenhar_mapa(nivel);
             state = WAITING_PLAYER;
