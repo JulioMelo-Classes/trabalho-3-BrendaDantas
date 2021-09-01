@@ -65,7 +65,8 @@ void Level::separar_numeros(){//separando numeros e guardando em cada lugar corr
 
 }
 
-void Level::somando_comidas(){//soma as comidas    
+void Level::somando_comidas(){//soma as comidas   
+    comidas_somadas = 0;
     for(int i = 0; i < so_comidas.size(); i++){
         comidas_somadas = comidas_somadas + so_comidas[i];
     }

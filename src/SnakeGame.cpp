@@ -153,6 +153,7 @@ void SnakeGame::render(){
     switch(state){
         case START:      
         //condição para mostrar a interface principal
+            objeto_level.somando_comidas();
             objeto_level.interface_principal(); 
             state = RUNNING;
             break;
