@@ -100,38 +100,15 @@ void Level::gerar_comida(int nivel){
     int contador = 0, i = 0, j = 0;
     srand(time(NULL));
 
-    while(contador < so_comidas[nivel]){
-        i = rand() % so_linhas[0];
-        j = rand() % so_colunas[0];
+    i = rand() % so_linhas[0];
+    j = rand() % so_colunas[0];
 
-        if(mapa_atual.at(nivel)[i][j] == ' '){
-            posicao_da_comida.first = i;
-            posicao_da_comida.second = j;
-            mapa_atual.at(nivel)[i][j] = 'A';
-            contador++;
-        }
-
+    if(mapa_atual.at(nivel)[i][j] == ' '){
+        posicao_da_comida.first = i;
+        posicao_da_comida.second = j;
+        mapa_atual.at(nivel)[i][j] = 'A';
+        contador++;
     }
-
-    
-    
-    
-/*if(gatilho_comida == 0){//1º nivel, distribuindo comida
-        qtd_comida = quantidade_comidas_tot[0];
-       
-        while( contador < qtd_comida) {
-      i = rand() % quantidade_colunas_tot[0];
-      j = rand() % quantidade_colunas_tot[0];
-
-      if(mapa_auxiliar[i][j] == ' '){
-                posicao_da_comida_linha.push_back(i);//guardando posição da comida - linha
-                posicao_da_comida_coluna.push_back(j); // - coluna
-                //cout << "linha = " << i << " e coluna = " << j << endl;
-                //mapa_auxiliar[i][j] = 'A';
-                contador++;
-      }
-        }*/
-
 
 }
 
