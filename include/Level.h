@@ -25,7 +25,8 @@ class Level {
         vector<int> so_linhas;//recebe apenas linhas
         vector<int> so_colunas;//recebe apenas colunas
         vector<int> so_comidas;//recebe apenas comidas
-        int comidas_somadas;//guarda a soma total de comidas que a cobra tem de comer      
+        int comidas_somadas;//guarda a soma total de comidas que a cobra tem de comer     
+        pair<int, int> posicao_da_comida; 
         int numero_de_niveis; 
 
     public:
@@ -35,7 +36,7 @@ class Level {
         void separar_numeros(); //OK
         void somando_comidas(); //OK
         int validar_numeros(); //OK
-        //void gerar_comida(int nivel);
+        void gerar_comida(int nivel);
         void exibir_informacoes(int nivel);
         void mostrar_mapa_um(); //OK
         void interface_principal(); //OK
