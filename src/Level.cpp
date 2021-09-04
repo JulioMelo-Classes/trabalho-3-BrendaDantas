@@ -115,7 +115,7 @@ void Level::gerar_comida(int nivel){
 void Level::exibir_informacoes(int nivel){
 
     player.posicao_da_cobra(mapa_atual, nivel);
-    player.movimentando_cobra(mapa_atual, nivel);
+    player.movimentando_cobra(mapa_atual, nivel, comidas_ingeridas);
     //player.mostrar_posicoes(mapa_atual, nivel);
     
 }
@@ -158,7 +158,7 @@ void Level::desenhar_mapa(int nivel){
 
 void Level::modificar_andamento(int nivel){
     //player.mostrar_posicoes(mapa_atual, nivel);
-    player.movimentando_cobra(mapa_atual, nivel);
+    player.movimentando_cobra(mapa_atual, nivel, comidas_ingeridas);
 }
 
 int Level::get_quantidade_de_niveis(){

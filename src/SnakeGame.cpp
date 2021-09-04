@@ -1,6 +1,7 @@
 #include "SnakeGame.h"
 #include "Level.h"
 #include "Player.h"
+#include "Snake.h"
 
 #include <iostream>
 #include <fstream>
@@ -163,8 +164,7 @@ void SnakeGame::render(){
             
             state = RUNNING;
             break;
-        case RUNNING: 
-                
+        case RUNNING:                 
         //metodo que desenha a cobra no mapa
             objeto_level.desenhar_mapa(nivel);
             state = WAITING_PLAYER;

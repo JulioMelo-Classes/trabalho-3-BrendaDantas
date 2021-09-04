@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "Level.h"
+#include "Snake.h"
 #include <iostream>
 
 using namespace std;
@@ -18,7 +19,7 @@ void Player::posicao_da_cobra(vector<vector<string>>& mapa_atual, int nivel){
     }
 }
 
-void Player::movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel) {
+void Player::movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel, int comidas_ingeridas) {
     para_cima.first = posicao_cobra.first-1;
     para_cima.second = posicao_cobra.second;
     para_baixo.first = posicao_cobra.first+1;
@@ -30,29 +31,49 @@ void Player::movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel) {
     
 
     if(mapa_atual.at(nivel)[para_cima.first][para_cima.second] != '#' && mapa_atual.at(nivel)[para_cima.first][para_cima.second] != '.'){
-        mapa_atual.at(nivel)[para_cima.first][para_cima.second] = 'v';
-        mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';
-        posicao_cobra.first = para_cima.first;
-        posicao_cobra.second = para_cima.second;
+        if(mapa_atual.at(nivel)[para_cima.first][para_cima.second] == 'A'){
+            mapa_atual.at(nivel)[para_cima.first-1][para_cima.second] = 'v';
+            mapa_atual.at(nivel)[para_cima.first][para_cima.second] == 'o';
+            comidas_ingeridas++;
+            posicao_cobra.first = para_cima.first;
+            posicao_cobra.second = para_cima.second;
+            /*if(comidas_ingeridas > 0){
+                mapa_atual.at(nivel)[posicao_cobra.first+1][posicao_cobra.second] = 'o';
+                mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';
+            }*/
+        } else {
+            mapa_atual.at(nivel)[para_cima.first][para_cima.second] = 'v';
+            mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';
+            posicao_cobra.first = para_cima.first;
+            posicao_cobra.second = para_cima.second;
+        }
 
     }
-    else if(mapa_atual.at(nivel)[para_baixo.first][para_cima.second] != '#' && mapa_atual.at(nivel)[para_baixo.first][para_baixo.second] != '.'){
-        mapa_atual.at(nivel)[para_baixo.first][para_baixo.second] = '^';
-        mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';
-        posicao_cobra.first = para_baixo.first;
-        posicao_cobra.second = para_baixo.second;
-    } 
     else if(mapa_atual.at(nivel)[para_esquerda.first][para_esquerda.second] != '#' && mapa_atual.at(nivel)[para_esquerda.first][para_esquerda.second] != '.'){
-        mapa_atual.at(nivel)[para_esquerda.first][para_esquerda.second] = '>';
-        mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';
-        posicao_cobra.first = para_esquerda.first;
-        posicao_cobra.second = para_esquerda.second;
+        if(mapa_atual.at(nivel)[para_esquerda.first][para_esquerda.second] == 'A'){
+            mapa_atual.at(nivel)[para_esquerda.first][para_esquerda.second] = '>';
+            mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = 'o';
+            posicao_cobra.first = para_esquerda.first;
+            posicao_cobra.second = para_esquerda.second;
+        } else {
+            mapa_atual.at(nivel)[para_esquerda.first][para_esquerda.second] = '>';
+            mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';
+            posicao_cobra.first = para_esquerda.first;
+            posicao_cobra.second = para_esquerda.second;
+        }
     } 
     else if(mapa_atual.at(nivel)[para_direita.first][para_direita.second] != '#' && mapa_atual.at(nivel)[para_direita.first][para_direita.second] != '.'){
-        mapa_atual.at(nivel)[para_direita.first][para_direita.second] = '<';
-        mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';    
-        posicao_cobra.first = para_direita.first;
-        posicao_cobra.second = para_direita.second;    
+        if(mapa_atual.at(nivel)[para_direita.first][para_direita.second] == 'A'){
+            mapa_atual.at(nivel)[para_direita.first][para_direita.second] = '<';
+            mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = 'o';
+            posicao_cobra.first = para_direita.first;
+            posicao_cobra.second = para_direita.second;  
+        } else {
+            mapa_atual.at(nivel)[para_direita.first][para_direita.second] = '<';
+            mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';    
+            posicao_cobra.first = para_direita.first;
+            posicao_cobra.second = para_direita.second;    
+        }
     }
 }
 

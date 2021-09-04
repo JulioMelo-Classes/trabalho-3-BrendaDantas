@@ -1,6 +1,7 @@
 #ifndef Player_h
 #define Player_h
 
+#include "Snake.h"
 #include <vector>
 #include <string>
 using namespace std;
@@ -24,7 +25,7 @@ class Player{
 
     public: 
         void posicao_da_cobra(vector<vector<string>>& mapa_atual, int nivel); // descobrir qual a posição da cobra
-        void movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel);
+        void movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel, int comidas_ingeridas);
         //void mostrar_posicoes(vector<vector<string>>& mapa_atual, int nivel);
 
 };
