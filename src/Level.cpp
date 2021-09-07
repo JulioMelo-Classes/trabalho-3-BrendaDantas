@@ -159,7 +159,7 @@ void Level::desenhar_mapa(int nivel){
 void Level::modificar_andamento(int nivel){
     //player.mostrar_posicoes(mapa_atual, nivel);
     player.movimentando_cobra(mapa_atual, nivel, comidas_ingeridas);
-    player.crescer_cobra(mapa_atual, nivel);
+    //player.crescer_cobra(mapa_atual, nivel);
 }
 
 int Level::get_quantidade_de_niveis(){

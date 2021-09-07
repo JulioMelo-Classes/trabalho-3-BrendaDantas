@@ -32,7 +32,7 @@ class SnakeGame{
         /**
         * @brief construtor padrão, fique à vontade para adicionar parâmetros se desejar
         **/
-        SnakeGame();
+        SnakeGame(int argc, char *argv[]);
 
         /**
         * @brief chamado no main, este loop executa o jogo indefinidamente até que o usuário escolha terminar!

@@ -33,10 +33,14 @@ void Player::movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel, i
     if(mapa_atual.at(nivel)[para_cima.first][para_cima.second] != '#' && mapa_atual.at(nivel)[para_cima.first][para_cima.second] != '.'){
         if(mapa_atual.at(nivel)[para_cima.first][para_cima.second] == 'A'){
             comidas_ingeridas++;
-            mapa_atual.at(nivel)[para_cima.first-1][para_cima.second] = 'v';
-            mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = 'o';   
-            posicao_cobra.first = para_cima.first;
-            posicao_cobra.second = para_cima.second;
+            nova_posicao_cobra.first = para_cima.first;
+            nova_posicao_cobra.second = para_cima.second;
+            mapa_atual.at(nivel)[nova_posicao_cobra.first][nova_posicao_cobra.second] = 'v';
+            mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = 'o';
+            //mapa_atual.at(nivel)[para_cima.first-1][para_cima.second] = 'v';
+            //mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = 'o';   
+            //posicao_cobra.first = para_cima.first;
+            //posicao_cobra.second = para_cima.second;
         } else {
             mapa_atual.at(nivel)[para_cima.first][para_cima.second] = 'v';
             mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';
@@ -73,7 +77,7 @@ void Player::movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel, i
     }
 }
 
-void Player::crescer_cobra(vector<vector<string>>& mapa_atual, int nivel) {
+/*void Player::crescer_cobra(vector<vector<string>>& mapa_atual, int nivel) {
     para_cima.first = posicao_cobra.first-1;
     para_cima.second = posicao_cobra.second;
     para_baixo.first = posicao_cobra.first+1;
@@ -86,14 +90,11 @@ void Player::crescer_cobra(vector<vector<string>>& mapa_atual, int nivel) {
     for(int i = 0; i < mapa_atual.at(nivel).size(); i++){
         for(int j = 0; j < mapa_atual.at(nivel).at(i).size(); j++){
             if(mapa_atual.at(nivel)[i][j] == 'o'){
-                mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = 'o';
-                mapa_atual.at(nivel)[i][j] == ' ';
+                mapa_atual.at(nivel)[i-1][j] = 'o';
             }
         }
-    }
-
-    
-}
+    }  
+}*/
 
 /*void Player::mostrar_posicoes(vector<vector<string>>& mapa_atual, int nivel){
     cout << "POSIÇÕES" << endl;

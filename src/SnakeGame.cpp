@@ -32,7 +32,7 @@ void wait(int ms){
 #endif
 }
 
-SnakeGame::SnakeGame(){
+SnakeGame::SnakeGame(int argc, char *argv[]){
     choice = "";
     frameCount = 0;
     initialize_game();
