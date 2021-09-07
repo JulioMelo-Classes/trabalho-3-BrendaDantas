@@ -18,6 +18,7 @@ class Player{
 
     private:
         pair<int, int> posicao_cobra;
+        pair<int, int> nova_posicao_cobra;
         pair<int, int> para_cima;
         pair<int, int> para_baixo;
         pair<int, int> para_esquerda;
@@ -26,6 +27,7 @@ class Player{
     public: 
         void posicao_da_cobra(vector<vector<string>>& mapa_atual, int nivel); // descobrir qual a posição da cobra
         void movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel, int comidas_ingeridas);
+        void crescer_cobra(vector<vector<string>>& mapa_atual, int nivel);
         //void mostrar_posicoes(vector<vector<string>>& mapa_atual, int nivel);
 
 };

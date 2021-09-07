@@ -32,15 +32,11 @@ void Player::movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel, i
 
     if(mapa_atual.at(nivel)[para_cima.first][para_cima.second] != '#' && mapa_atual.at(nivel)[para_cima.first][para_cima.second] != '.'){
         if(mapa_atual.at(nivel)[para_cima.first][para_cima.second] == 'A'){
-            mapa_atual.at(nivel)[para_cima.first-1][para_cima.second] = 'v';
-            mapa_atual.at(nivel)[para_cima.first][para_cima.second] == 'o';
             comidas_ingeridas++;
+            mapa_atual.at(nivel)[para_cima.first-1][para_cima.second] = 'v';
+            mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = 'o';   
             posicao_cobra.first = para_cima.first;
             posicao_cobra.second = para_cima.second;
-            /*if(comidas_ingeridas > 0){
-                mapa_atual.at(nivel)[posicao_cobra.first+1][posicao_cobra.second] = 'o';
-                mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';
-            }*/
         } else {
             mapa_atual.at(nivel)[para_cima.first][para_cima.second] = 'v';
             mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';
@@ -75,6 +71,19 @@ void Player::movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel, i
             posicao_cobra.second = para_direita.second;    
         }
     }
+}
+
+void Player::crescer_cobra(vector<vector<string>>& mapa_atual, int nivel) {
+
+    for(int i = 0; i < mapa_atual.at(nivel).size(); i++){
+        for(int j = 0; j < mapa_atual.at(nivel).at(i).size(); j++){
+            if(mapa_atual.at(nivel)[i][j] == 'o'){
+                mapa_atual.at(nivel)[i-1][j] = 'o';
+            }
+        }
+    }
+
+    
 }
 
 /*void Player::mostrar_posicoes(vector<vector<string>>& mapa_atual, int nivel){
