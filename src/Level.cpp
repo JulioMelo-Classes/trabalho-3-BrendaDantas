@@ -143,7 +143,7 @@ void Level::interface_principal(){
 void Level::interface_nivel(){
     cout << "\nLives: ♥♥♥♥♥ | Score: " << score << "    | Food eaten: " << comidas_ingeridas << " of " << comidas_somadas << endl;
     cout << "______________________________________________________________________\n";
-    mostrar_mapa_um();
+    //mostrar_mapa_um();
     cout << "______________________________________________________________________\n";
 }
 

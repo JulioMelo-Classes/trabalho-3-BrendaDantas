@@ -102,7 +102,7 @@ void SnakeGame::process_actions(){
     //no caso deste trabalho temos 2 tipos de entrada, uma que vem da classe Player, como resultado do processamento da IA
     //outra vem do próprio usuário na forma de uma entrada do teclado.
     switch(state){
-        case WAITING_PLAYER:                          
+        case WAITING_PLAYER:     
             objeto_level.modificar_andamento(0);
             state = RUNNING;
             break;
@@ -172,6 +172,7 @@ void SnakeGame::render(){
             break;
         case RUNNING:                 
         //metodo que desenha a cobra no mapa
+            objeto_level.interface_nivel();
             objeto_level.desenhar_mapa(nivel);
             state = WAITING_PLAYER;
             break;
