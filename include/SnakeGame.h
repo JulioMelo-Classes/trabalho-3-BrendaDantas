@@ -43,7 +43,7 @@ class SnakeGame{
         /**
         * @brief realiza a inicialização geral do jogo, fique à vontade para adicionar parâmetros se achar que deve
         **/
-        void initialize_game();
+        void initialize_game(int argc, char *argv[]);
 
         /**
         * @brief atualiza o estado do jogo, basicamente movendo os objetos, sorteando novas posições de comida

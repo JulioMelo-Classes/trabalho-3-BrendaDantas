@@ -35,19 +35,25 @@ void wait(int ms){
 SnakeGame::SnakeGame(int argc, char *argv[]){
     choice = "";
     frameCount = 0;
-    initialize_game();
+    initialize_game(argc, argv);
 }
 
-void SnakeGame::initialize_game(){
+void SnakeGame::initialize_game(int argc, char *argv[]){
     stringstream xy;
     //carrega o nivel ou os níveis
-    ifstream levelFile("./data/maze1.txt"); //só dá certo se o jogo for executado dentro da raíz do diretório (vc vai resolver esse problema pegando o arquivo da linha de comando)
+    //ifstream levelFile("./data/maze1.txt"); //só dá certo se o jogo for executado dentro da raíz do diretório (vc vai resolver esse problema pegando o arquivo da linha de comando)
+    ifstream levelFile;
     int y, lineCount = 0, recebedora = 0;
     string line;
-    if(levelFile.is_open()){
-        while(std::getline(levelFile, line)){ //pega cada linha do arquivo
-            maze.push_back(line);
-            lineCount++;
+    levelFile.open(argv[1]);
+    if(argc < 2){
+        cout << "ERRO! NÃO FOI INSERIDO NENHUM ARQUIVO!";
+    } else{
+        if(levelFile.is_open()){
+            while(std::getline(levelFile, line)){ //pega cada linha do arquivo
+                maze.push_back(line);
+                lineCount++;
+            }
         }
     }
     for(auto i = maze.begin(); i != maze.end(); i++){//pega os números
