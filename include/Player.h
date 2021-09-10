@@ -23,6 +23,8 @@ class Player{
         pair<int, int> para_baixo;
         pair<int, int> para_esquerda;
         pair<int, int> para_direita;
+        pair<int, int> para_manter;
+        vector<pair<int, int>> corpo;
 
     public: 
         void posicao_da_cobra(vector<vector<string>>& mapa_atual, int nivel); // descobrir qual a posição da cobra
