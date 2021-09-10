@@ -12,7 +12,7 @@ class SnakeGame{
         * @brief descreve os possíveis estados do jogo, fique à vontade para adicionar outros se necessário
         **/
         enum GameStates{
-            START, //<! quando for o inicio de cada nivel
+            START,
             RUNNING, //<! quando o jogo está executando o estado é RUNNING
             GAME_OVER, //<! quando o jogo deve terminar o estado é GAME_OVER
             WAITING_USER, //<! quando o jogo deve esperar por uma entrada do usuário o estado é WAITING_USER
@@ -22,6 +22,7 @@ class SnakeGame{
     private:
         //<! atributos adicione outros se quiser
         bool estado_corpo; //<! verdadeiro se for pacman e falso caso contrário
+        bool taNoComeco; //<! verdadeiro está no inicio do jogo e falso caso contrário
         int nivel;
         Snake objeto_snake;
         Level objeto_level;

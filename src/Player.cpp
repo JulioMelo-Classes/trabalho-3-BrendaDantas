@@ -5,12 +5,15 @@
 
 using namespace std;
 
+pair<int, int> Player::get_posicao_da_cobra(){
+    return posicao_cobra;
+}
+
 void Player::posicao_da_cobra(vector<vector<string>>& mapa_atual, int nivel){
 
     for(int i = 0; i < mapa_atual.at(nivel).size(); i++){
         for(int j = 0; j < mapa_atual.at(nivel).at(i).size(); j++){
-            if(mapa_atual.at(nivel).at(i).at(j) == '*'){                
-                //posicao_cobra.(make_pair(i, j));
+            if(mapa_atual.at(nivel).at(i).at(j) == '*'){
                 mapa_atual.at(nivel).at(i).at(j) = 'v';
                 posicao_cobra.first = i;
                 posicao_cobra.second = j;

@@ -93,15 +93,11 @@ void SnakeGame::initialize_game(int argc, char *argv[]){
     }else{
         nivel = 0;       
         objeto_level.separar_mapa();
-        objeto_level.exibir_informacoes(0);
-        objeto_level.gerar_comida(nivel); 
-        state = START;
-        
-    }
-
-        
+        objeto_level.exibir_informacoes(0); 
+        objeto_level.gerar_comida(nivel);  
+        state = START; 
+    }   
 }
-
 
 void SnakeGame::process_actions(){
     //processa as entradas do jogador de acordo com o estado do jogo
@@ -125,8 +121,23 @@ void SnakeGame::process_actions(){
 void SnakeGame::update(){
     //atualiza o estado do jogo de acordo com o resultado da chamada de "process_input"
     switch(state){
+        case START:
+            taNoComeco = false;
+            break;
         case RUNNING:            
-             
+            if(taNoComeco){
+                objeto_level.gerar_comida(nivel);
+                cout << "gerei" << endl;
+                wait(1000); 
+                taNoComeco = false;
+            }      
+
+            if(objeto_level.verificar_colisao_comida()){
+                taNoComeco = true;
+                cout << "entrei aqui" << endl;
+                wait(1000);
+            }
+
             if(nivel <= objeto_level.get_quantidade_de_niveis()-1){    
                 //depois de comer todas as comidas, retornar uma variavel para ir para o proximo nivel                    
                     //nivel++;

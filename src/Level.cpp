@@ -97,18 +97,24 @@ int Level::validar_numeros(){//verifica a veracidade dos números
 
 void Level::gerar_comida(int nivel){
 
-    int contador = 0, i = 0, j = 0;
+    int i = 0;
     srand(time(NULL));
+    vector<pair<int, int>> posicoes_validas;
 
-    i = rand() % so_linhas[0];
-    j = rand() % so_colunas[0];
+    for(int i = 0; i < mapa_atual.at(nivel).size(); i++){
+        for(int j = 0; j < mapa_atual.at(nivel).at(i).size(); j++){
+            if(mapa_atual.at(nivel)[i][j] == ' '){
+                posicoes_validas.push_back(make_pair(i,j));
+            }
 
-    if(mapa_atual.at(nivel)[i][j] == ' '){
-        posicao_da_comida.first = i;
-        posicao_da_comida.second = j;
-        mapa_atual.at(nivel)[i][j] = 'A';
-        contador++;
-    }
+        }
+    }    
+
+    i = rand() % posicoes_validas.size();
+
+    posicao_da_comida.first = posicoes_validas[i].first;
+    posicao_da_comida.second = posicoes_validas[i].second;
+    mapa_atual.at(nivel)[posicao_da_comida.first][posicao_da_comida.second] = 'A';
 
 }
 
@@ -164,4 +170,13 @@ void Level::modificar_andamento(int nivel){
 
 int Level::get_quantidade_de_niveis(){
     return numero_de_niveis;
+}
+
+bool Level::verificar_colisao_comida(){
+    if(posicao_da_comida == player.get_posicao_da_cobra()){
+        comidas_ingeridas++;
+        return true;
+    }
+
+    return false;
 }
