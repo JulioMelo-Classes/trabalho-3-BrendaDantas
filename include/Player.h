@@ -30,7 +30,7 @@ class Player{
         void posicao_da_cobra(vector<vector<string>>& mapa_atual, int nivel); // descobrir qual a posição da cobra
         void movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel, int comidas_ingeridas);
         pair<int, int> get_posicao_da_cobra();
-        //void crescer_cobra(vector<vector<string>>& mapa_atual, int nivel);
+        void crescer_cobra(vector<vector<string>>& mapa_atual, int nivel);
         //void mostrar_posicoes(vector<vector<string>>& mapa_atual, int nivel);
 
 };

@@ -124,32 +124,12 @@ void Player::movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel, i
             posicao_cobra.second = para_manter.second;
         }
     }
+
 }
 
-/*void Player::crescer_cobra(vector<vector<string>>& mapa_atual, int nivel) {
-    para_cima.first = posicao_cobra.first-1;
-    para_cima.second = posicao_cobra.second;
-    para_baixo.first = posicao_cobra.first+1;
-    para_baixo.second = posicao_cobra.second;
-    para_esquerda.first = posicao_cobra.first;
-    para_esquerda.second = posicao_cobra.second-1;
-    para_direita.first = posicao_cobra.first;
-    para_direita.second = posicao_cobra.second+1;
-
-    for(int i = 0; i < mapa_atual.at(nivel).size(); i++){
-        for(int j = 0; j < mapa_atual.at(nivel).at(i).size(); j++){
-            if(mapa_atual.at(nivel)[i][j] == 'o'){
-                mapa_atual.at(nivel)[i-1][j] = 'o';
-            }
-        }
-    }  
-}*/
-
-/*void Player::mostrar_posicoes(vector<vector<string>>& mapa_atual, int nivel){
-    cout << "POSIÇÕES" << endl;
-    cout << para_cima.first << " e " << para_cima.second << endl;
-    cout << para_baixo.first << " e " << para_baixo.second << endl;
-    cout << para_esquerda.first << " e " << para_esquerda.second << endl;
-    cout << para_direita.first << " e " << para_direita.second << endl;
-
-}*/
+void Player::crescer_cobra(vector<vector<string>>& mapa_atual, int nivel) {
+    corpo.push_back(make_pair(posicao_cobra.first, posicao_cobra.second));
+    for(int i = 1; i < corpo.size()-1; i++){
+        mapa_atual.at(nivel)[corpo[i].first][corpo[i].second] = 'o';
+    }
+}

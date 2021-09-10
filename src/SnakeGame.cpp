@@ -132,7 +132,7 @@ void SnakeGame::update(){
                 taNoComeco = false;
             }      
 
-            if(objeto_level.verificar_colisao_comida()){
+            if(objeto_level.verificar_colisao_comida(estado_corpo, nivel)){
                 taNoComeco = true;
                 cout << "entrei aqui" << endl;
                 wait(1000);

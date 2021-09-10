@@ -46,7 +46,7 @@ class Level {
         void desenhar_mapa(int nivel);
         void modificar_andamento(int nivel);
         int get_quantidade_de_niveis();
-        bool verificar_colisao_comida();
+        bool verificar_colisao_comida(bool estado_corpo, int nivel);
 };
 
 

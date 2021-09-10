@@ -106,7 +106,6 @@ void Level::gerar_comida(int nivel){
             if(mapa_atual.at(nivel)[i][j] == ' '){
                 posicoes_validas.push_back(make_pair(i,j));
             }
-
         }
     }    
 
@@ -172,9 +171,13 @@ int Level::get_quantidade_de_niveis(){
     return numero_de_niveis;
 }
 
-bool Level::verificar_colisao_comida(){
+bool Level::verificar_colisao_comida(bool estado_corpo, int nivel){
+
     if(posicao_da_comida == player.get_posicao_da_cobra()){
         comidas_ingeridas++;
+        if(!estado_corpo){
+            player.crescer_cobra(mapa_atual, nivel);
+        }
         return true;
     }
 
