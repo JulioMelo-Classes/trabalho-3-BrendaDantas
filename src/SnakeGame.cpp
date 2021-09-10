@@ -46,9 +46,16 @@ void SnakeGame::initialize_game(int argc, char *argv[]){
     int y, lineCount = 0, recebedora = 0;
     string line;
     levelFile.open(argv[1]);
+    if(string(argv[2]) == "Snake"){
+        estado_corpo = false;
+    }
+    if(string(argv[2]) == "Pacman") {
+        estado_corpo = true;
+    } 
+
     if(argc < 2){
         cout << "ERRO! NÃO FOI INSERIDO NENHUM ARQUIVO!";
-    } else{
+    } else {
         if(levelFile.is_open()){
             while(std::getline(levelFile, line)){ //pega cada linha do arquivo
                 maze.push_back(line);

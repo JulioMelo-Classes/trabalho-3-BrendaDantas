@@ -1,6 +1,7 @@
 #ifndef Snake_h
 #define Snake_h 
 
+#include <iostream>
 using namespace std;
 
 // Verificar vidas -- atributo que guarda a quantidade de vidas restantes
@@ -12,7 +13,6 @@ class Snake{
     private:
         int comidas_ingeridas;
     public:
-
 };
 
 #endif

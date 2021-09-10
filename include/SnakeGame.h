@@ -21,7 +21,9 @@ class SnakeGame{
 
     private:
         //<! atributos adicione outros se quiser
+        bool estado_corpo; //<! verdadeiro se for pacman e falso caso contrário
         int nivel;
+        Snake objeto_snake;
         Level objeto_level;
         std::vector<std::string> maze; //<! vector contendo o labirinto atual, pode ser interpretado como uma matriz
         int frameCount; //<! contador de frames, usado apenas como exemplo

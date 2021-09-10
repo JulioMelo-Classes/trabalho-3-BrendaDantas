@@ -27,53 +27,31 @@ void Player::movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel, i
     para_esquerda.first = posicao_cobra.first;
     para_esquerda.second = posicao_cobra.second-1;
     para_direita.first = posicao_cobra.first;
-    para_direita.second = posicao_cobra.second+1;
-    
+    para_direita.second = posicao_cobra.second+1;    
+
+
+
 
     if(mapa_atual.at(nivel)[para_cima.first][para_cima.second] != '#' && mapa_atual.at(nivel)[para_cima.first][para_cima.second] != '.'){
-        if(mapa_atual.at(nivel)[para_cima.first][para_cima.second] == 'A'){
-            comidas_ingeridas++;
-            nova_posicao_cobra.first = para_cima.first;
-            nova_posicao_cobra.second = para_cima.second;
-            mapa_atual.at(nivel)[nova_posicao_cobra.first][nova_posicao_cobra.second] = 'v';
-            mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = 'o';
-            //mapa_atual.at(nivel)[para_cima.first-1][para_cima.second] = 'v';
-            //mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = 'o';   
-            //posicao_cobra.first = para_cima.first;
-            //posicao_cobra.second = para_cima.second;
-        } else {
-            mapa_atual.at(nivel)[para_cima.first][para_cima.second] = 'v';
-            mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';
-            posicao_cobra.first = para_cima.first;
-            posicao_cobra.second = para_cima.second;
-        }
-
-    }
-    else if(mapa_atual.at(nivel)[para_esquerda.first][para_esquerda.second] != '#' && mapa_atual.at(nivel)[para_esquerda.first][para_esquerda.second] != '.'){
-        if(mapa_atual.at(nivel)[para_esquerda.first][para_esquerda.second] == 'A'){
-            mapa_atual.at(nivel)[para_esquerda.first][para_esquerda.second] = '>';
-            mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = 'o';
-            posicao_cobra.first = para_esquerda.first;
-            posicao_cobra.second = para_esquerda.second;
-        } else {
-            mapa_atual.at(nivel)[para_esquerda.first][para_esquerda.second] = '>';
-            mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';
-            posicao_cobra.first = para_esquerda.first;
-            posicao_cobra.second = para_esquerda.second;
-        }
-    } 
-    else if(mapa_atual.at(nivel)[para_direita.first][para_direita.second] != '#' && mapa_atual.at(nivel)[para_direita.first][para_direita.second] != '.'){
-        if(mapa_atual.at(nivel)[para_direita.first][para_direita.second] == 'A'){
-            mapa_atual.at(nivel)[para_direita.first][para_direita.second] = '<';
-            mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = 'o';
-            posicao_cobra.first = para_direita.first;
-            posicao_cobra.second = para_direita.second;  
-        } else {
-            mapa_atual.at(nivel)[para_direita.first][para_direita.second] = '<';
-            mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';    
-            posicao_cobra.first = para_direita.first;
-            posicao_cobra.second = para_direita.second;    
-        }
+        mapa_atual.at(nivel)[para_cima.first][para_cima.second] = 'v';
+        mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';
+        posicao_cobra.first = para_cima.first;
+        posicao_cobra.second = para_cima.second;
+    } else if(mapa_atual.at(nivel)[para_baixo.first][para_baixo.second] != '#' && mapa_atual.at(nivel)[para_baixo.first][para_baixo.second] != '.'){
+        mapa_atual.at(nivel)[para_baixo.first][para_baixo.second] = '^';
+        mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';
+        posicao_cobra.first = para_baixo.first;
+        posicao_cobra.second = para_baixo.second; 
+    } else if(mapa_atual.at(nivel)[para_esquerda.first][para_esquerda.second] != '#' && mapa_atual.at(nivel)[para_esquerda.first][para_esquerda.second] != '.'){
+        mapa_atual.at(nivel)[para_esquerda.first][para_esquerda.second] = '>';
+        mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';
+        posicao_cobra.first = para_esquerda.first;
+        posicao_cobra.second = para_esquerda.second;
+    } else if(mapa_atual.at(nivel)[para_direita.first][para_direita.second] != '#' && mapa_atual.at(nivel)[para_direita.first][para_direita.second] != '.'){
+        mapa_atual.at(nivel)[para_direita.first][para_direita.second] = '<';
+        mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] = ' ';    
+        posicao_cobra.first = para_direita.first;
+        posicao_cobra.second = para_direita.second; 
     }
 }
 
