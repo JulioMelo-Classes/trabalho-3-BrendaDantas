@@ -106,7 +106,7 @@ void SnakeGame::process_actions(){
     //outra vem do próprio usuário na forma de uma entrada do teclado.
     switch(state){
         case WAITING_PLAYER:     
-            objeto_level.modificar_andamento(0);
+            //objeto_level.modificar_andamento(nivel);
             state = RUNNING;
             break;
         case WAITING_USER:
@@ -124,7 +124,8 @@ void SnakeGame::update(){
         case START:
             taNoComeco = false;
             break;
-        case RUNNING:            
+        case RUNNING:      
+            objeto_level.modificar_andamento(nivel);     
             if(taNoComeco){
                 objeto_level.gerar_comida(nivel);
                 taNoComeco = false;
