@@ -124,7 +124,6 @@ void Player::movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel, i
             posicao_cobra.second = para_manter.second;
         }
     }
-
 }
 
 void Player::crescer_cobra(vector<vector<string>>& mapa_atual, int nivel) {

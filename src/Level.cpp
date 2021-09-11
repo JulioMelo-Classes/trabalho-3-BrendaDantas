@@ -173,14 +173,25 @@ int Level::get_quantidade_de_niveis(){
 
 bool Level::verificar_colisao_comida(bool estado_corpo, int nivel){
 
+    qtd_comidas_por_nivel = so_comidas[nivel];
+
     if(posicao_da_comida == player.get_posicao_da_cobra()){
         comidas_ingeridas++;
         score = score+10;
         if(!estado_corpo){
             player.crescer_cobra(mapa_atual, nivel);
         }
+        
         return true;
     }
 
+    return false;
+}
+
+bool Level::checar_comida_por_nivel(){
+    if(comidas_ingeridas == qtd_comidas_por_nivel){
+        return true;
+    }
+    
     return false;
 }

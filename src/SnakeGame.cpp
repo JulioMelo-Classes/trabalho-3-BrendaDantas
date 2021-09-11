@@ -134,12 +134,17 @@ void SnakeGame::update(){
                 taNoComeco = true;
             }
 
-            if(nivel <= objeto_level.get_quantidade_de_niveis()-1){    
+            if(objeto_level.checar_comida_por_nivel()){
+                nivel++;
+                state = WAITING_USER;
+            }
+
+            /*if(nivel <= objeto_level.get_quantidade_de_niveis()-1){    
                 //depois de comer todas as comidas, retornar uma variavel para ir para o proximo nivel                    
                     //nivel++;
             } else if(nivel > objeto_level.get_quantidade_de_niveis()-1){
                 state = WAITING_USER;
-            }     
+            } */    
 
             break;
         case WAITING_USER: //se o jogo estava esperando pelo usuário então ele testa qual a escolha que foi feita

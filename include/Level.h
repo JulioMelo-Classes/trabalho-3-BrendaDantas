@@ -30,6 +30,7 @@ class Level {
         int numero_de_niveis; 
         int score = 0;
         int comidas_ingeridas = 0;
+        int qtd_comidas_por_nivel = 0;
 
     public:
         void preencher_mapa(string& mapa); // preencher um vetor com todos os mapas OK        
@@ -47,6 +48,7 @@ class Level {
         void modificar_andamento(int nivel);
         int get_quantidade_de_niveis();
         bool verificar_colisao_comida(bool estado_corpo, int nivel);
+        bool checar_comida_por_nivel();
 };
 
 

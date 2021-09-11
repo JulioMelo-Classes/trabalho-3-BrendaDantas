@@ -23,7 +23,7 @@ class SnakeGame{
         //<! atributos adicione outros se quiser
         bool estado_corpo; //<! verdadeiro se for pacman e falso caso contrário
         bool taNoComeco; //<! verdadeiro está no inicio do jogo e falso caso contrário
-        int nivel;
+        int nivel = 0;
         Snake objeto_snake;
         Level objeto_level;
         std::vector<std::string> maze; //<! vector contendo o labirinto atual, pode ser interpretado como uma matriz
