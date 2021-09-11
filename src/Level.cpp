@@ -175,6 +175,7 @@ bool Level::verificar_colisao_comida(bool estado_corpo, int nivel){
 
     if(posicao_da_comida == player.get_posicao_da_cobra()){
         comidas_ingeridas++;
+        score = score+10;
         if(!estado_corpo){
             player.crescer_cobra(mapa_atual, nivel);
         }
