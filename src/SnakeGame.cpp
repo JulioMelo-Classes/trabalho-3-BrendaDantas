@@ -127,15 +127,11 @@ void SnakeGame::update(){
         case RUNNING:            
             if(taNoComeco){
                 objeto_level.gerar_comida(nivel);
-                cout << "gerei" << endl;
-                wait(1000); 
                 taNoComeco = false;
             }      
 
             if(objeto_level.verificar_colisao_comida(estado_corpo, nivel)){
                 taNoComeco = true;
-                cout << "entrei aqui" << endl;
-                wait(1000);
             }
 
             if(nivel <= objeto_level.get_quantidade_de_niveis()-1){    
