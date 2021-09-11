@@ -127,8 +127,9 @@ void Player::movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel, i
 }
 
 void Player::crescer_cobra(vector<vector<string>>& mapa_atual, int nivel) {
+    cout << "entrei aqui" << endl;
     corpo.push_back(make_pair(posicao_cobra.first, posicao_cobra.second));
-    for(int i = 1; i < corpo.size()-1; i++){
+    for(int i = 0; i < corpo.size()-1; i++){
         mapa_atual.at(nivel)[corpo[i].first][corpo[i].second] = 'o';
     }
 }
