@@ -25,13 +25,35 @@ class Player{
         pair<int, int> para_direita;
         pair<int, int> para_manter;
         vector<pair<int, int>> corpo;
+        pair<int, int> posicao_antiga_cobra;
 
     public: 
+
+        /*! 
+		* @brief método implementado para descobrir a posição inicial da cobra no mapa e adicionar a sua "cabeça". 
+		*
+        * @param mapa_atual mapa do nivel atual.
+        * @param nivel nivel atual do jogo.
+		*/
         void posicao_da_cobra(vector<vector<string>>& mapa_atual, int nivel); // descobrir qual a posição da cobra
-        void movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel, int comidas_ingeridas);
+       
+        /*! 
+		* @brief método implementado para fazer a cobra andar pelo labirinto. 
+		*
+        * @param mapa_atual mapa do nivel atual.
+        * @param nivel nivel atual do jogo.
+		*/
+        void movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel);
+
+        /*! 
+		* @brief método implementado para acessar a posição da cobra. 
+		*
+        * @return retorna um pair contendo a posição da cobra.
+		*/
         pair<int, int> get_posicao_da_cobra();
+
+        //ainda testando o crescimento da cobra....
         void crescer_cobra(vector<vector<string>>& mapa_atual, int nivel);
-        //void mostrar_posicoes(vector<vector<string>>& mapa_atual, int nivel);
 
 };
 
