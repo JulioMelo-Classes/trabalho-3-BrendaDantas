@@ -93,7 +93,6 @@ void SnakeGame::initialize_game(int argc, char *argv[]){
     }else{
         nivel = 0;       
         objeto_level.separar_mapa();
-        objeto_level.exibir_informacoes(0); 
         objeto_level.gerar_comida(nivel);  
         state = START; 
     }   

@@ -23,7 +23,7 @@ void Player::posicao_da_cobra(vector<vector<string>>& mapa_atual, int nivel){
     }
 }
 
-void Player::movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel, int comidas_ingeridas) {
+void Player::movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel) {
     if(mapa_atual.at(nivel)[posicao_cobra.first][posicao_cobra.second] == '<'){
         para_manter.first = posicao_cobra.first;
         para_manter.second = posicao_cobra.second+1;
