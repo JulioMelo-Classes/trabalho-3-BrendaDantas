@@ -20,10 +20,6 @@
 
 using namespace std;
 
-/**
- * @brief função auxiliar para fazer o programa esperar por alguns milisegundos
- * @param ms a quantidade de segundos que o programa deve esperar
- */
 void wait(int ms){
 #if defined _WIN32
     Sleep(ms);
@@ -133,41 +129,27 @@ void SnakeGame::update(){
             if(objeto_level.verificar_colisao_comida(estado_corpo, nivel)){
                 taNoComeco = true;
             }
-                wait(500);
 
             if(objeto_level.checar_comida_por_nivel()){
                 nivel++;
                 state = WAITING_USER;
             }
 
-            /*if(nivel <= objeto_level.get_quantidade_de_niveis()-1){    
-                //depois de comer todas as comidas, retornar uma variavel para ir para o proximo nivel                    
-                    //nivel++;
-            } else if(nivel > objeto_level.get_quantidade_de_niveis()-1){
-                state = WAITING_USER;
-            } */    
-
             break;
-        case WAITING_USER: //se o jogo estava esperando pelo usuário então ele testa qual a escolha que foi feita
+        case WAITING_USER: 
             if(choice == "n"){
                 state = GAME_OVER;
                 game_over();
             }
-            else{
-                //pode fazer alguma coisa antes de fazer isso aqui 
-                //nivel++;
+            else{                
                 state = RUNNING;
             }
             break;
         default:
-            //nada pra fazer aqui
             break;
     }
 }
 
-/**
- * @brief função auxiliar para linpar o terminal
- */
 void clearScreen(){
 //some C++ voodoo here ;D
 #if defined _WIN32

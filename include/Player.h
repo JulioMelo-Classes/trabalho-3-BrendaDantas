@@ -52,10 +52,22 @@ class Player{
 		*/
         pair<int, int> get_posicao_da_cobra();
 
-        //ainda testando o crescimento da cobra....
+        /*! 
+		* @brief método implementado para fazer crescer o corpo da cobra sempre que ela ingerir uma comida. 
+		*
+        * @param mapa_atual mapa do nivel atual.
+        * @param nivel nivel atual do jogo.
+		*/
         void crescer_cobra(vector<vector<string>>& mapa_atual, int nivel);
 
-        // verificar a cobra se deve ser desenhada naquela posição
+        /*! 
+		* @brief método implementado para verificar o conteúdo faz parte do corpo da cobra.
+		*
+        * @param linha linhas do mapa.
+        * @param coluna colunas do mapa.
+        * 
+        * @return true caso o par de linha e coluna faça parte e false caso contrário.
+		*/
         bool faz_parte(int linha, int coluna);
 
 };

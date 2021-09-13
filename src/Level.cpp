@@ -14,10 +14,6 @@ void Level::preencher_mapa(string& mapa){//preencher vector c/ todos os mapas
 
 void Level::preencher_numeros(int numero){//preenche vector com todos os numeros
     todos_os_numeros.push_back(numero);
-    cout << numero << endl;
-    /*for(auto i = todos_os_numeros.begin(); i != todos_os_numeros.end(); i++){
-        cout << *i << endl;
-    }*/
 }
 
 void Level::separar_mapa(){
@@ -225,7 +221,6 @@ void Level::desenhar_mapa(int nivel){
 void Level::modificar_andamento(int nivel){
     player.posicao_da_cobra(mapa_atual, nivel);
     player.movimentando_cobra(mapa_atual, nivel);
-    //player.crescer_cobra(mapa_atual, nivel);
 }
 
 int Level::get_quantidade_de_niveis(){

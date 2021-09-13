@@ -125,37 +125,18 @@ void Player::movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel) {
         }
     }
     
-    // EXEMPLO:
-    // TAMANHO = 3; COMIDAS_INGERIDAS = 2
-    // Vector | Mapa (ANTES - vem do crescer_cobra()) 
-    // 0 [2,1]  |  V
-    // 1 [3,1]  |  o
-    // 2 [3,1]  |       novo rabo da cobra
-    
     for(int i = corpo.size()-1; i > 0; i--){
         corpo[i] = corpo[i-1];    
     }
-    // Vector | Mapa (DURANTE)
-    // 0 [2,1]  |  V
-    // 1 [2,1]  |  o
-    // 2 [3,1]  |       novo rabo da cobra
 
     corpo[0].first = posicao_cobra.first; // posição atualizada da cabeça da cobra
     corpo[0].second = posicao_cobra.second;
-    // Vector | Mapa (DURANTE)
-    // [1,1]  |  V
-    // [2,1]  |  o
-    // [3,1]  | 
 
     for(int i = 0; i < corpo.size(); i++){  
         if(i > 0){
             mapa_atual.at(nivel)[corpo[i].first][corpo[i].second] = 'o';
         }
     }
-    // Vector | Mapa (DEPOIS)
-    // [1,1]  |  V
-    // [2,1]  |  o
-    // [3,1]  |  o
 }
 
 void Player::crescer_cobra(vector<vector<string>>& mapa_atual, int nivel) {
@@ -164,8 +145,9 @@ void Player::crescer_cobra(vector<vector<string>>& mapa_atual, int nivel) {
 
 bool Player::faz_parte(int linha, int coluna){
     for(int i = 0; i < corpo.size(); i++){
-        if(make_pair(linha,coluna) == corpo[i])
+        if(make_pair(linha,coluna) == corpo[i]){
             return true;
+        }
     }
     return false;
 }
