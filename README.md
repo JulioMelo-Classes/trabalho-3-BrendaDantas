@@ -33,4 +33,4 @@
     - No Windows:
         1. cmake ..
         2. cmake --build .
-        3. .\Snaze .\data\maze1.txt Pacman/Snake (Pacman: cobra sem corpo, Snake: cobra com corpo).
+        3. .\Debug\Snaze ..\data\maze1.txt Pacman/Snake (Pacman: cobra sem corpo, Snake: cobra com corpo).
