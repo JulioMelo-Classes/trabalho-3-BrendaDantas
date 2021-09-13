@@ -81,43 +81,37 @@ int Level::validar_numeros(){//verifica a veracidade dos números
     int tam_linhas = so_linhas.size();
     int tam_colunas = so_colunas.size();
     int tam_comidas = so_comidas.size();
-    cout << "qtd numeros em linhas: " << tam_linhas << endl;
-    cout << "qtd numeros em colunas: " << tam_colunas << endl;
-    cout << "qtd numeros em comida: " << tam_comidas << endl;
 
     //pega último número para descobrir qual o número
     for(int i = 0; i < so_linhas.size(); i++){
-        cout << "dentro do for linhas: " << so_linhas[i] << " na pos: "<< i << endl;
         x = so_linhas[i];
     }
-    cout << "quanto vale X :" << x << endl;
     for(int i = 0; i < so_colunas.size(); i++){
-        cout << "dentro do for coluna: " << so_colunas[i] << " na pos: "<< i << endl;
         y = so_colunas[i];
     }
-    cout << "quanto vale Y :" << y << endl;
     for(int i = 0; i < so_comidas.size(); i++){
-        cout << "dentro do for comidas: " << so_comidas[i] << " na pos: "<< i << endl;
         z = so_comidas[i];
     }
-    cout << "quanto vale Z :" << z << endl;
 
     //faz verificação de linhas
+    if(tam_linhas == 0 && tam_colunas == 0 && tam_comidas == 0){
+        cout << "ERRO!! arquivo inserido está vazio.\n";
+        cout << "Lembre-se que o número de linhas e colunas não podem ser maiores que 100 e menor que 1,\ne a comida não pode ser menor que 1.\n";
+        return 1;
+    }
     if(tam_linhas == 2 && x == 0 && y == 0 && z == 0){//arquivo com 1 nivel
         for(int i = 0; i < so_linhas.size()-1; i++){
             if(so_linhas[i] <= 0 || so_linhas[i] > 100){//valida linhas
-                cout << "aaqui dentro de linhas é: " << so_linhas[i] << endl;
                 cout << "ERRO!! quantidade de linhas não pode ser inferior a 1 ou superior a 100." << endl;
-                cout << "No nivel " << i+1 << " você adicionou " << so_linhas[i] << " na coluna." << endl;
+                cout << "No nivel " << i+1 << " você adicionou " << so_linhas[i] << " na linha" << endl;
                 return 1;
             }
         }
     } else if(tam_linhas > 1) {//arquivo contém mais de 1 nível
         for(int i = 0; i < so_linhas.size(); i++){
             if(so_linhas[i] <= 0 || so_linhas[i] > 100){
-                cout << "aqui dentro de linhas é: " << so_linhas[i] << endl;
                 cout << "ERRO!! quantidade de linhas não pode ser inferior a 1 ou superior a 100." << endl;
-                cout << "No nivel " << i+1 << " você adicionou " << so_linhas[i] << " na coluna." << endl;
+                cout << "No nivel " << i+1 << " você adicionou " << so_linhas[i] << " na linha." << endl;
                 return 1;
             }
         }
@@ -126,7 +120,6 @@ int Level::validar_numeros(){//verifica a veracidade dos números
     if(tam_colunas == 2 && x == 0 && y == 0 && z == 0){//arquivo com 1 nivel
         for(int j = 0; j < so_colunas.size()-1; j++){
             if(so_colunas[j] <= 0 || so_colunas[j] > 100){
-                cout << "aqui dentro de colunas é: " << so_colunas[j] << endl;
                 cout << "ERRO!! quantidade de colunas não pode ser inferior a 1 ou superior a 100." << endl;
                 cout << "No nivel " << j+1 << " você adicionou " << so_colunas[j] << " na coluna." << endl;
                 return 2;
@@ -135,7 +128,6 @@ int Level::validar_numeros(){//verifica a veracidade dos números
     } else if(tam_colunas > 1) {
         for(int j = 0; j < so_colunas.size(); j++){//arquivo acima de 1 nivel
             if(so_colunas[j] <= 0 || so_colunas[j] > 100){
-                cout << "aqui dentro de colunas é: " <<  so_colunas[j] << endl;
                 cout << "ERRO!! quantidade de colunas não pode ser inferior a 1 ou superior a 100." << endl;
                 cout << "No nivel " << j+1 << " você adicionou " << so_colunas[j] << " na coluna." << endl;
                 return 2;
@@ -146,7 +138,6 @@ int Level::validar_numeros(){//verifica a veracidade dos números
     if(tam_comidas == 2 && x == 0 && y == 0 && z == 0){//arquivo com 1 nivel
         for(int k = 0; k < so_comidas.size()-1; k++){
             if(so_comidas[k] <= 0){
-                cout << "aqui dentro de comidas é: " << so_comidas[k] << endl;
                 cout << "ERRO!! quantidade de comidas não pode ser inferior a 1." << endl;
                 cout << "No nivel " << k+1 << " você adicionou " << so_comidas[k] << " na comida." << endl;
                 return 1;
@@ -155,7 +146,6 @@ int Level::validar_numeros(){//verifica a veracidade dos números
     } else if(tam_comidas > 1) {//arquivo com mais de um nivel
         for(int k = 0; k < so_comidas.size(); k++){
             if(so_comidas[k] <= 0){
-                cout << "aqui dentro de comidas é: " << so_comidas[k] << endl;
                 cout << "ERRO!! quantidade de comidas não pode ser inferior a 1." << endl;
                 cout << "No nivel " << k+1 << " você adicionou " << so_comidas[k] << " na comida." << endl;
                 return 1;
