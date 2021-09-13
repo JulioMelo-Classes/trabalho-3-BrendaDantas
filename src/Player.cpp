@@ -13,7 +13,7 @@ void Player::posicao_da_cobra(vector<vector<string>>& mapa_atual, int nivel){
 
     for(int i = 0; i < mapa_atual.at(nivel).size(); i++){
         for(int j = 0; j < mapa_atual.at(nivel).at(i).size(); j++){
-            if(mapa_atual.at(nivel).at(i).at(j) == '*'){
+            if(mapa_atual.at(nivel).at(i).at(j) == '*'){ // quando for o inicio da partida
                 mapa_atual.at(nivel).at(i).at(j) = 'v';
                 posicao_cobra.first = i;
                 posicao_cobra.second = j;
@@ -124,12 +124,48 @@ void Player::movimentando_cobra(vector<vector<string>>& mapa_atual, int nivel) {
             posicao_cobra.second = para_manter.second;
         }
     }
+    
+    // EXEMPLO:
+    // TAMANHO = 3; COMIDAS_INGERIDAS = 2
+    // Vector | Mapa (ANTES - vem do crescer_cobra()) 
+    // 0 [2,1]  |  V
+    // 1 [3,1]  |  o
+    // 2 [3,1]  |       novo rabo da cobra
+    
+    for(int i = corpo.size()-1; i > 0; i--){
+        corpo[i] = corpo[i-1];    
+    }
+    // Vector | Mapa (DURANTE)
+    // 0 [2,1]  |  V
+    // 1 [2,1]  |  o
+    // 2 [3,1]  |       novo rabo da cobra
+
+    corpo[0].first = posicao_cobra.first; // posição atualizada da cabeça da cobra
+    corpo[0].second = posicao_cobra.second;
+    // Vector | Mapa (DURANTE)
+    // [1,1]  |  V
+    // [2,1]  |  o
+    // [3,1]  | 
+
+    for(int i = 0; i < corpo.size(); i++){  
+        if(i > 0){
+            mapa_atual.at(nivel)[corpo[i].first][corpo[i].second] = 'o';
+        }
+    }
+    // Vector | Mapa (DEPOIS)
+    // [1,1]  |  V
+    // [2,1]  |  o
+    // [3,1]  |  o
 }
 
 void Player::crescer_cobra(vector<vector<string>>& mapa_atual, int nivel) {
-    cout << "entrei aqui" << endl;
-    corpo.push_back(make_pair(posicao_cobra.first, posicao_cobra.second));
-    for(int i = 0; i < corpo.size()-1; i++){
-        mapa_atual.at(nivel)[corpo[i].first][corpo[i].second] = 'o';
+    corpo.push_back(make_pair(corpo[corpo.size()-1].first, corpo[corpo.size()-1].second));
+}
+
+bool Player::faz_parte(int linha, int coluna){
+    for(int i = 0; i < corpo.size(); i++){
+        if(make_pair(linha,coluna) == corpo[i])
+            return true;
     }
+    return false;
 }

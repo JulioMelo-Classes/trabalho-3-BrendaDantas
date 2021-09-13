@@ -55,6 +55,9 @@ class Player{
         //ainda testando o crescimento da cobra....
         void crescer_cobra(vector<vector<string>>& mapa_atual, int nivel);
 
+        // verificar a cobra se deve ser desenhada naquela posição
+        bool faz_parte(int linha, int coluna);
+
 };
 
 #endif

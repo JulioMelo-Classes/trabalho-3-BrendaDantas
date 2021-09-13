@@ -133,6 +133,7 @@ void SnakeGame::update(){
             if(objeto_level.verificar_colisao_comida(estado_corpo, nivel)){
                 taNoComeco = true;
             }
+                wait(500);
 
             if(objeto_level.checar_comida_por_nivel()){
                 nivel++;
@@ -212,7 +213,7 @@ void SnakeGame::loop(){
         process_actions();
         update();
         render();
-        wait(400);// espera 1 segundo entre cada frame
+        wait(200);// espera 1 segundo entre cada frame
     }
    
 }

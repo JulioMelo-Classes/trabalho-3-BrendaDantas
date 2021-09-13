@@ -212,7 +212,13 @@ void Level::desenhar_mapa(int nivel){
     linhas_mapa_atual = so_linhas.at(nivel);
     cout << "Nível: " << nivel+1 << endl;
     for(int i = 0; i < linhas_mapa_atual; i++){
-        cout << mapa_atual.at(nivel).at(i) << endl;
+        for(int j = 0; j < so_colunas.at(nivel); j++){
+            if(!player.faz_parte(i,j) && mapa_atual.at(nivel)[i][j] == 'o')  // acaba ocorrendo apenas quando o tam da cobra > 1
+                mapa_atual.at(nivel)[i][j] = ' ';
+            
+            cout << mapa_atual.at(nivel)[i][j];
+        }
+        cout << endl;
     }
 }
 
