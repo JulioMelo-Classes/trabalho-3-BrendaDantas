@@ -8,7 +8,7 @@
     cujo nome é fornecido via argumento de linha de comando, e controla os movimentos da cobra.
 
 * **Regras de início:**
-    - Para inciar o jogo, é necessário adicionar a quantidade de linhas, colunas e de comida, logo após o mapa.
+    - Para inciar o jogo, é necessário adicionar a quantidade de linhas, colunas e de comida, e depois o mapa.
     - A quantidade de linhas e colunas não podem ser menores que 0 e maiores que 100.
     - A quantidade de comida não poder ser inferior a 1.
 
