@@ -9,7 +9,7 @@
 
 * **Regras de início:**
     - Para inciar o jogo, é necessário adicionar a quantidade de linhas, colunas e de comida, e depois o mapa.
-    - A quantidade de linhas e colunas não podem ser menores que 0 e maiores que 100.
+    - A quantidade de linhas e colunas não podem ser menores que 1 e maiores que 100.
     - A quantidade de comida não poder ser inferior a 1.
 
 * **Arquivos teste:**
