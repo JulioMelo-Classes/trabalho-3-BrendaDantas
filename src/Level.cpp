@@ -14,6 +14,10 @@ void Level::preencher_mapa(string& mapa){//preencher vector c/ todos os mapas
 
 void Level::preencher_numeros(int numero){//preenche vector com todos os numeros
     todos_os_numeros.push_back(numero);
+    cout << numero << endl;
+    /*for(auto i = todos_os_numeros.begin(); i != todos_os_numeros.end(); i++){
+        cout << *i << endl;
+    }*/
 }
 
 void Level::separar_mapa(){
@@ -73,25 +77,93 @@ void Level::somando_comidas(){//soma as comidas
 }
 
 int Level::validar_numeros(){//verifica a veracidade dos números
+    int x = 1, y = 1, z = 1;
+    int tam_linhas = so_linhas.size();
+    int tam_colunas = so_colunas.size();
+    int tam_comidas = so_comidas.size();
+    cout << "qtd numeros em linhas: " << tam_linhas << endl;
+    cout << "qtd numeros em colunas: " << tam_colunas << endl;
+    cout << "qtd numeros em comida: " << tam_comidas << endl;
 
-    for(auto itr1 = so_linhas.begin(); itr1 != so_linhas.end(); itr1++){
-        if(*itr1 <= 0 || *itr1 > 100){//valida linhas
-            cout << "ERRO!! quantidade de linhas não pode ser inferior a 1 ou superior a 100\n" << endl;
-            return 1;
+    //pega último número para descobrir qual o número
+    for(int i = 0; i < so_linhas.size(); i++){
+        cout << "dentro do for linhas: " << so_linhas[i] << " na pos: "<< i << endl;
+        x = so_linhas[i];
+    }
+    cout << "quanto vale X :" << x << endl;
+    for(int i = 0; i < so_colunas.size(); i++){
+        cout << "dentro do for coluna: " << so_colunas[i] << " na pos: "<< i << endl;
+        y = so_colunas[i];
+    }
+    cout << "quanto vale Y :" << y << endl;
+    for(int i = 0; i < so_comidas.size(); i++){
+        cout << "dentro do for comidas: " << so_comidas[i] << " na pos: "<< i << endl;
+        z = so_comidas[i];
+    }
+    cout << "quanto vale Z :" << z << endl;
+
+    //faz verificação de linhas
+    if(tam_linhas == 2 && x == 0 && y == 0 && z == 0){//arquivo com 1 nivel
+        for(int i = 0; i < so_linhas.size()-1; i++){
+            if(so_linhas[i] <= 0 || so_linhas[i] > 100){//valida linhas
+                cout << "aaqui dentro de linhas é: " << so_linhas[i] << endl;
+                cout << "ERRO!! quantidade de linhas não pode ser inferior a 1 ou superior a 100." << endl;
+                cout << "No nivel " << i+1 << " você adicionou " << so_linhas[i] << " na coluna." << endl;
+                return 1;
+            }
+        }
+    } else if(tam_linhas > 1) {//arquivo contém mais de 1 nível
+        for(int i = 0; i < so_linhas.size(); i++){
+            if(so_linhas[i] <= 0 || so_linhas[i] > 100){
+                cout << "aqui dentro de linhas é: " << so_linhas[i] << endl;
+                cout << "ERRO!! quantidade de linhas não pode ser inferior a 1 ou superior a 100." << endl;
+                cout << "No nivel " << i+1 << " você adicionou " << so_linhas[i] << " na coluna." << endl;
+                return 1;
+            }
         }
     }
-    for(auto itr1 = so_colunas.begin(); itr1 != so_colunas.end(); itr1++){
-        if(*itr1 <= 0 || *itr1 > 100){//valida colunas
-            cout << "ERRO!! quantidade de colunas não pode ser inferior a 1 ou superior a 100\n" << endl;
-            return 2;
+    //validação de colunas
+    if(tam_colunas == 2 && x == 0 && y == 0 && z == 0){//arquivo com 1 nivel
+        for(int j = 0; j < so_colunas.size()-1; j++){
+            if(so_colunas[j] <= 0 || so_colunas[j] > 100){
+                cout << "aqui dentro de colunas é: " << so_colunas[j] << endl;
+                cout << "ERRO!! quantidade de colunas não pode ser inferior a 1 ou superior a 100." << endl;
+                cout << "No nivel " << j+1 << " você adicionou " << so_colunas[j] << " na coluna." << endl;
+                return 2;
+            }
+        }
+    } else if(tam_colunas > 1) {
+        for(int j = 0; j < so_colunas.size(); j++){//arquivo acima de 1 nivel
+            if(so_colunas[j] <= 0 || so_colunas[j] > 100){
+                cout << "aqui dentro de colunas é: " <<  so_colunas[j] << endl;
+                cout << "ERRO!! quantidade de colunas não pode ser inferior a 1 ou superior a 100." << endl;
+                cout << "No nivel " << j+1 << " você adicionou " << so_colunas[j] << " na coluna." << endl;
+                return 2;
+            }
         }
     }
-    for(auto itr1 = so_comidas.begin(); itr1 != so_comidas.end(); itr1++){
-        if(*itr1 <= 0){//valida comidas
-            cout << "ERRO!! quantidade de comidas não pode ser inferior a 1\n" << endl;
-            return 3;
+    //validação de comidas
+    if(tam_comidas == 2 && x == 0 && y == 0 && z == 0){//arquivo com 1 nivel
+        for(int k = 0; k < so_comidas.size()-1; k++){
+            if(so_comidas[k] <= 0){
+                cout << "aqui dentro de comidas é: " << so_comidas[k] << endl;
+                cout << "ERRO!! quantidade de comidas não pode ser inferior a 1." << endl;
+                cout << "No nivel " << k+1 << " você adicionou " << so_comidas[k] << " na comida." << endl;
+                return 1;
+            }
+        }
+    } else if(tam_comidas > 1) {//arquivo com mais de um nivel
+        for(int k = 0; k < so_comidas.size(); k++){
+            if(so_comidas[k] <= 0){
+                cout << "aqui dentro de comidas é: " << so_comidas[k] << endl;
+                cout << "ERRO!! quantidade de comidas não pode ser inferior a 1." << endl;
+                cout << "No nivel " << k+1 << " você adicionou " << so_comidas[k] << " na comida." << endl;
+                return 1;
+            }
         }
     }
+
+
     return 0;
 }
 
@@ -117,13 +189,6 @@ void Level::gerar_comida(int nivel){
 
 }
 
-void Level::exibir_informacoes(int nivel){
-
-    player.posicao_da_cobra(mapa_atual, nivel);
-    player.movimentando_cobra(mapa_atual, nivel, comidas_ingeridas);
-    //player.mostrar_posicoes(mapa_atual, nivel);
-    
-}
 
 void Level::mostrar_mapa_um(){
     
@@ -163,7 +228,7 @@ void Level::desenhar_mapa(int nivel){
 
 void Level::modificar_andamento(int nivel){
     player.posicao_da_cobra(mapa_atual, nivel);
-    player.movimentando_cobra(mapa_atual, nivel, comidas_ingeridas);
+    player.movimentando_cobra(mapa_atual, nivel);
     //player.crescer_cobra(mapa_atual, nivel);
 }
 
