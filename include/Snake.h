@@ -2,7 +2,7 @@
 #define Snake_h 
 
 #include <iostream>
-using namespace std;
+using namespace std; //não é uma boa prática em C++
 
 // Verificar vidas -- atributo que guarda a quantidade de vidas restantes
 // Status se ela está viva ou morta -- atributo que guarda info se está viva ou morta
